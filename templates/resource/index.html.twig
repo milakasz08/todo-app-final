@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Magazyn Zasobów - Multimedia{% endblock %}
+
+{% block body %}
+    <div class="sm:flex sm:items-center sm:justify-between mb-8">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Magazyn Zasobów</h1>
+            <p class="mt-2 text-sm text-gray-600">Przeglądaj, filtruj względem kategorii oraz sprawdzaj dostępność zasobów w czasie rzeczywistym.</p>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="mt-4 sm:mt-0">
+                <a href="{{ path('app_resource_new') }}" class="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-semibold shadow-sm text-sm transition">
+                    <i class="fa-solid fa-plus mr-2"></i> Dodaj nowy zasób
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-200 flex flex-wrap items-center gap-2">
+        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider mr-2"><i class="fa-solid fa-filter mr-1"></i> Szybki filtr:</span>
+        <a href="{{ path('app_resource_index') }}" class="px-3 py-1 rounded-full text-xs font-medium bg-white border border-gray-300 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition">Wszystko</a>
+        <a href="{{ path('app_resource_index') }}?type=ksiazka" class="px-3 py-1 rounded-full text-xs font-medium bg-white border border-amber-300 text-amber-700 hover:bg-amber-500 hover:text-white transition">📚 Książki</a>
+        <a href="{{ path('app_resource_index') }}?type=film" class="px-3 py-1 rounded-full text-xs font-medium bg-white border border-blue-300 text-blue-700 hover:bg-blue-500 hover:text-white transition">🎬 Filmy</a>
+        <a href="{{ path('app_resource_index') }}?type=plyta" class="px-3 py-1 rounded-full text-xs font-medium bg-white border border-purple-300 text-purple-700 hover:bg-purple-500 hover:text-white transition">💿 Płyty</a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for resource in resources %}
+            <div class="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden flex flex-col justify-between">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-3">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                        {% if 'film' in resource.Title|lower or 'dvd' in resource.Title|lower or 'reżyser' in resource.Description|lower %}
+                            <i class="fa-solid fa-film mr-1.5 text-indigo-500"></i> Film
+                        {% elseif 'audio' in resource.Title|lower or 'music' in resource.Title|lower or 'płyta' in resource.Title|lower or 'cd' in resource.Title|lower %}
+                            <i class="fa-solid fa-music mr-1.5 text-emerald-500"></i> Płyta
+                        {% else %}
+                            <i class="fa-solid fa-book mr-1.5 text-amber-500"></i> Książka
+                        {% endif %}
+                    </span>
+
+                        <span class="text-xs text-gray-400 font-mono">ID: #{{ resource.id }}</span>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-gray-900 line-clamp-1">{{ resource.Title }}</h3>
+                    <p class="text-sm text-gray-500 mb-4">Autor/Twórca: <span class="font-medium text-gray-700">{{ resource.Author ?: 'Nieznany' }}</span></p>
+
+                    <p class="text-sm text-gray-600 line-clamp-2 bg-gray-50 p-2.5 rounded-lg border border-gray-100 italic">
+                        {{ resource.Description ?: 'Brak dodatkowego opisu dla tego rekordu multimedialnego.' }}
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 block uppercase font-bold tracking-wider">Na stanie</span>
+                        {% set qty = resource.availableQuantity is defined ? resource.availableQuantity : (resource.quantity is defined ? resource.quantity : 0) %}
+                        <span class="text-sm font-extrabold {% if qty > 0 %}text-emerald-600{% else %}text-red-500{% endif %}">
+                        {{ qty }} szt.
+                    </span>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <a href="{{ path('app_resource_show', {'id': resource.id}) }}" class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-gray-100 transition shadow-sm">
+                            Podgląd
+                        </a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_resource_edit', {'id': resource.id}) }}" class="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-indigo-100 transition">
+                                Edytuj
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-span-full py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 text-center">
+                <i class="fa-solid fa-box-open text-4xl text-gray-400 mb-3"></i>
+                <p class="text-gray-500 font-medium">Brak zasobów w tej kategorii.</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

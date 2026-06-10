@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test Projektu</title>
+</head>
+<body>
+    <h1>Uczelnia: {{ uczelnia_nazwa }}</h1>
+
+    <ul>
+    {% for admin in kadra %}
+        <li>{{ admin.przedstawSie() }}</li>
+    {% else %}
+        <li>Brak administratorów w kadrze.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

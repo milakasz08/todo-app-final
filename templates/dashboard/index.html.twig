@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - System Zarządzania Multimediami{% endblock %}
+
+{% block body %}
+    <div class="mb-8 bg-gradient-to-r from-slate-900 to-indigo-950 rounded-2xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-3xl font-extrabold tracking-tight">Witaj w MediaStream Dashboard!</h1>
+            <p class="mt-2 text-indigo-200 max-w-xl text-sm md:text-base">Przegląd kluczowych wskaźników analitycznych systemu, rezerwacji oraz zasobów bibliotecznych w czasie rzeczywistym.</p>
+        </div>
+        <div class="absolute right-0 bottom-0 top-0 opacity-10 flex items-center pr-12 hidden lg:flex">
+            <i class="fa-solid fa-chart-line text-[120px]"></i>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-8">
+
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex items-center space-x-4">
+            <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+                <i class="fa-solid fa-boxes-stacked text-2xl w-6 h-6 flex items-center justify-center"></i>
+            </div>
+            <div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Wszystkie Zasoby</span>
+                <span class="text-2xl font-black text-gray-900">{{ totalResources|default(6) }}</span>
+            </div>
+        </div>
+
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex items-center space-x-4">
+            <div class="p-3 bg-amber-50 text-amber-600 rounded-xl">
+                <i class="fa-solid fa-clock-history text-2xl w-6 h-6 flex items-center justify-center"></i>
+            </div>
+            <div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Wypożyczenia w toku</span>
+                <span class="text-2xl font-black text-gray-900">{{ activeRentals|default(1) }}</span>
+            </div>
+        </div>
+
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex items-center space-x-4">
+            <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl">
+                <i class="fa-solid fa-fire text-2xl w-6 h-6 flex items-center justify-center"></i>
+            </div>
+            <div class="overflow-hidden">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Top Zasób (Najczęstszy)</span>
+                <span class="text-sm font-bold text-gray-950 block truncate">{{ popularResourceTitle|default('Franklin mały chwalipięta') }}</span>
+                <span class="text-xs text-emerald-600 font-semibold">Wypożyczony: {{ popularResourceCount|default(2) }} razy</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="border border-gray-200 rounded-2xl p-6 bg-slate-50/50">
+        <h3 class="text-lg font-bold text-gray-900 mb-4"><i class="fa-solid fa-bolt mr-2 text-indigo-500"></i>Panel szybkich operacji</h3>
+        <div class="flex flex-wrap gap-3">
+            <a href="{{ path('app_rental_new') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
+                <i class="fa-solid fa-cart-plus mr-1.5"></i> Wypożycz coś nowego
+            </a>
+            <a href="{{ path('app_resource_index') }}" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm hover:bg-gray-50 transition">
+                <i class="fa-solid fa-list mr-1.5"></i> Zobacz pełną listę zasobów
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+twig:
+    file_name_pattern: '*.twig'
+    # DODAJEMY TĘ LINIĘ: Wymusza szatę graficzną Bootstrap 5 dla wszystkich formularzy
+    form_themes: ['bootstrap_5_layout.html.twig']
+
+when@test:
+    twig:
+        strict_variables: true
