@@ -6,7 +6,7 @@ use App\Entity\Rental;
 use App\Entity\Resource;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType; // Dodany import typu liczbowego
+use Symfony\Component\Form\Extension\Core\Type\IntegerType; // Import typu liczbowego
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

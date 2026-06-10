@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Przekierowanie na Twój dashboard po udanej rejestracji
+            // Przekierowanie na dashboard po udanej rejestracji
             return $this->redirectToRoute('app_dashboard');
         }
 

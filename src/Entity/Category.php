@@ -67,7 +67,7 @@ class Category
     public function removeResource(Resource $resource): static
     {
         if ($this->resources->removeElement($resource)) {
-            // set the owning side to null (unless already changed)
+
             if ($resource->getCategory() === $this) {
                 $resource->setCategory(null);
             }

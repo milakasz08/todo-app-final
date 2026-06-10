@@ -54,7 +54,7 @@ class Resource
         return $this->id;
     }
 
-    // POPRAWIONE METODY DLA FIELD: Title
+    // METODY DLA FIELD: Title
     public function getTitle(): ?string
     {
         return $this->Title;
@@ -66,7 +66,7 @@ class Resource
         return $this;
     }
 
-    // POPRAWIONE METODY DLA FIELD: Quantity
+    // METODY DLA FIELD: Quantity
     public function getQuantity(): ?int
     {
         return $this->Quantity;
@@ -78,7 +78,7 @@ class Resource
         return $this;
     }
 
-    // POPRAWIONE METODY DLA FIELD: Category
+    // METODY DLA FIELD: Category
     public function getCategory(): ?Category
     {
         return $this->Category;
@@ -101,7 +101,7 @@ class Resource
         return $this;
     }
 
-    // POPRAWIONE METODY DLA FIELD: Author
+    // METODY DLA FIELD: Author
     public function getAuthor(): ?string
     {
         return $this->Author;
