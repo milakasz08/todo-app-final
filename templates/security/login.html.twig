@@ -1,34 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Logowanie - MediaStream{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="min-h-[60vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-white border border-gray-100 p-8 rounded-3xl shadow-sm">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+            <div class="text-center">
+                <div class="mx-auto h-12 w-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                    <i class="fa-solid fa-lock text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-black text-gray-900 tracking-tight">Zaloguj się do systemu</h2>
+                <p class="mt-1.5 text-sm text-gray-400">MediaStream Management Platform</p>
+            </div>
+
+            <form method="post" class="mt-8 space-y-5">
+                {% if error %}
+                    <div class="p-4 rounded-xl bg-rose-50 border border-rose-100 text-sm font-semibold text-rose-700">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="p-4 rounded-xl bg-amber-50 border border-amber-100 text-sm font-medium text-amber-700 text-center">
+                        Jesteś już zalogowany jako <span class="font-bold">{{ app.user.userIdentifier }}</span>.
+                        <a href="{{ path('app_logout') }}" class="underline font-bold text-amber-900 ml-1">Wyloguj się</a>
+                    </div>
+                {% endif %}
+
+                <div>
+                    <label for="inputEmail" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-envelope mr-1 text-indigo-500"></i> Adres E-mail
+                    </label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900 placeholder-gray-400" autocomplete="email" placeholder="np. student@uczelnia.pl" required autofocus>
+                </div>
+
+                <div>
+                    <label for="inputPassword" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-key mr-1 text-indigo-500"></i> Hasło dostępowe
+                    </label>
+                    <input type="password" name="password" id="inputPassword" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900 placeholder-gray-400" autocomplete="current-password" placeholder="••••••••" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="flex items-center justify-between pt-1">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="_remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-md transition">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-500 font-medium select-none">
+                            Zapamiętaj mnie na tym urządzeniu
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-xl text-sm font-bold shadow-md shadow-indigo-100 hover:shadow-lg transition flex items-center justify-center">
+                        <i class="fa-solid fa-right-to-bracket mr-2"></i> Zaloguj się bezpiecznie
+                    </button>
+                </div>
+            </form>
+
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
     </div>
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}

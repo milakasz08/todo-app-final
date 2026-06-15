@@ -31,6 +31,9 @@ class Rental
     #[ORM\ManyToOne(inversedBy: 'rentals')]
     private ?User $user = null;
 
+    #[ORM\Column(length: 20, options: ["default" => "PENDING"])]
+    private ?string $status = 'PENDING';
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Rental
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

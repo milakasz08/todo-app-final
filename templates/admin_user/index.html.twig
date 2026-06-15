@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zarządzanie Użytkownikami - Admin{% endblock %}
+
+{% block body %}
+    <div class="mb-8 bg-gradient-to-r from-red-950 to-slate-950 rounded-2xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-3xl font-extrabold tracking-tight">Panel Administratora</h1>
+            <p class="mt-2 text-red-200 max-w-xl text-sm md:text-base">Zarządzanie kontami użytkowników, przegląd uprawnień oraz nadawanie ról systemowych.</p>
+        </div>
+        <div class="absolute right-0 bottom-0 top-0 opacity-10 flex items-center pr-12 hidden lg:flex">
+            <i class="fa-solid fa-users-gear text-[120px]"></i>
+        </div>
+    </div>
+
+    {# Komunikaty Flash #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="mb-4 p-4 rounded-xl text-sm font-semibold {% if label == 'success' %}bg-emerald-50 text-emerald-700 border border-emerald-200{% else %}bg-rose-50 text-rose-700 border border-rose-200{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-gray-100">
+            <h2 class="text-xl font-bold text-gray-900">Zarejestrowani użytkownicy</h2>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                <tr class="bg-slate-50 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+                    <th class="p-4">ID</th>
+                    <th class="p-4">Adres E-mail</th>
+                    <th class="p-4">Rola w systemie</th>
+                    <th class="p-4 text-right">Akcje</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 text-sm">
+                {% for user in users %}
+                    <tr class="hover:bg-slate-50/50 transition">
+                        <td class="p-4 font-semibold text-gray-500">#{{ user.id }}</td>
+                        <td class="p-4 font-bold text-gray-900">{{ user.email }}</td>
+                        <td class="p-4">
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-100">
+                                        <i class="fa-solid fa-user-shield mr-1"></i> Administrator
+                                    </span>
+                            {% else %}
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
+                                        <i class="fa-solid fa-user mr-1"></i> Czytelnik
+                                    </span>
+                            {% endif %}
+                        </td>
+                        <td class="p-4 text-right">
+                            {% if user != app.user %}
+                                <form action="{{ path('app_admin_user_toggle', {'id': user.id}) }}" method="POST" class="inline">
+                                    <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm transition {% if 'ROLE_ADMIN' in user.roles %}bg-white hover:bg-rose-50 text-rose-600 hover:border-rose-200{% else %}bg-indigo-600 hover:bg-indigo-700 text-white{% endif %}">
+                                        {% if 'ROLE_ADMIN' in user.roles %}
+                                            Zdegraduj do Czytelnika
+                                        {% else %}
+                                            Awansuj na Admina
+                                        {% endif %}
+                                    </button>
+                                </form>
+                            {% else %}
+                                <span class="text-xs text-gray-400 italic font-medium pr-3">Twoje konto (Aktywne)</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

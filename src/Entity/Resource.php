@@ -5,9 +5,7 @@ namespace App\Entity;
 use App\Repository\ResourceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ResourceRepository::class)]
 class Resource
@@ -18,25 +16,20 @@ class Resource
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Tytuł nie może być pusty!")]
-    #[Assert\Length(min: 3, minMessage: "Tytuł musi mieć co najmniej 3 znaki")]
     private ?string $Title = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Author = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $Type = null;
+
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Podaj ilość sztuk!")]
-    #[Assert\PositiveOrZero(message: "Ilość nie może być ujemna!")]
     private ?int $Quantity = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Resource')]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'resources')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Category $Category = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Autor nie może być pusty!")]
-    private ?string $Author = null;
+    private ?Category $category = null;
 
     /**
      * @var Collection<int, Rental>
@@ -44,9 +37,16 @@ class Resource
     #[ORM\OneToMany(targetEntity: Rental::class, mappedBy: 'resource')]
     private Collection $rentals;
 
+    /**
+     * @var Collection<int, Tag>
+     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'resources')]
+    private Collection $tags;
+
     public function __construct()
     {
         $this->rentals = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,7 +54,6 @@ class Resource
         return $this->id;
     }
 
-    // METODY DLA FIELD: Title
     public function getTitle(): ?string
     {
         return $this->Title;
@@ -66,7 +65,28 @@ class Resource
         return $this;
     }
 
-    // METODY DLA FIELD: Quantity
+    public function getAuthor(): ?string
+    {
+        return $this->Author;
+    }
+
+    public function setAuthor(string $Author): static
+    {
+        $this->Author = $Author;
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->Type;
+    }
+
+    public function setType(string $Type): static
+    {
+        $this->Type = $Type;
+        return $this;
+    }
+
     public function getQuantity(): ?int
     {
         return $this->Quantity;
@@ -78,38 +98,14 @@ class Resource
         return $this;
     }
 
-    // METODY DLA FIELD: Category
     public function getCategory(): ?Category
     {
-        return $this->Category;
+        return $this->category;
     }
 
-    public function setCategory(?Category $Category): static
+    public function setCategory(?Category $category): static
     {
-        $this->Category = $Category;
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    // METODY DLA FIELD: Author
-    public function getAuthor(): ?string
-    {
-        return $this->Author;
-    }
-
-    public function setAuthor(string $Author): static
-    {
-        $this->Author = $Author;
+        $this->category = $category;
         return $this;
     }
 
@@ -140,8 +136,30 @@ class Resource
         return $this;
     }
 
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): static
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): static
+    {
+        $this->tags->removeElement($tag);
+        return $this;
+    }
+
     public function __toString(): string
     {
-        return $this->Title ?? 'Nienazwany zasób';
+        return $this->Title ?? '';
     }
 }
