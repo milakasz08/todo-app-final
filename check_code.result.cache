@@ -1,0 +1,42 @@
+   1) src/Repository/TagRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   2) src/Repository/RentalRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   3) src/Repository/CategoryRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   4) src/Repository/ResourceRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   5) src/Repository/UserRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   6) src/Form/RentalType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   7) src/Form/ResourceType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   8) src/Form/RegistrationFormType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   9) src/Form/CategoryType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  10) src/Security/EmailVerifier.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  11) src/Controller/RegistrationController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  12) src/Controller/ResourceController.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim)
+  13) src/Controller/RentalController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  14) src/Controller/CategoryController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  15) src/Security/AppAuthenticator.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  16) src/Entity/Rental.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim)
+  17) src/Entity/Category.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+  18) src/Entity/Tag.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+  19) src/Entity/User.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  20) src/Entity/Resource.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  21) src/DataFixtures/AppFixtures.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  22) src/Controller/SecurityController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  23) src/Controller/AdminUserController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  24) src/Controller/DashboardController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+
+Found 24 of 25 files that can be fixed in 0.812 seconds, 74.00 MB memory used
+ ------- -------- ---- ---------------------- 
+  State   Domain   Id   Message Preview (en)  
+ ------- -------- ---- ---------------------- 
+
+ ------- -------- ---- ---------------------- ------------------------------- 
+  State   Domain   Id   Message Preview (pl)   Fallback Message Preview (en)  
+ ------- -------- ---- ---------------------- ------------------------------- 
+
+[notice] Migrating up to DoctrineMigrations\Version20260620145614
+[notice] finished in 234.2ms, used 24M memory, 1 migrations executed, 12 sql queries
+
+ [OK] Successfully migrated to version: DoctrineMigrations\Version20260620145614                                        
+
+
+   > purging database
+   > loading App\DataFixtures\AppFixtures

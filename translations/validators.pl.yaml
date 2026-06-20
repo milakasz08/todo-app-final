@@ -1,0 +1,4 @@
+'You should agree to our terms.': 'Musisz zaakceptować nasze warunki.'
+'Please enter a password': 'Wprowadź hasło'
+'Your password should be at least {{ limit }} characters': 'Twoje hasło musi mieć co najmniej {{ limit }} znaków'
+'There is already an account with this email': 'Istnieje już konto z tym adresem e-mail'

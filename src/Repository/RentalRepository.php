@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Rental;
@@ -11,6 +15,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class RentalRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Rental::class);

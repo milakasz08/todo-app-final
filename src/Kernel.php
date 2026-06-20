@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;

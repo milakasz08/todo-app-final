@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
@@ -8,6 +12,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+/**
+ * Class Category.
+ */
 class Category
 {
     #[ORM\Id]
@@ -19,26 +26,46 @@ class Category
     private ?string $name = null;
 
     /**
-     * @var Collection<int, Resource>
+     * @var Collection<int, resource>
      */
     #[ORM\OneToMany(targetEntity: Resource::class, mappedBy: 'category')]
     private Collection $resources;
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->resources = new ArrayCollection();
     }
 
+    /**
+     * Get the ID.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Get the name.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Set the name.
+     *
+     * @param string $name
+     *
+     * @return $this
+     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -47,13 +74,20 @@ class Category
     }
 
     /**
-     * @return Collection<int, Resource>
+     * @return Collection<int, resource>
      */
     public function getResources(): Collection
     {
         return $this->resources;
     }
 
+    /**
+     * Add a resource.
+     *
+     * @param Resource $resource
+     *
+     * @return $this
+     */
     public function addResource(Resource $resource): static
     {
         if (!$this->resources->contains($resource)) {
@@ -64,10 +98,16 @@ class Category
         return $this;
     }
 
+    /**
+     * Remove a resource.
+     *
+     * @param Resource $resource
+     *
+     * @return $this
+     */
     public function removeResource(Resource $resource): static
     {
         if ($this->resources->removeElement($resource)) {
-
             if ($resource->getCategory() === $this) {
                 $resource->setCategory(null);
             }
@@ -77,8 +117,9 @@ class Category
     }
 
     /**
-     * Ta metoda naprawia błąd wyświetlania ID (np. "1") w formularzach.
-     * Dzięki niej Symfony wyświetli nazwę kategorii (np. "Książki").
+     * Convert to string.
+     *
+     * @return string
      */
     public function __toString(): string
     {

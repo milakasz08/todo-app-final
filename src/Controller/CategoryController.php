@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Category;
@@ -12,8 +16,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/category')]
+/**
+ * Class CategoryController.
+ */
 final class CategoryController extends AbstractController
 {
+    /**
+     * Display the list of categories.
+     *
+     * @param CategoryRepository $categoryRepository
+     *
+     * @return Response
+     */
     #[Route(name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -22,6 +36,14 @@ final class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Create a new category.
+     *
+     * @param Request                $request
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -42,6 +64,13 @@ final class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Show a category.
+     *
+     * @param Category $category
+     *
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
@@ -50,6 +79,15 @@ final class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit a category.
+     *
+     * @param Request                $request
+     * @param Category               $category
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
@@ -68,6 +106,15 @@ final class CategoryController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete a category.
+     *
+     * @param Request                $request
+     * @param Category               $category
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {

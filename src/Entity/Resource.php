@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Entity;
 
 use App\Repository\ResourceRepository;
@@ -8,6 +12,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ResourceRepository::class)]
+/**
+ * Class Resource.
+ */
 class Resource
 {
     #[ORM\Id]
@@ -16,16 +23,16 @@ class Resource
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Title = null;
+    private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Author = null;
+    private ?string $author = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $Type = null;
+    private ?string $type = null;
 
     #[ORM\Column]
-    private ?int $Quantity = null;
+    private ?int $quantity = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'resources')]
     #[ORM\JoinColumn(nullable: false)]
@@ -43,69 +50,132 @@ class Resource
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'resources')]
     private Collection $tags;
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->rentals = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
+    /**
+     * Get the ID.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Get the title.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
-        return $this->Title;
+        return $this->title;
     }
 
-    public function setTitle(string $Title): static
+    /**
+     * @param string $title
+     *
+     * @return $this
+     */
+    public function setTitle(string $title): static
     {
-        $this->Title = $Title;
+        $this->title = $title;
+
         return $this;
     }
 
+    /**
+     * Get the author.
+     *
+     * @return string|null
+     */
     public function getAuthor(): ?string
     {
-        return $this->Author;
+        return $this->author;
     }
 
-    public function setAuthor(string $Author): static
+    /**
+     * @param string $author
+     *
+     * @return $this
+     */
+    public function setAuthor(string $author): static
     {
-        $this->Author = $Author;
+        $this->author = $author;
+
         return $this;
     }
 
+    /**
+     * Get the type.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
-        return $this->Type;
+        return $this->type;
     }
 
-    public function setType(string $Type): static
+    /**
+     * @param string $type
+     *
+     * @return $this
+     */
+    public function setType(string $type): static
     {
-        $this->Type = $Type;
+        $this->type = $type;
+
         return $this;
     }
 
+    /**
+     * Get the quantity.
+     *
+     * @return int|null
+     */
     public function getQuantity(): ?int
     {
-        return $this->Quantity;
+        return $this->quantity;
     }
 
-    public function setQuantity(int $Quantity): static
+    /**
+     * @param int $quantity
+     *
+     * @return $this
+     */
+    public function setQuantity(int $quantity): static
     {
-        $this->Quantity = $Quantity;
+        $this->quantity = $quantity;
+
         return $this;
     }
 
+    /**
+     * Get the category.
+     *
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * @param Category|null $category
+     *
+     * @return $this
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
         return $this;
     }
 
@@ -117,15 +187,26 @@ class Resource
         return $this->rentals;
     }
 
+    /**
+     * @param Rental $rental
+     *
+     * @return $this
+     */
     public function addRental(Rental $rental): static
     {
         if (!$this->rentals->contains($rental)) {
             $this->rentals->add($rental);
             $rental->setResource($this);
         }
+
         return $this;
     }
 
+    /**
+     * @param Rental $rental
+     *
+     * @return $this
+     */
     public function removeRental(Rental $rental): static
     {
         if ($this->rentals->removeElement($rental)) {
@@ -133,6 +214,7 @@ class Resource
                 $rental->setResource(null);
             }
         }
+
         return $this;
     }
 
@@ -144,22 +226,39 @@ class Resource
         return $this->tags;
     }
 
+    /**
+     * @param Tag $tag
+     *
+     * @return $this
+     */
     public function addTag(Tag $tag): static
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
         }
+
         return $this;
     }
 
+    /**
+     * @param Tag $tag
+     *
+     * @return $this
+     */
     public function removeTag(Tag $tag): static
     {
         $this->tags->removeElement($tag);
+
         return $this;
     }
 
+    /**
+     * Convert to string.
+     *
+     * @return string
+     */
     public function __toString(): string
     {
-        return $this->Title ?? '';
+        return $this->title ?? '';
     }
 }

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Rental;
@@ -13,8 +17,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/rental')]
+/**
+ * Class RentalController.
+ */
 class RentalController extends AbstractController
 {
+    /**
+     * Display the list of rentals.
+     *
+     * @param RentalRepository $rentalRepository
+     *
+     * @return Response
+     */
     #[Route('/', name: 'app_rental_index', methods: ['GET'])]
     public function index(RentalRepository $rentalRepository): Response
     {
@@ -31,6 +45,14 @@ class RentalController extends AbstractController
         ]);
     }
 
+    /**
+     * Create a new rental.
+     *
+     * @param Request                $request
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/new', name: 'app_rental_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -55,6 +77,7 @@ class RentalController extends AbstractController
             // Walidacja: Czy w magazynie jest wystarczająca ilość?
             if ($resource->getQuantity() < $rental->getQuantity()) {
                 $this->addFlash('error', 'Niestety, brak żądanej ilości sztuk w magazynie.');
+
                 return $this->render('rental/new.html.twig', [
                     'rental' => $rental,
                     'form' => $form,
@@ -65,6 +88,7 @@ class RentalController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Wniosek o rezerwację został złożony i oczekuje na weryfikację przez administratora.');
+
             return $this->redirectToRoute('app_rental_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,12 +98,21 @@ class RentalController extends AbstractController
         ]);
     }
 
+    /**
+     * Approve a rental.
+     *
+     * @param Rental                 $rental
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/{id}/approve', name: 'app_rental_approve', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function approve(Rental $rental, EntityManagerInterface $entityManager): Response
     {
-        if ($rental->getStatus() !== 'PENDING') {
+        if ('PENDING' !== $rental->getStatus()) {
             $this->addFlash('error', 'Można zatwierdzić tylko wnioski oczekujące.');
+
             return $this->redirectToRoute('app_rental_index');
         }
 
@@ -87,6 +120,7 @@ class RentalController extends AbstractController
 
         if ($resource->getQuantity() < $rental->getQuantity()) {
             $this->addFlash('error', 'Brak wystarczającej ilości sztuk w magazynie, by zatwierdzić to wypożyczenie!');
+
             return $this->redirectToRoute('app_rental_index');
         }
 
@@ -97,15 +131,25 @@ class RentalController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'Wypożyczenie zostało pomyślnie zatwierdzone. Stan magazynowy zaktualizowany.');
+
         return $this->redirectToRoute('app_rental_index');
     }
 
+    /**
+     * Reject a rental.
+     *
+     * @param Rental                 $rental
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/{id}/reject', name: 'app_rental_reject', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function reject(Rental $rental, EntityManagerInterface $entityManager): Response
     {
-        if ($rental->getStatus() !== 'PENDING') {
+        if ('PENDING' !== $rental->getStatus()) {
             $this->addFlash('error', 'Można odrzucić tylko wnioski oczekujące.');
+
             return $this->redirectToRoute('app_rental_index');
         }
 
@@ -113,6 +157,7 @@ class RentalController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'Wniosek o rezerwację został odrzucony.');
+
         return $this->redirectToRoute('app_rental_index');
     }
 }

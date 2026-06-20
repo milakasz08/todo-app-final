@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Controller;
 
 use App\Entity\Resource;
@@ -13,32 +17,42 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/resource')]
+/**
+ * Class ResourceController.
+ */
 class ResourceController extends AbstractController
 {
+    /**
+     * Display the list of resources.
+     *
+     * @param ResourceRepository $resourceRepository
+     * @param Request            $request
+     *
+     * @return Response
+     */
     #[Route('/', name: 'app_resource_index', methods: ['GET'])]
     public function index(ResourceRepository $resourceRepository, Request $request): Response
     {
         $type = $request->query->get('type');
         $allResources = $resourceRepository->findAll();
 
-        // Jeśli parametr typu został przesłany (?type=...), filtrujemy kolekcję
         if ($type) {
             $filteredResources = [];
             foreach ($allResources as $resource) {
                 $titleLower = mb_strtolower($resource->getTitle() ?: '');
                 $descLower = mb_strtolower($resource->getDescription() ?: '');
 
-                if ($type === 'film') {
+                if ('film' === $type) {
                     // Warunki dopasowania dla filmów
                     if (str_contains($titleLower, 'film') || str_contains($titleLower, 'dvd') || str_contains($descLower, 'reżyser') || str_contains($descLower, 'film') || str_contains($titleLower, 'tenenbaums')) {
                         $filteredResources[] = $resource;
                     }
-                } elseif ($type === 'plyta') {
+                } elseif ('plyta' === $type) {
                     // Warunki dopasowania dla płyt muzycznych
                     if (str_contains($titleLower, 'audio') || str_contains($titleLower, 'music') || str_contains($titleLower, 'płyta') || str_contains($titleLower, 'cd') || str_contains($titleLower, 'roses')) {
                         $filteredResources[] = $resource;
                     }
-                } elseif ($type === 'ksiazka') {
+                } elseif ('ksiazka' === $type) {
                     // Jeśli to książka (wszystko co nie pasuje ewidentnie do filmu lub płyty)
                     if (!str_contains($titleLower, 'film') && !str_contains($titleLower, 'dvd') && !str_contains($titleLower, 'cd') && !str_contains($titleLower, 'audio') && !str_contains($titleLower, 'roses') && !str_contains($titleLower, 'tenenbaums')) {
                         $filteredResources[] = $resource;
@@ -55,6 +69,14 @@ class ResourceController extends AbstractController
         ]);
     }
 
+    /**
+     * Create a new resource.
+     *
+     * @param Request                $request
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/new', name: 'app_resource_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -68,6 +90,7 @@ class ResourceController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Pomyślnie dodano nowy zasób do bazy danych.');
+
             return $this->redirectToRoute('app_resource_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,6 +100,13 @@ class ResourceController extends AbstractController
         ]);
     }
 
+    /**
+     * Show a resource.
+     *
+     * @param Resource $resource
+     *
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_resource_show', methods: ['GET'])]
     public function show(Resource $resource): Response
     {
@@ -85,6 +115,15 @@ class ResourceController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit a resource.
+     *
+     * @param Request                $request
+     * @param Resource               $resource
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/{id}/edit', name: 'app_resource_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Resource $resource, EntityManagerInterface $entityManager): Response
@@ -96,6 +135,7 @@ class ResourceController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Zmiany w zasobie zostały pomyślnie zapisane.');
+
             return $this->redirectToRoute('app_resource_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -105,6 +145,15 @@ class ResourceController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete a resource.
+     *
+     * @param Request                $request
+     * @param Resource               $resource
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
     #[Route('/{id}', name: 'app_resource_delete', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Resource $resource, EntityManagerInterface $entityManager): Response

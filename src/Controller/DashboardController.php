@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Controller;
 
 use App\Repository\RentalRepository;
@@ -8,8 +12,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * Class DashboardController.
+ */
 final class DashboardController extends AbstractController
 {
+    /**
+     * Display the dashboard.
+     *
+     * @param ResourceRepository $resourceRepository
+     * @param RentalRepository   $rentalRepository
+     *
+     * @return Response
+     */
     #[Route('/', name: 'app_dashboard')]
     public function index(ResourceRepository $resourceRepository, RentalRepository $rentalRepository): Response
     {
@@ -38,7 +53,7 @@ final class DashboardController extends AbstractController
             if ($resource) {
                 // Jeśli pole to name, spróbuje użyć getName(), jeśli title to getTitle(), a jeśli nic nie zadziała - rzutuje na string
                 $mostPopularTitle = method_exists($resource, 'getName') ? $resource->getName() :
-                    (method_exists($resource, 'getTitle') ? $resource->getTitle() : (string)$resource);
+                    (method_exists($resource, 'getTitle') ? $resource->getTitle() : (string) $resource);
             }
         }
 

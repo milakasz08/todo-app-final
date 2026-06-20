@@ -7,7 +7,7 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/doctrine-bundle": "^3.2",
+        "doctrine/doctrine-bundle": "*",
         "doctrine/doctrine-migrations-bundle": "^4.0",
         "doctrine/orm": "^3.6",
         "phpdocumentor/reflection-docblock": "^6.0",
@@ -106,6 +106,7 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.3",
         "escapestudios/symfony2-coding-standard": "^3.18",
         "friendsofphp/php-cs-fixer": "^3.95",
         "phpunit/phpunit": "^13.1",

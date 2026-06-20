@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Form;
 
 use App\Entity\Rental;
@@ -11,8 +15,19 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class RentalType.
+ */
 class RentalType extends AbstractType
 {
+    /**
+     * Build the form.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -20,25 +35,32 @@ class RentalType extends AbstractType
                 'class' => User::class,
                 'choice_label' => 'email',
                 'label' => 'Użytkownik',
-                'attr' => ['class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900']
+                'attr' => ['class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900'],
             ])
             ->add('resource', EntityType::class, [
                 'class' => Resource::class,
                 'choice_label' => 'Title',
                 'label' => 'Zasób do wypożyczenia',
-                'attr' => ['class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900']
+                'attr' => ['class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900'],
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => 'Ilość sztuk',
                 'data' => 1, // Domyślnie 1 sztuka
                 'attr' => [
                     'min' => 1,
-                    'class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900'
-                ]
+                    'class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900',
+                ],
             ])
         ;
     }
 
+    /**
+     * Configure the form options.
+     *
+     * @param OptionsResolver $resolver
+     *
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

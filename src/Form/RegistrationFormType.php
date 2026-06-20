@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file is part of the EPI project.
+ */
+
 namespace App\Form;
 
 use App\Entity\User;
@@ -12,8 +16,19 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * Class RegistrationFormType.
+ */
 class RegistrationFormType extends AbstractType
 {
+    /**
+     * Build the form.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -45,6 +60,13 @@ class RegistrationFormType extends AbstractType
         ;
     }
 
+    /**
+     * Configure the form options.
+     *
+     * @param OptionsResolver $resolver
+     *
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
