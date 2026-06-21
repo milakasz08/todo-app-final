@@ -43,8 +43,8 @@ class ResourceType extends AbstractType
                 'label' => 'Typ',
                 'choices' => [
                     'Książka' => 'Książka',
-                    'Audiobook' => 'Audiobook',
-                    'E-book' => 'E-book',
+                    'Płyta' => 'Płyta',
+                    'Film' => 'Film',
                 ],
             ])
             ->add('Quantity', IntegerType::class, [
@@ -61,7 +61,7 @@ class ResourceType extends AbstractType
                 'class' => Tag::class,
                 'choice_label' => 'name',
                 'multiple' => true,
-                'expanded' => true, // true zmieni listę rozwijaną w wygodne checkboxy
+                'expanded' => true,
                 'label' => 'Tagi',
                 'required' => false,
             ])
