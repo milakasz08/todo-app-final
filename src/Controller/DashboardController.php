@@ -36,8 +36,9 @@ final class DashboardController extends AbstractController
 
         // 3. Bezpieczne wyciąganie najpopularniejszego zasobu
         $mostPopularData = $rentalRepository->createQueryBuilder('r')
-            ->select('IDENTITY(r.resource) as resourceId, COUNT(r.id) as rentalCount')
-            ->groupBy('resourceId')
+            ->select('res.id as resourceId', 'COUNT(r.id) as rentalCount')
+            ->join('r.resource', 'res')
+            ->groupBy('res.id')
             ->orderBy('rentalCount', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
@@ -48,13 +49,13 @@ final class DashboardController extends AbstractController
 
         if ($mostPopularData) {
             $mostPopularCount = $mostPopularData['rentalCount'];
-            // Znajdujemy obiekt zasobu po jego ID, dzięki czemu Twig bez problemu go wyświetli
             $resource = $resourceRepository->find($mostPopularData['resourceId']);
+
             if ($resource) {
-                // Jeśli pole to name, spróbuje użyć getName(), jeśli title to getTitle(), a jeśli nic nie zadziała - rzutuje na string
-                $mostPopularTitle = method_exists($resource, 'getName') ? $resource->getName() :
-                    (method_exists($resource, 'getTitle') ? $resource->getTitle() : (string) $resource);
+                $mostPopularTitle = method_exists($resource, 'getTitle') ? $resource->getTitle() : (string) $resource;
             }
+
+
         }
 
         return $this->render('dashboard/index.html.twig', [

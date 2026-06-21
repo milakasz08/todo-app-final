@@ -86,6 +86,11 @@ class ResourceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Sprawdźmy, czy kategoria jest ustawiona tuż przed flush
+            if ($resource->getCategory() === null) {
+                // Jeśli tu wejdziesz, to znaczy że formularz zawiódł
+                dump('Formularz nie przesyła kategorii!'); die();
+            }
             $entityManager->persist($resource);
             $entityManager->flush();
 

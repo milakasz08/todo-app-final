@@ -23,7 +23,7 @@
   23) src/Controller/AdminUserController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
   24) src/Controller/DashboardController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
 
-Found 24 of 25 files that can be fixed in 0.812 seconds, 74.00 MB memory used
+Found 24 of 25 files that can be fixed in 0.802 seconds, 74.00 MB memory used
  ------- -------- ---- ---------------------- 
   State   Domain   Id   Message Preview (en)  
  ------- -------- ---- ---------------------- 
@@ -33,7 +33,7 @@ Found 24 of 25 files that can be fixed in 0.812 seconds, 74.00 MB memory used
  ------- -------- ---- ---------------------- ------------------------------- 
 
 [notice] Migrating up to DoctrineMigrations\Version20260620145614
-[notice] finished in 234.2ms, used 24M memory, 1 migrations executed, 12 sql queries
+[notice] finished in 191.2ms, used 24M memory, 1 migrations executed, 12 sql queries
 
  [OK] Successfully migrated to version: DoctrineMigrations\Version20260620145614                                        
 

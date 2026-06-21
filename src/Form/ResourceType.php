@@ -52,8 +52,10 @@ class ResourceType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'name', // lub 'title' w zależności od Twojej encji Category
+                'choice_label' => 'name',
                 'label' => 'Kategoria',
+                'placeholder' => 'Wybierz kategorię',
+                'required' => true,
             ])
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,
