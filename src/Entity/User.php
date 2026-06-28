@@ -59,6 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Set the email.
      *
      * @param string $email adres email uzytkownika     *
+     *
      * @return $this
      */
     public function setEmail(string $email): static
@@ -93,6 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Set the roles.
      *
      * @param array $roles lista rol uzytkownika     *
+     *
      * @return $this
      */
     public function setRoles(array $roles): static
@@ -115,6 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Set the password.
      *
      * @param string $password zahashowane haslo uzytkownika     *
+     *
      * @return $this
      */
     public function setPassword(string $password): static
@@ -157,6 +160,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Set the verified flag.
      *
      * @param bool $isVerified informacja, czy konto jest zweryfikowane     *
+     *
      * @return $this
      */
     public function setIsVerified(bool $isVerified): static

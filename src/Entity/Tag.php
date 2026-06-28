@@ -45,6 +45,7 @@ class Tag
      * Set the name.
      *
      * @param string $name nazwa tagu     *
+     *
      * @return $this
      */
     public function setName(string $name): static

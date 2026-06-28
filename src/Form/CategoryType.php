@@ -19,8 +19,11 @@ class CategoryType extends AbstractType
     /**
      * Build the form.
      *
-     * @param FormBuilderInterface $builder budowniczy formularza     * @param array                $options opcje formularza     *
-     * @return void metoda nie zwraca wartosci     */
+     * @param FormBuilderInterface $builder budowniczy formularza
+     * @param array                $options opcje formularza
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -31,8 +34,10 @@ class CategoryType extends AbstractType
     /**
      * Configure the form options.
      *
-     * @param OptionsResolver $resolver konfigurator opcji formularza     *
-     * @return void metoda nie zwraca wartosci     */
+     * @param OptionsResolver $resolver konfigurator opcji formularza
+     *
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

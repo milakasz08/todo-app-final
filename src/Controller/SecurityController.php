@@ -20,6 +20,7 @@ class SecurityController extends AbstractController
      * Display the login form.
      *
      * @param AuthenticationUtils $authenticationUtils narzedzia uwierzytelniania     *
+     *
      * @return Response wyrenderowany formularz logowania     */
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response

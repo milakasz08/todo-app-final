@@ -32,7 +32,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Constructor.
      *
-     * @param UrlGeneratorInterface $urlGenerator generator adresow URL     */
+     * @param UrlGeneratorInterface $urlGenerator generator adresow URL
+     */
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
@@ -40,8 +41,10 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Authenticate the request.
      *
-     * @param Request $request biezace zadanie HTTP     *
-     * @return Passport dane uwierzytelniajace uzytkownika     */
+     * @param Request $request biezace zadanie HTTP
+     *
+     * @return Passport dane uwierzytelniajace uzytkownika
+     */
     public function authenticate(Request $request): Passport
     {
         $email = $request->getPayload()->getString('email');
@@ -61,8 +64,12 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Handle successful authentication.
      *
-     * @param Request        $request      biezace zadanie HTTP     * @param TokenInterface $token        token uwierzytelnienia     * @param string         $firewallName nazwa zapory (firewalla) bezpieczenstwa     *
-     * @return Response|null odpowiedz przekierowujaca po zalogowaniu     */
+     * @param Request        $request      biezace zadanie HTTP
+     * @param TokenInterface $token        token uwierzytelnienia
+     * @param string         $firewallName nazwa zapory (firewalla) bezpieczenstwa
+     *
+     * @return Response|null odpowiedz przekierowujaca po zalogowaniu
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
@@ -76,8 +83,10 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Get the login URL.
      *
-     * @param Request $request biezace zadanie HTTP     *
-     * @return string adres URL strony logowania     */
+     * @param Request $request biezace zadanie HTTP
+     *
+     * @return string adres URL strony logowania
+     */
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

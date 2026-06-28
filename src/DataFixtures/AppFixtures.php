@@ -30,6 +30,7 @@ class AppFixtures extends Fixture
      * Load the fixtures.
      *
      * @param ObjectManager $manager menedzer obiektow Doctrine     *
+     *
      * @return void metoda nie zwraca wartosci     */
     public function load(ObjectManager $manager): void
     {

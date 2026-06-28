@@ -64,6 +64,7 @@ class Rental
      * Set the borrower name.
      *
      * @param string $borrowerName nazwa lub email wypozyczajacego     *
+     *
      * @return $this
      */
     public function setBorrowerName(string $borrowerName): static
@@ -86,6 +87,7 @@ class Rental
      * Set the rented at date.
      *
      * @param \DateTimeImmutable $rentedAt data zlozenia wniosku     *
+     *
      * @return $this
      */
     public function setRentedAt(\DateTimeImmutable $rentedAt): static
@@ -108,6 +110,7 @@ class Rental
      * Set the returned at date.
      *
      * @param \DateTime|null $returnedAt data zwrotu zasobu     *
+     *
      * @return $this
      */
     public function setReturnedAt(?\DateTime $returnedAt): static
@@ -120,7 +123,7 @@ class Rental
     /**
      * Get the resource.
      *
-     * @return Resource|null wypozyczony zasob     */
+     * @return resource|null wypozyczony zasob     */
     public function getResource(): ?Resource
     {
         return $this->resource;
@@ -129,7 +132,8 @@ class Rental
     /**
      * Set the resource.
      *
-     * @param Resource|null $resource wypozyczony zasob     *
+     * @param resource|null $resource wypozyczony zasob     *
+     *
      * @return $this
      */
     public function setResource(?Resource $resource): static
@@ -152,6 +156,7 @@ class Rental
      * Set the quantity.
      *
      * @param int $quantity ilosc wypozyczonych sztuk     *
+     *
      * @return $this
      */
     public function setQuantity(int $quantity): static
@@ -174,6 +179,7 @@ class Rental
      * Set the user.
      *
      * @param User|null $user uzytkownik skladajacy wniosek     *
+     *
      * @return $this
      */
     public function setUser(?User $user): static
@@ -196,6 +202,7 @@ class Rental
      * Set the status.
      *
      * @param string $status status wypozyczenia     *
+     *
      * @return $this
      */
     public function setStatus(string $status): static

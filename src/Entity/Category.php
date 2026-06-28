@@ -45,6 +45,7 @@ class Category
      * Set the name.
      *
      * @param string $name nazwa kategorii     *
+     *
      * @return $this
      */
     public function setName(string $name): static

@@ -74,6 +74,7 @@ class Resource
      * Set the title.
      *
      * @param string $title tytul zasobu     *
+     *
      * @return $this
      */
     public function setTitle(string $title): static
@@ -96,6 +97,7 @@ class Resource
      * Set the author.
      *
      * @param string $author autor zasobu     *
+     *
      * @return $this
      */
     public function setAuthor(string $author): static
@@ -118,6 +120,7 @@ class Resource
      * Set the type.
      *
      * @param string $type typ zasobu     *
+     *
      * @return $this
      */
     public function setType(string $type): static
@@ -140,6 +143,7 @@ class Resource
      * Set the quantity.
      *
      * @param int $quantity dostepna ilosc sztuk     *
+     *
      * @return $this
      */
     public function setQuantity(int $quantity): static
@@ -162,6 +166,7 @@ class Resource
      * Set the category.
      *
      * @param Category|null $category kategoria zasobu     *
+     *
      * @return $this
      */
     public function setCategory(?Category $category): static
@@ -183,6 +188,7 @@ class Resource
      * Add a tag.
      *
      * @param Tag $tag tag do dodania     *
+     *
      * @return $this
      */
     public function addTag(Tag $tag): static
@@ -198,6 +204,7 @@ class Resource
      * Remove a tag.
      *
      * @param Tag $tag tag do usuniecia     *
+     *
      * @return $this
      */
     public function removeTag(Tag $tag): static
