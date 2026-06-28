@@ -23,9 +23,9 @@ class RegistrationController extends AbstractController
     /**
      * Register a new user.
      *
-     * @param Request                     $request             biezace zadanie HTTP
-     * @param UserPasswordHasherInterface $userPasswordHasher  hasher hasel uzytkownikow
-     * @param EntityManagerInterface      $entityManager       menedzer encji Doctrine
+     * @param Request                     $request            biezace zadanie HTTP
+     * @param UserPasswordHasherInterface $userPasswordHasher hasher hasel uzytkownikow
+     * @param EntityManagerInterface      $entityManager      menedzer encji Doctrine
      *
      * @return Response formularz rejestracji albo przekierowanie po zapisie
      */

@@ -32,7 +32,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * Upgrade the hashed password of a user.
      *
      * @param PasswordAuthenticatedUserInterface $user              uzytkownik, ktorego haslo jest aktualizowane
-     * @param string                              $newHashedPassword nowy zahashowany haslo
+     * @param string                             $newHashedPassword nowy zahashowany haslo
      *
      * @return void
      */

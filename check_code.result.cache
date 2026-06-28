@@ -1,64 +1,33 @@
+   1) src/Repository/UserRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_align)
+   2) src/Form/RentalType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   3) src/Form/ResourceType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   4) src/Form/RegistrationFormType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   5) src/Form/CategoryType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   6) src/Security/EmailVerifier.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_align)
+   7) src/Controller/RegistrationController.php (phpdoc_align)
+   8) src/Controller/ResourceController.php (phpdoc_types)
+   9) src/Controller/AdminUserController.php (phpdoc_align)
 
-Found 0 of 25 files that can be fixed in 0.718 seconds, 74.00 MB memory used
+Found 9 of 25 files that can be fixed in 0.774 seconds, 74.00 MB memory used
 
 FILE: /home/wwwroot/app/src/Repository/UserRepository.php
 ----------------------------------------------------------------------
 FOUND 1 ERROR AFFECTING 1 LINE
 ----------------------------------------------------------------------
- 30 | ERROR | Doc comment for parameter "$newHashedPassword" missing
+ 35 | ERROR | [x] Expected 29 spaces after parameter type; 30 found
 ----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Form/RentalType.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 22 | ERROR | Doc comment for parameter "$options" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Form/ResourceType.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 25 | ERROR | Doc comment for parameter "$options" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Form/RegistrationFormType.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 24 | ERROR | Doc comment for parameter "$options" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Form/CategoryType.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 19 | ERROR | Doc comment for parameter "$options" missing
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 ----------------------------------------------------------------------
 
 
 FILE: /home/wwwroot/app/src/Security/EmailVerifier.php
 ----------------------------------------------------------------------
-FOUND 5 ERRORS AFFECTING 3 LINES
+FOUND 2 ERRORS AFFECTING 2 LINES
 ----------------------------------------------------------------------
- 21 | ERROR | Doc comment for parameter "$mailer" missing
- 21 | ERROR | Doc comment for parameter "$entityManager" missing
- 29 | ERROR | Doc comment for parameter "$user" missing
- 29 | ERROR | Doc comment for parameter "$email" missing
- 53 | ERROR | Doc comment for parameter "$user" missing
+ 25 | ERROR | [x] Expected 12 spaces after parameter type; 13 found
+ 26 | ERROR | [x] Expected 5 spaces after parameter type; 6 found
 ----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Security/AppAuthenticator.php
-----------------------------------------------------------------------
-FOUND 2 ERRORS AFFECTING 1 LINE
-----------------------------------------------------------------------
- 62 | ERROR | Doc comment for parameter "$token" missing
- 62 | ERROR | Doc comment for parameter "$firewallName" missing
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 ----------------------------------------------------------------------
 
 
@@ -66,61 +35,21 @@ FILE: /home/wwwroot/app/src/Controller/AdminUserController.php
 ----------------------------------------------------------------------
 FOUND 1 ERROR AFFECTING 1 LINE
 ----------------------------------------------------------------------
- 40 | ERROR | Doc comment for parameter "$entityManager" missing
+ 44 | ERROR | [x] Expected 19 spaces after parameter type; 20 found
 ----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/DashboardController.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 20 | ERROR | Doc comment for parameter "$rentalRepository" missing
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 ----------------------------------------------------------------------
 
 
 FILE: /home/wwwroot/app/src/Controller/RegistrationController.php
 ----------------------------------------------------------------------
-FOUND 2 ERRORS AFFECTING 1 LINE
+FOUND 3 ERRORS AFFECTING 3 LINES
 ----------------------------------------------------------------------
- 23 | ERROR | Doc comment for parameter "$userPasswordHasher" missing
- 23 | ERROR | Doc comment for parameter "$entityManager" missing
+ 26 | ERROR | [x] Expected 12 spaces after parameter name; 13 found
+ 27 | ERROR | [x] Expected 1 spaces after parameter name; 2 found
+ 28 | ERROR | [x] Expected 6 spaces after parameter name; 7 found
 ----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/ResourceController.php
-----------------------------------------------------------------------
-FOUND 7 ERRORS AFFECTING 4 LINES
-----------------------------------------------------------------------
-  26 | ERROR | Doc comment for parameter "$tagRepository" missing
-  26 | ERROR | Doc comment for parameter "$request" missing
-  83 | ERROR | Doc comment for parameter "$entityManager" missing
- 126 | ERROR | Doc comment for parameter "$resource" missing
- 126 | ERROR | Doc comment for parameter "$entityManager" missing
- 153 | ERROR | Doc comment for parameter "$resource" missing
- 153 | ERROR | Doc comment for parameter "$entityManager" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/RentalController.php
-----------------------------------------------------------------------
-FOUND 4 ERRORS AFFECTING 4 LINES
-----------------------------------------------------------------------
-  45 | ERROR | Doc comment for parameter "$entityManager" missing
-  94 | ERROR | Doc comment for parameter "$entityManager" missing
- 128 | ERROR | Doc comment for parameter "$entityManager" missing
- 152 | ERROR | Doc comment for parameter "$entityManager" missing
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/CategoryController.php
-----------------------------------------------------------------------
-FOUND 5 ERRORS AFFECTING 3 LINES
-----------------------------------------------------------------------
-  38 | ERROR | Doc comment for parameter "$entityManager" missing
-  78 | ERROR | Doc comment for parameter "$category" missing
-  78 | ERROR | Doc comment for parameter "$entityManager" missing
- 102 | ERROR | Doc comment for parameter "$category" missing
- 102 | ERROR | Doc comment for parameter "$entityManager" missing
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
 ----------------------------------------------------------------------
 
  ------- -------- ---- ---------------------- 
@@ -132,7 +61,7 @@ FOUND 5 ERRORS AFFECTING 3 LINES
  ------- -------- ---- ---------------------- ------------------------------- 
 
 [notice] Migrating up to DoctrineMigrations\Version20260621123916
-[notice] finished in 197.7ms, used 24M memory, 2 migrations executed, 13 sql queries
+[notice] finished in 199.6ms, used 24M memory, 2 migrations executed, 13 sql queries
 
  [OK] Successfully migrated to version: DoctrineMigrations\Version20260621123916                                        
 
