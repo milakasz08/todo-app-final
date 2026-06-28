@@ -44,8 +44,7 @@ class Rental
 
     /**
      * Get the ID.
-     * @return int|null
-     */
+     * @return int|null opis wartosci zwracanej.     */
     public function getId(): ?int
     {
         return $this->id;
@@ -53,8 +52,7 @@ class Rental
 
     /**
      * Get the borrower name.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getBorrowerName(): ?string
     {
         return $this->borrowerName;
@@ -62,10 +60,8 @@ class Rental
 
     /**
      *
-     * @param string $borrowerName
-     *
-     * @return $this
-     */
+     * @param string $borrowerName opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setBorrowerName(string $borrowerName): static
     {
         $this->borrowerName = $borrowerName;
@@ -75,8 +71,7 @@ class Rental
 
     /**
      * Get the rented at date.
-     * @return \DateTimeImmutable|null
-     */
+     * @return \DateTimeImmutable|null opis wartosci zwracanej.     */
     public function getRentedAt(): ?\DateTimeImmutable
     {
         return $this->rentedAt;
@@ -84,10 +79,8 @@ class Rental
 
     /**
      *
-     * @param \DateTimeImmutable $rentedAt
-     *
-     * @return $this
-     */
+     * @param \DateTimeImmutable $rentedAt opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setRentedAt(\DateTimeImmutable $rentedAt): static
     {
         $this->rentedAt = $rentedAt;
@@ -97,8 +90,7 @@ class Rental
 
     /**
      * Get the returned at date.
-     * @return \DateTime|null
-     */
+     * @return \DateTime|null opis wartosci zwracanej.     */
     public function getReturnedAt(): ?\DateTime
     {
         return $this->returnedAt;
@@ -106,10 +98,8 @@ class Rental
 
     /**
      *
-     * @param \DateTime|null $returnedAt
-     *
-     * @return $this
-     */
+     * @param \DateTime|null $returnedAt opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setReturnedAt(?\DateTime $returnedAt): static
     {
         $this->returnedAt = $returnedAt;
@@ -119,8 +109,7 @@ class Rental
 
     /**
      * Get the resource.
-     * @return Resource|null
-     */
+     * @return Resource|null opis wartosci zwracanej.     */
     public function getResource(): ?Resource
     {
         return $this->resource;
@@ -128,10 +117,8 @@ class Rental
 
     /**
      *
-     * @param Resource|null $resource
-     *
-     * @return $this
-     */
+     * @param Resource|null $resource opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setResource(?Resource $resource): static
     {
         $this->resource = $resource;
@@ -141,8 +128,7 @@ class Rental
 
     /**
      * Get the quantity.
-     * @return int|null
-     */
+     * @return int|null opis wartosci zwracanej.     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
@@ -150,10 +136,8 @@ class Rental
 
     /**
      *
-     * @param int $quantity
-     *
-     * @return $this
-     */
+     * @param int $quantity opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
@@ -163,8 +147,7 @@ class Rental
 
     /**
      * Get the user.
-     * @return User|null
-     */
+     * @return User|null opis wartosci zwracanej.     */
     public function getUser(): ?User
     {
         return $this->user;
@@ -172,10 +155,8 @@ class Rental
 
     /**
      *
-     * @param User|null $user
-     *
-     * @return $this
-     */
+     * @param User|null $user opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setUser(?User $user): static
     {
         $this->user = $user;
@@ -185,8 +166,7 @@ class Rental
 
     /**
      * Get the status.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getStatus(): ?string
     {
         return $this->status;
@@ -194,10 +174,8 @@ class Rental
 
     /**
      *
-     * @param string $status
-     *
-     * @return $this
-     */
+     * @param string $status opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setStatus(string $status): static
     {
         $this->status = $status;

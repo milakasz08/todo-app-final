@@ -39,8 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the ID.
-     * @return int|null
-     */
+     * @return int|null opis wartosci zwracanej.     */
     public function getId(): ?int
     {
         return $this->id;
@@ -48,8 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the email.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getEmail(): ?string
     {
         return $this->email;
@@ -57,10 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      *
-     * @param string $email
-     *
-     * @return $this
-     */
+     * @param string $email opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -70,8 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the user identifier.
-     * @return string
-     */
+     * @return string opis wartosci zwracanej.     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -79,8 +74,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the roles.
-     * @return array
-     */
+     * @return array opis wartosci zwracanej.     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -91,10 +85,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      *
-     * @param array $roles
-     *
-     * @return $this
-     */
+     * @param array $roles opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -104,8 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the password.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -113,10 +104,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      *
-     * @param string $password
-     *
-     * @return $this
-     */
+     * @param string $password opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -126,8 +115,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Serialize the object.
-     * @return array
-     */
+     * @return array opis wartosci zwracanej.     */
     public function __serialize(): array
     {
         $data = (array) $this;
@@ -138,16 +126,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Erase the credentials.
-     * @return void
-     */
+     * @return void opis wartosci zwracanej.     */
     public function eraseCredentials(): void
     {
     }
 
     /**
      * Check if the user is verified.
-     * @return bool
-     */
+     * @return bool opis wartosci zwracanej.     */
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -155,10 +141,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      *
-     * @param bool $isVerified
-     *
-     * @return $this
-     */
+     * @param bool $isVerified opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
@@ -168,8 +152,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Convert to string.
-     * @return string
-     */
+     * @return string opis wartosci zwracanej.     */
     public function __toString(): string
     {
         return $this->email ?? '';

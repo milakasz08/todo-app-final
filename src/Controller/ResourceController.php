@@ -26,12 +26,8 @@ class ResourceController extends AbstractController
     /**
      * Display the list of resources.
      *
-     * @param ResourceRepository $resourceRepository
-     * @param TagRepository      $tagRepository
-     * @param Request            $request
-     *
-     * @return Response
-     */
+     * @param ResourceRepository $resourceRepository opis parametru.     * @param TagRepository      $tagRepository opis parametru.     * @param Request            $request opis parametru.     *
+     * @return Response opis wartosci zwracanej.     */
     #[Route('/', name: 'app_resource_index', methods: ['GET'])]
     public function index(ResourceRepository $resourceRepository, TagRepository $tagRepository, Request $request): Response
     {
@@ -86,11 +82,8 @@ class ResourceController extends AbstractController
     /**
      * Create a new resource.
      *
-     * @param Request                $request
-     * @param EntityManagerInterface $entityManager
-     *
-     * @return Response
-     */
+     * @param Request                $request opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
+     * @return Response opis wartosci zwracanej.     */
     #[Route('/new', name: 'app_resource_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -117,10 +110,8 @@ class ResourceController extends AbstractController
     /**
      * Show a resource.
      *
-     * @param Resource $resource
-     *
-     * @return Response
-     */
+     * @param Resource $resource opis parametru.     *
+     * @return Response opis wartosci zwracanej.     */
     #[Route('/{id}', name: 'app_resource_show', methods: ['GET'])]
     public function show(Resource $resource): Response
     {
@@ -132,12 +123,8 @@ class ResourceController extends AbstractController
     /**
      * Edit a resource.
      *
-     * @param Request                $request
-     * @param Resource               $resource
-     * @param EntityManagerInterface $entityManager
-     *
-     * @return Response
-     */
+     * @param Request                $request opis parametru.     * @param Resource               $resource opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
+     * @return Response opis wartosci zwracanej.     */
     #[Route('/{id}/edit', name: 'app_resource_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Resource $resource, EntityManagerInterface $entityManager): Response
@@ -162,12 +149,8 @@ class ResourceController extends AbstractController
     /**
      * Delete a resource.
      *
-     * @param Request                $request
-     * @param Resource               $resource
-     * @param EntityManagerInterface $entityManager
-     *
-     * @return Response
-     */
+     * @param Request                $request opis parametru.     * @param Resource               $resource opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
+     * @return Response opis wartosci zwracanej.     */
     #[Route('/{id}', name: 'app_resource_delete', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Resource $resource, EntityManagerInterface $entityManager): Response

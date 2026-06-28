@@ -21,10 +21,7 @@ class EmailVerifier
     /**
      * Constructor.
      *
-     * @param VerifyEmailHelperInterface $verifyEmailHelper
-     * @param MailerInterface            $mailer
-     * @param EntityManagerInterface     $entityManager
-     */
+     * @param VerifyEmailHelperInterface $verifyEmailHelper opis parametru.     * @param MailerInterface            $mailer opis parametru.     * @param EntityManagerInterface     $entityManager opis parametru.     */
     public function __construct(private VerifyEmailHelperInterface $verifyEmailHelper, private MailerInterface $mailer, private EntityManagerInterface $entityManager)
     {
     }
@@ -32,12 +29,8 @@ class EmailVerifier
     /**
      * Send the email confirmation.
      *
-     * @param string         $verifyEmailRouteName
-     * @param User           $user
-     * @param TemplatedEmail $email
-     *
-     * @return void
-     */
+     * @param string         $verifyEmailRouteName opis parametru.     * @param User           $user opis parametru.     * @param TemplatedEmail $email opis parametru.     *
+     * @return void opis wartosci zwracanej.     */
     public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
@@ -59,11 +52,8 @@ class EmailVerifier
     /**
      * Handle the email confirmation.
      *
-     * @param Request $request
-     * @param User    $user
-     *
-     * @return void
-     */
+     * @param Request $request opis parametru.     * @param User    $user opis parametru.     *
+     * @return void opis wartosci zwracanej.     */
     public function handleEmailConfirmation(Request $request, User $user): void
     {
         $this->verifyEmailHelper->validateEmailConfirmationFromRequest($request, (string) $user->getId(), (string) $user->getEmail());

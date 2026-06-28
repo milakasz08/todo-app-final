@@ -23,12 +23,8 @@ class RegistrationController extends AbstractController
     /**
      * Register a new user.
      *
-     * @param Request                     $request
-     * @param UserPasswordHasherInterface $userPasswordHasher
-     * @param EntityManagerInterface      $entityManager
-     *
-     * @return Response
-     */
+     * @param Request                     $request opis parametru.     * @param UserPasswordHasherInterface $userPasswordHasher opis parametru.     * @param EntityManagerInterface      $entityManager opis parametru.     *
+     * @return Response opis wartosci zwracanej.     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {

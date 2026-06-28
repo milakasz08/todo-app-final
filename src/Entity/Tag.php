@@ -25,8 +25,7 @@ class Tag
 
     /**
      * Get the ID.
-     * @return int|null
-     */
+     * @return int|null opis wartosci zwracanej.     */
     public function getId(): ?int
     {
         return $this->id;
@@ -34,8 +33,7 @@ class Tag
 
     /**
      * Get the name.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getName(): ?string
     {
         return $this->name;
@@ -44,10 +42,8 @@ class Tag
     /**
      * Set the name.
      *
-     * @param string $name
-     *
-     * @return $this
-     */
+     * @param string $name opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -57,8 +53,7 @@ class Tag
 
     /**
      * Convert to string.
-     * @return string
-     */
+     * @return string opis wartosci zwracanej.     */
     public function __toString(): string
     {
         return $this->name ?? '';

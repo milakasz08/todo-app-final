@@ -1,29 +1,361 @@
-   1) src/Repository/TagRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   2) src/Repository/RentalRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   3) src/Repository/CategoryRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   4) src/Repository/ResourceRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   5) src/Repository/UserRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   6) src/Form/RentalType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   7) src/Form/ResourceType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   8) src/Form/RegistrationFormType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   9) src/Form/CategoryType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  10) src/Security/EmailVerifier.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  11) src/Controller/RegistrationController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  12) src/Controller/ResourceController.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim)
-  13) src/Controller/RentalController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  14) src/Controller/CategoryController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  15) src/Security/AppAuthenticator.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  16) src/Entity/Rental.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim)
-  17) src/Entity/Category.php (no_superfluous_phpdoc_tags, phpdoc_trim_consecutive_blank_line_separation)
-  18) src/Entity/Tag.php (no_superfluous_phpdoc_tags, phpdoc_trim_consecutive_blank_line_separation)
-  19) src/Entity/User.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  20) src/Entity/Resource.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  21) src/DataFixtures/AppFixtures.php (no_superfluous_phpdoc_tags, statement_indentation, phpdoc_trim)
-  22) src/Controller/SecurityController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  23) src/Controller/AdminUserController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  24) src/Controller/DashboardController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+   1) src/Repository/UserRepository.php (phpdoc_separation)
+   2) src/Form/RentalType.php (phpdoc_separation)
+   3) src/Form/ResourceType.php (phpdoc_separation)
+   4) src/Form/RegistrationFormType.php (phpdoc_separation)
+   5) src/Form/CategoryType.php (phpdoc_separation)
+   6) src/Security/EmailVerifier.php (phpdoc_separation, phpdoc_align)
+   7) src/Controller/RegistrationController.php (phpdoc_separation, phpdoc_align)
+   8) src/Controller/ResourceController.php (phpdoc_types, phpdoc_separation, phpdoc_align)
+   9) src/Controller/RentalController.php (phpdoc_separation, phpdoc_align)
+  10) src/Controller/CategoryController.php (phpdoc_separation, phpdoc_align)
+  11) src/Security/AppAuthenticator.php (phpdoc_separation, phpdoc_align)
+  12) src/Entity/Rental.php (phpdoc_types, phpdoc_separation, phpdoc_trim)
+  13) src/Entity/Category.php (phpdoc_separation)
+  14) src/Entity/Tag.php (phpdoc_separation)
+  15) src/Entity/User.php (phpdoc_separation, phpdoc_trim)
+  16) src/Entity/Resource.php (phpdoc_separation, phpdoc_trim)
+  17) src/DataFixtures/AppFixtures.php (phpdoc_separation, statement_indentation)
+  18) src/Controller/SecurityController.php (phpdoc_separation)
+  19) src/Controller/AdminUserController.php (phpdoc_separation, phpdoc_align)
+  20) src/Controller/DashboardController.php (phpdoc_separation)
 
-Found 24 of 25 files that can be fixed in 0.758 seconds, 74.00 MB memory used
+Found 20 of 25 files that can be fixed in 0.978 seconds, 74.00 MB memory used
+
+FILE: /home/wwwroot/app/src/Repository/UserRepository.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 31 | ERROR | [ ] Doc comment for parameter "$newHashedPassword" missing
+ 34 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Form/RentalType.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 22 | ERROR | [ ] Doc comment for parameter "$options" missing
+ 25 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 50 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Form/ResourceType.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 25 | ERROR | [ ] Doc comment for parameter "$options" missing
+ 28 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 71 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Form/RegistrationFormType.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 24 | ERROR | [ ] Doc comment for parameter "$options" missing
+ 27 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 63 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Form/CategoryType.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 3 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 19 | ERROR | [ ] Doc comment for parameter "$options" missing
+ 22 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 34 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Security/EmailVerifier.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 8 ERRORS AFFECTING 5 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 21 | ERROR | [ ] Doc comment for parameter "$mailer" missing
+ 21 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 29 | ERROR | [ ] Doc comment for parameter "$user" missing
+ 29 | ERROR | [ ] Doc comment for parameter "$email" missing
+ 32 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 32 | ERROR | [x] Expected 1 spaces after parameter type; 9 found
+ 52 | ERROR | [ ] Doc comment for parameter "$user" missing
+ 55 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Security/AppAuthenticator.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 6 ERRORS AFFECTING 4 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 44 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 62 | ERROR | [ ] Doc comment for parameter "$token" missing
+ 62 | ERROR | [ ] Doc comment for parameter "$firewallName" missing
+ 65 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 65 | ERROR | [x] Expected 1 spaces after parameter type; 8 found
+ 80 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Rental.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 7 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  63 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  82 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 101 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 120 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 139 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 158 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 177 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Category.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 45 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Tag.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 45 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/User.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 4 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  58 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  88 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 107 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 144 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 4 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Resource.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 7 ERRORS AFFECTING 7 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  73 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  92 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 111 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 130 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 149 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 168 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 181 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 7 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/DataFixtures/AppFixtures.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 32 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/SecurityController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 22 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/AdminUserController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 3 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 27 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 39 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 42 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 42 | ERROR | [x] Expected 1 spaces after parameter type; 19 found
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/DashboardController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 20 | ERROR | [ ] Doc comment for parameter "$rentalRepository" missing
+ 23 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/RegistrationController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 4 ERRORS AFFECTING 2 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 23 | ERROR | [ ] Doc comment for parameter "$userPasswordHasher" missing
+ 23 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 26 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+    |       |     single blank line
+ 26 | ERROR | [x] Expected 1 spaces after parameter type; 21 found
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/ResourceController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 15 ERRORS AFFECTING 9 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  26 | ERROR | [ ] Doc comment for parameter "$tagRepository" missing
+  26 | ERROR | [ ] Doc comment for parameter "$request" missing
+  29 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  82 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+  85 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  85 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+ 113 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 123 | ERROR | [ ] Doc comment for parameter "$resource" missing
+ 123 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 126 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 126 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+ 149 | ERROR | [ ] Doc comment for parameter "$resource" missing
+ 149 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 152 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 152 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 8 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/RentalController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 13 ERRORS AFFECTING 9 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  28 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  44 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+  47 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  47 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+  92 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+  95 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  95 | ERROR | [x] Expected 1 spaces after parameter type; 17 found
+ 125 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 128 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 128 | ERROR | [x] Expected 1 spaces after parameter type; 17 found
+ 148 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 151 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 151 | ERROR | [x] Expected 1 spaces after parameter type; 17 found
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 9 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/CategoryController.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FOUND 13 ERRORS AFFECTING 8 LINES
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  27 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  37 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+  40 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  40 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+  65 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  75 | ERROR | [ ] Doc comment for parameter "$category" missing
+  75 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+  78 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+  78 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+  98 | ERROR | [ ] Doc comment for parameter "$category" missing
+  98 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
+ 101 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
+     |       |     single blank line
+ 101 | ERROR | [x] Expected 1 spaces after parameter type; 16 found
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PHPCBF CAN FIX THE 8 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
  ------- -------- ---- ---------------------- 
   State   Domain   Id   Message Preview (en)  
  ------- -------- ---- ---------------------- 
@@ -33,7 +365,7 @@ Found 24 of 25 files that can be fixed in 0.758 seconds, 74.00 MB memory used
  ------- -------- ---- ---------------------- ------------------------------- 
 
 [notice] Migrating up to DoctrineMigrations\Version20260621123916
-[notice] finished in 195ms, used 24M memory, 2 migrations executed, 13 sql queries
+[notice] finished in 196.2ms, used 24M memory, 2 migrations executed, 13 sql queries
 
  [OK] Successfully migrated to version: DoctrineMigrations\Version20260621123916                                        
 

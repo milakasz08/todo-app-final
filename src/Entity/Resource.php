@@ -54,8 +54,7 @@ class Resource
 
     /**
      * Get the ID.
-     * @return int|null
-     */
+     * @return int|null opis wartosci zwracanej.     */
     public function getId(): ?int
     {
         return $this->id;
@@ -63,8 +62,7 @@ class Resource
 
     /**
      * Get the title.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getTitle(): ?string
     {
         return $this->title;
@@ -72,10 +70,8 @@ class Resource
 
     /**
      *
-     * @param string $title
-     *
-     * @return $this
-     */
+     * @param string $title opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setTitle(string $title): static
     {
         $this->title = $title;
@@ -85,8 +81,7 @@ class Resource
 
     /**
      * Get the author.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getAuthor(): ?string
     {
         return $this->author;
@@ -94,10 +89,8 @@ class Resource
 
     /**
      *
-     * @param string $author
-     *
-     * @return $this
-     */
+     * @param string $author opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setAuthor(string $author): static
     {
         $this->author = $author;
@@ -107,8 +100,7 @@ class Resource
 
     /**
      * Get the type.
-     * @return string|null
-     */
+     * @return string|null opis wartosci zwracanej.     */
     public function getType(): ?string
     {
         return $this->type;
@@ -116,10 +108,8 @@ class Resource
 
     /**
      *
-     * @param string $type
-     *
-     * @return $this
-     */
+     * @param string $type opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setType(string $type): static
     {
         $this->type = $type;
@@ -129,8 +119,7 @@ class Resource
 
     /**
      * Get the quantity.
-     * @return int|null
-     */
+     * @return int|null opis wartosci zwracanej.     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
@@ -138,10 +127,8 @@ class Resource
 
     /**
      *
-     * @param int $quantity
-     *
-     * @return $this
-     */
+     * @param int $quantity opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
@@ -151,8 +138,7 @@ class Resource
 
     /**
      * Get the category.
-     * @return Category|null
-     */
+     * @return Category|null opis wartosci zwracanej.     */
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -160,10 +146,8 @@ class Resource
 
     /**
      *
-     * @param Category|null $category
-     *
-     * @return $this
-     */
+     * @param Category|null $category opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
@@ -181,10 +165,8 @@ class Resource
 
     /**
      *
-     * @param Tag $tag
-     *
-     * @return $this
-     */
+     * @param Tag $tag opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function addTag(Tag $tag): static
     {
         if (!$this->tags->contains($tag)) {
@@ -196,10 +178,8 @@ class Resource
 
     /**
      *
-     * @param Tag $tag
-     *
-     * @return $this
-     */
+     * @param Tag $tag opis parametru.     *
+     * @return $this opis wartosci zwracanej.     */
     public function removeTag(Tag $tag): static
     {
         $this->tags->removeElement($tag);
@@ -209,8 +189,7 @@ class Resource
 
     /**
      * Convert to string.
-     * @return string
-     */
+     * @return string opis wartosci zwracanej.     */
     public function __toString(): string
     {
         return $this->title ?? '';

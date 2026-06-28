@@ -32,8 +32,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Constructor.
      *
-     * @param UrlGeneratorInterface $urlGenerator
-     *
+     * @param UrlGeneratorInterface $urlGenerator opis parametru.     *
      */
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -42,10 +41,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Authenticate the request.
      *
-     * @param Request $request
-     *
-     * @return Passport
-     */
+     * @param Request $request opis parametru.     *
+     * @return Passport opis wartosci zwracanej.     */
     public function authenticate(Request $request): Passport
     {
         $email = $request->getPayload()->getString('email');
@@ -65,12 +62,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Handle successful authentication.
      *
-     * @param Request        $request
-     * @param TokenInterface $token
-     * @param string         $firewallName
-     *
-     * @return Response|null
-     */
+     * @param Request        $request opis parametru.     * @param TokenInterface $token opis parametru.     * @param string         $firewallName opis parametru.     *
+     * @return Response|null opis wartosci zwracanej.     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
@@ -84,10 +77,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     /**
      * Get the login URL.
      *
-     * @param Request $request
-     *
-     * @return string
-     */
+     * @param Request $request opis parametru.     *
+     * @return string opis wartosci zwracanej.     */
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
