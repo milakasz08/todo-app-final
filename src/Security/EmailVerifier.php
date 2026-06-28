@@ -35,8 +35,6 @@ class EmailVerifier
      * @param string         $verifyEmailRouteName nazwa trasy weryfikacji adresu email
      * @param User           $user                 uzytkownik, do ktorego wysylana jest wiadomosc
      * @param TemplatedEmail $email                szablon wiadomosci email
-     *
-     * @return void
      */
     public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
     {
@@ -61,8 +59,6 @@ class EmailVerifier
      *
      * @param Request $request biezace zadanie HTTP
      * @param User    $user    uzytkownik, ktorego adres jest weryfikowany
-     *
-     * @return void
      */
     public function handleEmailConfirmation(Request $request, User $user): void
     {

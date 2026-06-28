@@ -1,57 +1,5 @@
-   1) src/Repository/UserRepository.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_align)
-   2) src/Form/RentalType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   3) src/Form/ResourceType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   4) src/Form/RegistrationFormType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   5) src/Form/CategoryType.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-   6) src/Security/EmailVerifier.php (no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_align)
-   7) src/Controller/RegistrationController.php (phpdoc_align)
-   8) src/Controller/ResourceController.php (phpdoc_types)
-   9) src/Controller/AdminUserController.php (phpdoc_align)
 
-Found 9 of 25 files that can be fixed in 0.774 seconds, 74.00 MB memory used
-
-FILE: /home/wwwroot/app/src/Repository/UserRepository.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 35 | ERROR | [x] Expected 29 spaces after parameter type; 30 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Security/EmailVerifier.php
-----------------------------------------------------------------------
-FOUND 2 ERRORS AFFECTING 2 LINES
-----------------------------------------------------------------------
- 25 | ERROR | [x] Expected 12 spaces after parameter type; 13 found
- 26 | ERROR | [x] Expected 5 spaces after parameter type; 6 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/AdminUserController.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 44 | ERROR | [x] Expected 19 spaces after parameter type; 20 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/RegistrationController.php
-----------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 3 LINES
-----------------------------------------------------------------------
- 26 | ERROR | [x] Expected 12 spaces after parameter name; 13 found
- 27 | ERROR | [x] Expected 1 spaces after parameter name; 2 found
- 28 | ERROR | [x] Expected 6 spaces after parameter name; 7 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
+Found 0 of 25 files that can be fixed in 1.243 seconds, 74.00 MB memory used
  ------- -------- ---- ---------------------- 
   State   Domain   Id   Message Preview (en)  
  ------- -------- ---- ---------------------- 
@@ -61,7 +9,7 @@ PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
  ------- -------- ---- ---------------------- ------------------------------- 
 
 [notice] Migrating up to DoctrineMigrations\Version20260621123916
-[notice] finished in 199.6ms, used 24M memory, 2 migrations executed, 13 sql queries
+[notice] finished in 628.9ms, used 24M memory, 2 migrations executed, 13 sql queries
 
  [OK] Successfully migrated to version: DoctrineMigrations\Version20260621123916                                        
 

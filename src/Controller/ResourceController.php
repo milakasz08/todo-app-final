@@ -117,7 +117,7 @@ class ResourceController extends AbstractController
     /**
      * Show a resource.
      *
-     * @param Resource $resource zasob do wyswietlenia
+     * @param resource $resource zasob do wyswietlenia
      *
      * @return Response widok szczegolow zasobu
      */
@@ -133,7 +133,7 @@ class ResourceController extends AbstractController
      * Edit a resource.
      *
      * @param Request                $request       biezace zadanie HTTP
-     * @param Resource               $resource      zasob do edycji
+     * @param resource               $resource      zasob do edycji
      * @param EntityManagerInterface $entityManager menedzer encji Doctrine
      *
      * @return Response formularz edycji albo przekierowanie po zapisie
@@ -163,7 +163,7 @@ class ResourceController extends AbstractController
      * Delete a resource.
      *
      * @param Request                $request       biezace zadanie HTTP
-     * @param Resource               $resource      zasob do usuniecia
+     * @param resource               $resource      zasob do usuniecia
      * @param EntityManagerInterface $entityManager menedzer encji Doctrine
      *
      * @return Response przekierowanie do listy zasobow
