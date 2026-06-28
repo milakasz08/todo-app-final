@@ -40,8 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the ID.
      *
-     * @return int|null identyfikator uzytkownika.
-     */
+     * @return int|null identyfikator uzytkownika     */
     public function getId(): ?int
     {
         return $this->id;
@@ -50,8 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the email.
      *
-     * @return string|null adres email uzytkownika.
-     */
+     * @return string|null adres email uzytkownika     */
     public function getEmail(): ?string
     {
         return $this->email;
@@ -60,8 +58,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Set the email.
      *
-     * @param string $email adres email uzytkownika.
-     *
+     * @param string $email adres email uzytkownika     *
      * @return $this
      */
     public function setEmail(string $email): static
@@ -74,8 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the user identifier.
      *
-     * @return string identyfikator uzytkownika uzywany przez system bezpieczenstwa.
-     */
+     * @return string identyfikator uzytkownika uzywany przez system bezpieczenstwa     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
@@ -84,8 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the roles.
      *
-     * @return array lista rol uzytkownika.
-     */
+     * @return array lista rol uzytkownika     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -97,8 +92,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Set the roles.
      *
-     * @param array $roles lista rol uzytkownika.
-     *
+     * @param array $roles lista rol uzytkownika     *
      * @return $this
      */
     public function setRoles(array $roles): static
@@ -111,8 +105,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Get the password.
      *
-     * @return string|null zahashowane haslo uzytkownika.
-     */
+     * @return string|null zahashowane haslo uzytkownika     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -121,8 +114,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Set the password.
      *
-     * @param string $password zahashowane haslo uzytkownika.
-     *
+     * @param string $password zahashowane haslo uzytkownika     *
      * @return $this
      */
     public function setPassword(string $password): static
@@ -135,8 +127,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Serialize the object.
      *
-     * @return array zserializowane dane uzytkownika.
-     */
+     * @return array zserializowane dane uzytkownika     */
     public function __serialize(): array
     {
         $data = (array) $this;
@@ -148,8 +139,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Erase the credentials.
      *
-     * @return void
-     */
+     * @return void metoda nie zwraca wartosci     */
     public function eraseCredentials(): void
     {
     }
@@ -157,8 +147,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Check if the user is verified.
      *
-     * @return bool informacja, czy konto jest zweryfikowane.
-     */
+     * @return bool informacja, czy konto jest zweryfikowane     */
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -167,8 +156,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Set the verified flag.
      *
-     * @param bool $isVerified informacja, czy konto jest zweryfikowane.
-     *
+     * @param bool $isVerified informacja, czy konto jest zweryfikowane     *
      * @return $this
      */
     public function setIsVerified(bool $isVerified): static
@@ -181,8 +169,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Convert to string.
      *
-     * @return string adres email jako tekst.
-     */
+     * @return string adres email jako tekst     */
     public function __toString(): string
     {
         return $this->email ?? '';

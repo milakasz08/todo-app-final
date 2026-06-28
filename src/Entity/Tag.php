@@ -26,8 +26,7 @@ class Tag
     /**
      * Get the ID.
      *
-     * @return int|null identyfikator tagu.
-     */
+     * @return int|null identyfikator tagu     */
     public function getId(): ?int
     {
         return $this->id;
@@ -36,8 +35,7 @@ class Tag
     /**
      * Get the name.
      *
-     * @return string|null nazwa tagu.
-     */
+     * @return string|null nazwa tagu     */
     public function getName(): ?string
     {
         return $this->name;
@@ -46,8 +44,7 @@ class Tag
     /**
      * Set the name.
      *
-     * @param string $name nazwa tagu.
-     *
+     * @param string $name nazwa tagu     *
      * @return $this
      */
     public function setName(string $name): static
@@ -60,8 +57,7 @@ class Tag
     /**
      * Convert to string.
      *
-     * @return string nazwa tagu jako tekst.
-     */
+     * @return string nazwa tagu jako tekst     */
     public function __toString(): string
     {
         return $this->name ?? '';

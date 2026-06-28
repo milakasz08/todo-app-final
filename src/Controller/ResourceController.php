@@ -26,12 +26,8 @@ class ResourceController extends AbstractController
     /**
      * Display the list of resources.
      *
-     * @param ResourceRepository $resourceRepository repozytorium zasobow.
-     * @param TagRepository      $tagRepository      repozytorium tagow.
-     * @param Request            $request            biezace zadanie HTTP.
-     *
-     * @return Response wyrenderowana lista zasobow.
-     */
+     * @param ResourceRepository $resourceRepository repozytorium zasobow     * @param TagRepository      $tagRepository      repozytorium tagow     * @param Request            $request            biezace zadanie HTTP     *
+     * @return Response wyrenderowana lista zasobow     */
     #[Route('/', name: 'app_resource_index', methods: ['GET'])]
     public function index(ResourceRepository $resourceRepository, TagRepository $tagRepository, Request $request): Response
     {
@@ -86,11 +82,8 @@ class ResourceController extends AbstractController
     /**
      * Create a new resource.
      *
-     * @param Request                $request       biezace zadanie HTTP.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response formularz dodawania albo przekierowanie po zapisie.
-     */
+     * @param Request                $request       biezace zadanie HTTP     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response formularz dodawania albo przekierowanie po zapisie     */
     #[Route('/new', name: 'app_resource_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -117,10 +110,8 @@ class ResourceController extends AbstractController
     /**
      * Show a resource.
      *
-     * @param Resource $resource zasob do wyswietlenia.
-     *
-     * @return Response widok szczegolow zasobu.
-     */
+     * @param Resource $resource zasob do wyswietlenia     *
+     * @return Response widok szczegolow zasobu     */
     #[Route('/{id}', name: 'app_resource_show', methods: ['GET'])]
     public function show(Resource $resource): Response
     {
@@ -132,12 +123,8 @@ class ResourceController extends AbstractController
     /**
      * Edit a resource.
      *
-     * @param Request                $request       biezace zadanie HTTP.
-     * @param Resource               $resource      zasob do edycji.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response formularz edycji albo przekierowanie po zapisie.
-     */
+     * @param Request                $request       biezace zadanie HTTP     * @param Resource               $resource      zasob do edycji     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response formularz edycji albo przekierowanie po zapisie     */
     #[Route('/{id}/edit', name: 'app_resource_edit', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Resource $resource, EntityManagerInterface $entityManager): Response
@@ -162,12 +149,8 @@ class ResourceController extends AbstractController
     /**
      * Delete a resource.
      *
-     * @param Request                $request       biezace zadanie HTTP.
-     * @param Resource               $resource      zasob do usuniecia.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response przekierowanie do listy zasobow.
-     */
+     * @param Request                $request       biezace zadanie HTTP     * @param Resource               $resource      zasob do usuniecia     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response przekierowanie do listy zasobow     */
     #[Route('/{id}', name: 'app_resource_delete', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Resource $resource, EntityManagerInterface $entityManager): Response

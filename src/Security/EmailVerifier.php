@@ -21,10 +21,7 @@ class EmailVerifier
     /**
      * Constructor.
      *
-     * @param VerifyEmailHelperInterface $verifyEmailHelper pomocnik weryfikacji adresu email.
-     * @param MailerInterface            $mailer            mechanizm wysylki wiadomosci email.
-     * @param EntityManagerInterface     $entityManager     menedzer encji Doctrine.
-     */
+     * @param VerifyEmailHelperInterface $verifyEmailHelper pomocnik weryfikacji adresu email     * @param MailerInterface            $mailer            mechanizm wysylki wiadomosci email     * @param EntityManagerInterface     $entityManager     menedzer encji Doctrine     */
     public function __construct(private VerifyEmailHelperInterface $verifyEmailHelper, private MailerInterface $mailer, private EntityManagerInterface $entityManager)
     {
     }
@@ -32,12 +29,8 @@ class EmailVerifier
     /**
      * Send the email confirmation.
      *
-     * @param string         $verifyEmailRouteName nazwa trasy weryfikacji adresu email.
-     * @param User           $user                 uzytkownik, do ktorego wysylana jest wiadomosc.
-     * @param TemplatedEmail $email                szablon wiadomosci email.
-     *
-     * @return void
-     */
+     * @param string         $verifyEmailRouteName nazwa trasy weryfikacji adresu email     * @param User           $user                 uzytkownik, do ktorego wysylana jest wiadomosc     * @param TemplatedEmail $email                szablon wiadomosci email     *
+     * @return void metoda nie zwraca wartosci     */
     public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
@@ -59,11 +52,8 @@ class EmailVerifier
     /**
      * Handle the email confirmation.
      *
-     * @param Request $request biezace zadanie HTTP.
-     * @param User    $user    uzytkownik, ktorego adres jest weryfikowany.
-     *
-     * @return void
-     */
+     * @param Request $request biezace zadanie HTTP     * @param User    $user    uzytkownik, ktorego adres jest weryfikowany     *
+     * @return void metoda nie zwraca wartosci     */
     public function handleEmailConfirmation(Request $request, User $user): void
     {
         $this->verifyEmailHelper->validateEmailConfirmationFromRequest($request, (string) $user->getId(), (string) $user->getEmail());

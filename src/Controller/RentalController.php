@@ -25,10 +25,8 @@ class RentalController extends AbstractController
     /**
      * Display the list of rentals.
      *
-     * @param RentalRepository $rentalRepository repozytorium wypozyczen.
-     *
-     * @return Response wyrenderowana lista wypozyczen.
-     */
+     * @param RentalRepository $rentalRepository repozytorium wypozyczen     *
+     * @return Response wyrenderowana lista wypozyczen     */
     #[Route('/', name: 'app_rental_index', methods: ['GET'])]
     public function index(RentalRepository $rentalRepository): Response
     {
@@ -46,11 +44,8 @@ class RentalController extends AbstractController
     /**
      * Create a new rental.
      *
-     * @param Request                $request       biezace zadanie HTTP.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response formularz rezerwacji albo przekierowanie po zapisie.
-     */
+     * @param Request                $request       biezace zadanie HTTP     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response formularz rezerwacji albo przekierowanie po zapisie     */
     #[Route('/new', name: 'app_rental_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -97,11 +92,8 @@ class RentalController extends AbstractController
     /**
      * Approve a rental.
      *
-     * @param Rental                 $rental        wypozyczenie do zatwierdzenia.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response przekierowanie do listy wypozyczen.
-     */
+     * @param Rental                 $rental        wypozyczenie do zatwierdzenia     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response przekierowanie do listy wypozyczen     */
     #[Route('/{id}/approve', name: 'app_rental_approve', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function approve(Rental $rental, EntityManagerInterface $entityManager): Response
@@ -133,11 +125,8 @@ class RentalController extends AbstractController
     /**
      * Reject a rental.
      *
-     * @param Rental                 $rental        wypozyczenie do odrzucenia.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response przekierowanie do listy wypozyczen.
-     */
+     * @param Rental                 $rental        wypozyczenie do odrzucenia     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response przekierowanie do listy wypozyczen     */
     #[Route('/{id}/reject', name: 'app_rental_reject', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function reject(Rental $rental, EntityManagerInterface $entityManager): Response
@@ -159,11 +148,8 @@ class RentalController extends AbstractController
     /**
      * Return a rented resource.
      *
-     * @param Rental                 $rental        wypozyczenie do zwrotu.
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
-     *
-     * @return Response przekierowanie do listy wypozyczen.
-     */
+     * @param Rental                 $rental        wypozyczenie do zwrotu     * @param EntityManagerInterface $entityManager menedzer encji Doctrine     *
+     * @return Response przekierowanie do listy wypozyczen     */
     #[Route('/{id}/return', name: 'app_rental_return', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
     public function return(Rental $rental, EntityManagerInterface $entityManager): Response

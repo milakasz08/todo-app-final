@@ -55,8 +55,7 @@ class Resource
     /**
      * Get the ID.
      *
-     * @return int|null identyfikator zasobu.
-     */
+     * @return int|null identyfikator zasobu     */
     public function getId(): ?int
     {
         return $this->id;
@@ -65,8 +64,7 @@ class Resource
     /**
      * Get the title.
      *
-     * @return string|null tytul zasobu.
-     */
+     * @return string|null tytul zasobu     */
     public function getTitle(): ?string
     {
         return $this->title;
@@ -75,8 +73,7 @@ class Resource
     /**
      * Set the title.
      *
-     * @param string $title tytul zasobu.
-     *
+     * @param string $title tytul zasobu     *
      * @return $this
      */
     public function setTitle(string $title): static
@@ -89,8 +86,7 @@ class Resource
     /**
      * Get the author.
      *
-     * @return string|null autor zasobu.
-     */
+     * @return string|null autor zasobu     */
     public function getAuthor(): ?string
     {
         return $this->author;
@@ -99,8 +95,7 @@ class Resource
     /**
      * Set the author.
      *
-     * @param string $author autor zasobu.
-     *
+     * @param string $author autor zasobu     *
      * @return $this
      */
     public function setAuthor(string $author): static
@@ -113,8 +108,7 @@ class Resource
     /**
      * Get the type.
      *
-     * @return string|null typ zasobu.
-     */
+     * @return string|null typ zasobu     */
     public function getType(): ?string
     {
         return $this->type;
@@ -123,8 +117,7 @@ class Resource
     /**
      * Set the type.
      *
-     * @param string $type typ zasobu.
-     *
+     * @param string $type typ zasobu     *
      * @return $this
      */
     public function setType(string $type): static
@@ -137,8 +130,7 @@ class Resource
     /**
      * Get the quantity.
      *
-     * @return int|null dostepna ilosc sztuk.
-     */
+     * @return int|null dostepna ilosc sztuk     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
@@ -147,8 +139,7 @@ class Resource
     /**
      * Set the quantity.
      *
-     * @param int $quantity dostepna ilosc sztuk.
-     *
+     * @param int $quantity dostepna ilosc sztuk     *
      * @return $this
      */
     public function setQuantity(int $quantity): static
@@ -161,8 +152,7 @@ class Resource
     /**
      * Get the category.
      *
-     * @return Category|null kategoria zasobu.
-     */
+     * @return Category|null kategoria zasobu     */
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -171,8 +161,7 @@ class Resource
     /**
      * Set the category.
      *
-     * @param Category|null $category kategoria zasobu.
-     *
+     * @param Category|null $category kategoria zasobu     *
      * @return $this
      */
     public function setCategory(?Category $category): static
@@ -193,8 +182,7 @@ class Resource
     /**
      * Add a tag.
      *
-     * @param Tag $tag tag do dodania.
-     *
+     * @param Tag $tag tag do dodania     *
      * @return $this
      */
     public function addTag(Tag $tag): static
@@ -209,8 +197,7 @@ class Resource
     /**
      * Remove a tag.
      *
-     * @param Tag $tag tag do usuniecia.
-     *
+     * @param Tag $tag tag do usuniecia     *
      * @return $this
      */
     public function removeTag(Tag $tag): static
@@ -223,8 +210,7 @@ class Resource
     /**
      * Convert to string.
      *
-     * @return string tytul zasobu jako tekst.
-     */
+     * @return string tytul zasobu jako tekst     */
     public function __toString(): string
     {
         return $this->title ?? '';

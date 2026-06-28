@@ -21,8 +21,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Constructor.
      *
-     * @param ManagerRegistry $registry rejestr menedzerow Doctrine.
-     */
+     * @param ManagerRegistry $registry rejestr menedzerow Doctrine     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -31,11 +30,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Upgrade the hashed password of a user.
      *
-     * @param PasswordAuthenticatedUserInterface $user              uzytkownik, ktorego haslo jest aktualizowane.
-     * @param string                             $newHashedPassword nowy zahashowany haslo.
-     *
-     * @return void
-     */
+     * @param PasswordAuthenticatedUserInterface $user              uzytkownik, ktorego haslo jest aktualizowane     * @param string                             $newHashedPassword nowy zahashowany haslo     *
+     * @return void metoda nie zwraca wartosci     */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
         if (!$user instanceof User) {

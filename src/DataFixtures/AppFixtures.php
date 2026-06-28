@@ -21,8 +21,7 @@ class AppFixtures extends Fixture
     /**
      * Constructor.
      *
-     * @param UserPasswordHasherInterface $passwordHasher hasher hasel uzytkownikow.
-     */
+     * @param UserPasswordHasherInterface $passwordHasher hasher hasel uzytkownikow     */
     public function __construct(private UserPasswordHasherInterface $passwordHasher)
     {
     }
@@ -30,10 +29,8 @@ class AppFixtures extends Fixture
     /**
      * Load the fixtures.
      *
-     * @param ObjectManager $manager menedzer obiektow Doctrine.
-     *
-     * @return void
-     */
+     * @param ObjectManager $manager menedzer obiektow Doctrine     *
+     * @return void metoda nie zwraca wartosci     */
     public function load(ObjectManager $manager): void
     {
         $tag1 = new Tag();
