@@ -41,8 +41,8 @@ class AdminUserController extends AbstractController
     /**
      * Toggle the admin role of a user.
      *
-     * @param User                    $user          uzytkownik, ktoremu zmieniana jest rola.
-     * @param EntityManagerInterface  $entityManager menedzer encji Doctrine.
+     * @param User                   $user          uzytkownik, ktoremu zmieniana jest rola.
+     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
      *
      * @return Response przekierowanie do listy uzytkownikow.
      */

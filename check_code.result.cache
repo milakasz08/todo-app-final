@@ -1,10 +1,10 @@
-   1) src/Repository/UserRepository.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_align)
+   1) src/Repository/UserRepository.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
    2) src/Form/RentalType.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
    3) src/Form/ResourceType.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
    4) src/Form/RegistrationFormType.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
    5) src/Form/CategoryType.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
-   6) src/Security/EmailVerifier.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_align)
-   7) src/Controller/RegistrationController.php (phpdoc_separation)
+   6) src/Security/EmailVerifier.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
+   7) src/Controller/RegistrationController.php (phpdoc_annotation_without_dot)
    8) src/Controller/ResourceController.php (phpdoc_annotation_without_dot, phpdoc_types)
    9) src/Controller/RentalController.php (phpdoc_annotation_without_dot)
   10) src/Controller/CategoryController.php (phpdoc_annotation_without_dot)
@@ -16,65 +16,10 @@
   16) src/Entity/Resource.php (phpdoc_annotation_without_dot)
   17) src/DataFixtures/AppFixtures.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
   18) src/Controller/SecurityController.php (phpdoc_annotation_without_dot, no_superfluous_phpdoc_tags, phpdoc_trim)
-  19) src/Controller/AdminUserController.php (phpdoc_annotation_without_dot, phpdoc_align)
-  20) src/Controller/DashboardController.php (phpdoc_annotation_without_dot, phpdoc_align)
+  19) src/Controller/AdminUserController.php (phpdoc_annotation_without_dot)
+  20) src/Controller/DashboardController.php (phpdoc_annotation_without_dot)
 
-Found 20 of 25 files that can be fixed in 0.768 seconds, 74.00 MB memory used
-
-FILE: /home/wwwroot/app/src/Repository/UserRepository.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 35 | ERROR | [x] Expected 29 spaces after parameter type; 30 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Security/EmailVerifier.php
-----------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 3 LINES
-----------------------------------------------------------------------
- 25 | ERROR | [x] Expected 12 spaces after parameter type; 13 found
- 26 | ERROR | [x] Expected 5 spaces after parameter type; 6 found
- 37 | ERROR | [x] Expected 16 spaces after parameter name; 17 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 3 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/AdminUserController.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 44 | ERROR | [x] Expected 19 spaces after parameter type; 20 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/DashboardController.php
-----------------------------------------------------------------------
-FOUND 1 ERROR AFFECTING 1 LINE
-----------------------------------------------------------------------
- 24 | ERROR | [x] Expected 3 spaces after parameter name; 4 found
-----------------------------------------------------------------------
-PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
-----------------------------------------------------------------------
-
-
-FILE: /home/wwwroot/app/src/Controller/RegistrationController.php
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-FOUND 3 ERRORS AFFECTING 2 LINES
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 23 | ERROR | [ ] Doc comment for parameter "$userPasswordHasher" missing
- 23 | ERROR | [ ] Doc comment for parameter "$entityManager" missing
- 26 | ERROR | [x] Group annotations together so that annotations of the same type immediately follow each other, and annotations of a different type are separated by a
-    |       |     single blank line
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+Found 20 of 25 files that can be fixed in 0.780 seconds, 74.00 MB memory used
  ------- -------- ---- ---------------------- 
   State   Domain   Id   Message Preview (en)  
  ------- -------- ---- ---------------------- 
@@ -84,7 +29,7 @@ PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
  ------- -------- ---- ---------------------- ------------------------------- 
 
 [notice] Migrating up to DoctrineMigrations\Version20260621123916
-[notice] finished in 187.3ms, used 24M memory, 2 migrations executed, 13 sql queries
+[notice] finished in 188ms, used 24M memory, 2 migrations executed, 13 sql queries
 
  [OK] Successfully migrated to version: DoctrineMigrations\Version20260621123916                                        
 
