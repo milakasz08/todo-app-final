@@ -44,7 +44,9 @@ class Rental
 
     /**
      * Get the ID.
-     * @return int|null opis wartosci zwracanej.     */
+     *
+     * @return int|null identyfikator wypozyczenia.
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -52,16 +54,21 @@ class Rental
 
     /**
      * Get the borrower name.
-     * @return string|null opis wartosci zwracanej.     */
+     *
+     * @return string|null nazwa lub email wypozyczajacego.
+     */
     public function getBorrowerName(): ?string
     {
         return $this->borrowerName;
     }
 
     /**
+     * Set the borrower name.
      *
-     * @param string $borrowerName opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param string $borrowerName nazwa lub email wypozyczajacego.
+     *
+     * @return $this
+     */
     public function setBorrowerName(string $borrowerName): static
     {
         $this->borrowerName = $borrowerName;
@@ -71,16 +78,21 @@ class Rental
 
     /**
      * Get the rented at date.
-     * @return \DateTimeImmutable|null opis wartosci zwracanej.     */
+     *
+     * @return \DateTimeImmutable|null data zlozenia wniosku.
+     */
     public function getRentedAt(): ?\DateTimeImmutable
     {
         return $this->rentedAt;
     }
 
     /**
+     * Set the rented at date.
      *
-     * @param \DateTimeImmutable $rentedAt opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param \DateTimeImmutable $rentedAt data zlozenia wniosku.
+     *
+     * @return $this
+     */
     public function setRentedAt(\DateTimeImmutable $rentedAt): static
     {
         $this->rentedAt = $rentedAt;
@@ -90,16 +102,21 @@ class Rental
 
     /**
      * Get the returned at date.
-     * @return \DateTime|null opis wartosci zwracanej.     */
+     *
+     * @return \DateTime|null data zwrotu zasobu.
+     */
     public function getReturnedAt(): ?\DateTime
     {
         return $this->returnedAt;
     }
 
     /**
+     * Set the returned at date.
      *
-     * @param \DateTime|null $returnedAt opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param \DateTime|null $returnedAt data zwrotu zasobu.
+     *
+     * @return $this
+     */
     public function setReturnedAt(?\DateTime $returnedAt): static
     {
         $this->returnedAt = $returnedAt;
@@ -109,16 +126,21 @@ class Rental
 
     /**
      * Get the resource.
-     * @return Resource|null opis wartosci zwracanej.     */
+     *
+     * @return Resource|null wypozyczony zasob.
+     */
     public function getResource(): ?Resource
     {
         return $this->resource;
     }
 
     /**
+     * Set the resource.
      *
-     * @param Resource|null $resource opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param Resource|null $resource wypozyczony zasob.
+     *
+     * @return $this
+     */
     public function setResource(?Resource $resource): static
     {
         $this->resource = $resource;
@@ -128,16 +150,21 @@ class Rental
 
     /**
      * Get the quantity.
-     * @return int|null opis wartosci zwracanej.     */
+     *
+     * @return int|null ilosc wypozyczonych sztuk.
+     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
     }
 
     /**
+     * Set the quantity.
      *
-     * @param int $quantity opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param int $quantity ilosc wypozyczonych sztuk.
+     *
+     * @return $this
+     */
     public function setQuantity(int $quantity): static
     {
         $this->quantity = $quantity;
@@ -147,16 +174,21 @@ class Rental
 
     /**
      * Get the user.
-     * @return User|null opis wartosci zwracanej.     */
+     *
+     * @return User|null uzytkownik skladajacy wniosek.
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
     /**
+     * Set the user.
      *
-     * @param User|null $user opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param User|null $user uzytkownik skladajacy wniosek.
+     *
+     * @return $this
+     */
     public function setUser(?User $user): static
     {
         $this->user = $user;
@@ -166,16 +198,21 @@ class Rental
 
     /**
      * Get the status.
-     * @return string|null opis wartosci zwracanej.     */
+     *
+     * @return string|null status wypozyczenia.
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
     /**
+     * Set the status.
      *
-     * @param string $status opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param string $status status wypozyczenia.
+     *
+     * @return $this
+     */
     public function setStatus(string $status): static
     {
         $this->status = $status;

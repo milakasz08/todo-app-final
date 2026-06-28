@@ -24,8 +24,10 @@ final class CategoryController extends AbstractController
     /**
      * Display the list of categories.
      *
-     * @param CategoryRepository $categoryRepository opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param CategoryRepository $categoryRepository repozytorium kategorii.
+     *
+     * @return Response wyrenderowana lista kategorii.
+     */
     #[Route(name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
@@ -37,8 +39,11 @@ final class CategoryController extends AbstractController
     /**
      * Create a new category.
      *
-     * @param Request                $request opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param Request                $request       biezace zadanie HTTP.
+     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
+     *
+     * @return Response formularz dodawania albo przekierowanie po zapisie.
+     */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -62,8 +67,10 @@ final class CategoryController extends AbstractController
     /**
      * Show a category.
      *
-     * @param Category $category opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param Category $category kategoria do wyswietlenia.
+     *
+     * @return Response widok szczegolow kategorii.
+     */
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
@@ -75,8 +82,12 @@ final class CategoryController extends AbstractController
     /**
      * Edit a category.
      *
-     * @param Request                $request opis parametru.     * @param Category               $category opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param Request                $request       biezace zadanie HTTP.
+     * @param Category               $category      kategoria do edycji.
+     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
+     *
+     * @return Response formularz edycji albo przekierowanie po zapisie.
+     */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
@@ -98,8 +109,12 @@ final class CategoryController extends AbstractController
     /**
      * Delete a category.
      *
-     * @param Request                $request opis parametru.     * @param Category               $category opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param Request                $request       biezace zadanie HTTP.
+     * @param Category               $category      kategoria do usuniecia.
+     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
+     *
+     * @return Response przekierowanie do listy kategorii.
+     */
     #[Route('/{id}', name: 'app_category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {

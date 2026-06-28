@@ -23,8 +23,12 @@ class RegistrationController extends AbstractController
     /**
      * Register a new user.
      *
-     * @param Request                     $request opis parametru.     * @param UserPasswordHasherInterface $userPasswordHasher opis parametru.     * @param EntityManagerInterface      $entityManager opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param Request                     $request             biezace zadanie HTTP.
+     * @param UserPasswordHasherInterface $userPasswordHasher  hasher hasel uzytkownikow.
+     * @param EntityManagerInterface      $entityManager       menedzer encji Doctrine.
+     *
+     * @return Response formularz rejestracji albo przekierowanie po zapisie.
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {

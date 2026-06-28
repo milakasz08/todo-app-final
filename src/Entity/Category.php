@@ -25,7 +25,9 @@ class Category
 
     /**
      * Get the ID.
-     * @return int|null opis wartosci zwracanej.     */
+     *
+     * @return int|null identyfikator kategorii.
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -33,7 +35,9 @@ class Category
 
     /**
      * Get the name.
-     * @return string|null opis wartosci zwracanej.     */
+     *
+     * @return string|null nazwa kategorii.
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -42,8 +46,10 @@ class Category
     /**
      * Set the name.
      *
-     * @param string $name opis parametru.     *
-     * @return $this opis wartosci zwracanej.     */
+     * @param string $name nazwa kategorii.
+     *
+     * @return $this
+     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -53,7 +59,9 @@ class Category
 
     /**
      * Convert to string.
-     * @return string opis wartosci zwracanej.     */
+     *
+     * @return string nazwa kategorii jako tekst.
+     */
     public function __toString(): string
     {
         return $this->name ?? '';

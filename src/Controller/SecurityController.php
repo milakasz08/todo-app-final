@@ -19,8 +19,10 @@ class SecurityController extends AbstractController
     /**
      * Display the login form.
      *
-     * @param AuthenticationUtils $authenticationUtils opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param AuthenticationUtils $authenticationUtils narzedzia uwierzytelniania.
+     *
+     * @return Response wyrenderowany formularz logowania.
+     */
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -37,7 +39,9 @@ class SecurityController extends AbstractController
 
     /**
      * Log the user out.
-     * @return void opis wartosci zwracanej.     */
+     *
+     * @return void
+     */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

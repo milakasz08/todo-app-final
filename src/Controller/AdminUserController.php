@@ -24,8 +24,10 @@ class AdminUserController extends AbstractController
     /**
      * Display the list of users.
      *
-     * @param EntityManagerInterface $entityManager opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param EntityManagerInterface $entityManager menedzer encji Doctrine.
+     *
+     * @return Response wyrenderowana lista uzytkownikow.
+     */
     #[Route('', name: 'app_admin_user_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -39,8 +41,11 @@ class AdminUserController extends AbstractController
     /**
      * Toggle the admin role of a user.
      *
-     * @param User                   $user opis parametru.     * @param EntityManagerInterface $entityManager opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param User                    $user          uzytkownik, ktoremu zmieniana jest rola.
+     * @param EntityManagerInterface  $entityManager menedzer encji Doctrine.
+     *
+     * @return Response przekierowanie do listy uzytkownikow.
+     */
     #[Route('/{id}/toggle-admin', name: 'app_admin_user_toggle', methods: ['POST'])]
     public function toggleAdmin(User $user, EntityManagerInterface $entityManager): Response
     {

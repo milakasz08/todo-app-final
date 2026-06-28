@@ -21,7 +21,10 @@ class EmailVerifier
     /**
      * Constructor.
      *
-     * @param VerifyEmailHelperInterface $verifyEmailHelper opis parametru.     * @param MailerInterface            $mailer opis parametru.     * @param EntityManagerInterface     $entityManager opis parametru.     */
+     * @param VerifyEmailHelperInterface $verifyEmailHelper pomocnik weryfikacji adresu email.
+     * @param MailerInterface            $mailer            mechanizm wysylki wiadomosci email.
+     * @param EntityManagerInterface     $entityManager     menedzer encji Doctrine.
+     */
     public function __construct(private VerifyEmailHelperInterface $verifyEmailHelper, private MailerInterface $mailer, private EntityManagerInterface $entityManager)
     {
     }
@@ -29,8 +32,12 @@ class EmailVerifier
     /**
      * Send the email confirmation.
      *
-     * @param string         $verifyEmailRouteName opis parametru.     * @param User           $user opis parametru.     * @param TemplatedEmail $email opis parametru.     *
-     * @return void opis wartosci zwracanej.     */
+     * @param string         $verifyEmailRouteName nazwa trasy weryfikacji adresu email.
+     * @param User           $user                 uzytkownik, do ktorego wysylana jest wiadomosc.
+     * @param TemplatedEmail $email                szablon wiadomosci email.
+     *
+     * @return void
+     */
     public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
@@ -52,8 +59,11 @@ class EmailVerifier
     /**
      * Handle the email confirmation.
      *
-     * @param Request $request opis parametru.     * @param User    $user opis parametru.     *
-     * @return void opis wartosci zwracanej.     */
+     * @param Request $request biezace zadanie HTTP.
+     * @param User    $user    uzytkownik, ktorego adres jest weryfikowany.
+     *
+     * @return void
+     */
     public function handleEmailConfirmation(Request $request, User $user): void
     {
         $this->verifyEmailHelper->validateEmailConfirmationFromRequest($request, (string) $user->getId(), (string) $user->getEmail());

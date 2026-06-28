@@ -20,8 +20,11 @@ final class DashboardController extends AbstractController
     /**
      * Display the dashboard.
      *
-     * @param ResourceRepository $resourceRepository opis parametru.     * @param RentalRepository   $rentalRepository opis parametru.     *
-     * @return Response opis wartosci zwracanej.     */
+     * @param ResourceRepository $resourceRepository repozytorium zasobow.
+     * @param RentalRepository   $rentalRepository   repozytorium wypozyczen.
+     *
+     * @return Response wyrenderowany pulpit.
+     */
     #[Route('/', name: 'app_dashboard')]
     public function index(ResourceRepository $resourceRepository, RentalRepository $rentalRepository): Response
     {
