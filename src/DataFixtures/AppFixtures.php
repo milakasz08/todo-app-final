@@ -5,6 +5,7 @@
  */
 
 namespace App\DataFixtures;
+
 use App\Entity\Tag;
 use App\Entity\Category;
 use App\Entity\User;

@@ -50,7 +50,7 @@ class ResourceController extends AbstractController
 
         $allResources = $qb->getQuery()->getResult();
 
-        // 2. Istniejący filtr po typie (działa na już przefiltrowanej po tagach kolekcji)
+        // 2. Filtr po typie
         if ($type) {
             $filteredResources = [];
             foreach ($allResources as $resource) {

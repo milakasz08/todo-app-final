@@ -44,7 +44,6 @@ class Rental
 
     /**
      * Get the ID.
-     *
      * @return int|null
      */
     public function getId(): ?int
@@ -54,7 +53,6 @@ class Rental
 
     /**
      * Get the borrower name.
-     *
      * @return string|null
      */
     public function getBorrowerName(): ?string
@@ -63,6 +61,7 @@ class Rental
     }
 
     /**
+     *
      * @param string $borrowerName
      *
      * @return $this
@@ -76,7 +75,6 @@ class Rental
 
     /**
      * Get the rented at date.
-     *
      * @return \DateTimeImmutable|null
      */
     public function getRentedAt(): ?\DateTimeImmutable
@@ -85,6 +83,7 @@ class Rental
     }
 
     /**
+     *
      * @param \DateTimeImmutable $rentedAt
      *
      * @return $this
@@ -98,7 +97,6 @@ class Rental
 
     /**
      * Get the returned at date.
-     *
      * @return \DateTime|null
      */
     public function getReturnedAt(): ?\DateTime
@@ -107,6 +105,7 @@ class Rental
     }
 
     /**
+     *
      * @param \DateTime|null $returnedAt
      *
      * @return $this
@@ -120,7 +119,6 @@ class Rental
 
     /**
      * Get the resource.
-     *
      * @return Resource|null
      */
     public function getResource(): ?Resource
@@ -129,6 +127,7 @@ class Rental
     }
 
     /**
+     *
      * @param Resource|null $resource
      *
      * @return $this
@@ -142,7 +141,6 @@ class Rental
 
     /**
      * Get the quantity.
-     *
      * @return int|null
      */
     public function getQuantity(): ?int
@@ -151,6 +149,7 @@ class Rental
     }
 
     /**
+     *
      * @param int $quantity
      *
      * @return $this
@@ -164,7 +163,6 @@ class Rental
 
     /**
      * Get the user.
-     *
      * @return User|null
      */
     public function getUser(): ?User
@@ -173,6 +171,7 @@ class Rental
     }
 
     /**
+     *
      * @param User|null $user
      *
      * @return $this
@@ -186,7 +185,6 @@ class Rental
 
     /**
      * Get the status.
-     *
      * @return string|null
      */
     public function getStatus(): ?string
@@ -195,6 +193,7 @@ class Rental
     }
 
     /**
+     *
      * @param string $status
      *
      * @return $this

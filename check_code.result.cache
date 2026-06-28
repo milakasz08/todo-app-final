@@ -14,16 +14,16 @@
   14) src/Controller/CategoryController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
   15) src/Security/AppAuthenticator.php (no_superfluous_phpdoc_tags, phpdoc_trim)
   16) src/Entity/Rental.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim)
-  17) src/Entity/Category.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
-  18) src/Entity/Tag.php (phpdoc_types, no_superfluous_phpdoc_tags, phpdoc_trim, phpdoc_trim_consecutive_blank_line_separation)
+  17) src/Entity/Category.php (no_superfluous_phpdoc_tags, phpdoc_trim_consecutive_blank_line_separation)
+  18) src/Entity/Tag.php (no_superfluous_phpdoc_tags, phpdoc_trim_consecutive_blank_line_separation)
   19) src/Entity/User.php (no_superfluous_phpdoc_tags, phpdoc_trim)
   20) src/Entity/Resource.php (no_superfluous_phpdoc_tags, phpdoc_trim)
-  21) src/DataFixtures/AppFixtures.php (no_superfluous_phpdoc_tags, phpdoc_trim)
+  21) src/DataFixtures/AppFixtures.php (no_superfluous_phpdoc_tags, statement_indentation, phpdoc_trim)
   22) src/Controller/SecurityController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
   23) src/Controller/AdminUserController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
   24) src/Controller/DashboardController.php (no_superfluous_phpdoc_tags, phpdoc_trim)
 
-Found 24 of 25 files that can be fixed in 0.802 seconds, 74.00 MB memory used
+Found 24 of 25 files that can be fixed in 0.758 seconds, 74.00 MB memory used
  ------- -------- ---- ---------------------- 
   State   Domain   Id   Message Preview (en)  
  ------- -------- ---- ---------------------- 
@@ -32,10 +32,10 @@ Found 24 of 25 files that can be fixed in 0.802 seconds, 74.00 MB memory used
   State   Domain   Id   Message Preview (pl)   Fallback Message Preview (en)  
  ------- -------- ---- ---------------------- ------------------------------- 
 
-[notice] Migrating up to DoctrineMigrations\Version20260620145614
-[notice] finished in 191.2ms, used 24M memory, 1 migrations executed, 12 sql queries
+[notice] Migrating up to DoctrineMigrations\Version20260621123916
+[notice] finished in 195ms, used 24M memory, 2 migrations executed, 13 sql queries
 
- [OK] Successfully migrated to version: DoctrineMigrations\Version20260620145614                                        
+ [OK] Successfully migrated to version: DoctrineMigrations\Version20260621123916                                        
 
 
    > purging database

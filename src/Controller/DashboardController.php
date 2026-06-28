@@ -54,8 +54,6 @@ final class DashboardController extends AbstractController
             if ($resource) {
                 $mostPopularTitle = method_exists($resource, 'getTitle') ? $resource->getTitle() : (string) $resource;
             }
-
-
         }
 
         return $this->render('dashboard/index.html.twig', [

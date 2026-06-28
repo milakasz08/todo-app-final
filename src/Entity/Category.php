@@ -25,7 +25,6 @@ class Category
 
     /**
      * Get the ID.
-     *
      * @return int|null
      */
     public function getId(): ?int
@@ -35,7 +34,6 @@ class Category
 
     /**
      * Get the name.
-     *
      * @return string|null
      */
     public function getName(): ?string
@@ -59,7 +57,6 @@ class Category
 
     /**
      * Convert to string.
-     *
      * @return string
      */
     public function __toString(): string

@@ -39,7 +39,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the ID.
-     *
      * @return int|null
      */
     public function getId(): ?int
@@ -49,7 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the email.
-     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -58,6 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     *
      * @param string $email
      *
      * @return $this
@@ -71,7 +70,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the user identifier.
-     *
      * @return string
      */
     public function getUserIdentifier(): string
@@ -81,7 +79,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the roles.
-     *
      * @return array
      */
     public function getRoles(): array
@@ -93,6 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     *
      * @param array $roles
      *
      * @return $this
@@ -106,7 +104,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Get the password.
-     *
      * @return string|null
      */
     public function getPassword(): ?string
@@ -115,6 +112,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     *
      * @param string $password
      *
      * @return $this
@@ -128,7 +126,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Serialize the object.
-     *
      * @return array
      */
     public function __serialize(): array
@@ -141,7 +138,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Erase the credentials.
-     *
      * @return void
      */
     public function eraseCredentials(): void
@@ -150,7 +146,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Check if the user is verified.
-     *
      * @return bool
      */
     public function isVerified(): bool
@@ -159,6 +154,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     *
      * @param bool $isVerified
      *
      * @return $this
@@ -172,7 +168,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Convert to string.
-     *
      * @return string
      */
     public function __toString(): string

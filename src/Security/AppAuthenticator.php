@@ -33,6 +33,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
      * Constructor.
      *
      * @param UrlGeneratorInterface $urlGenerator
+     *
      */
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {

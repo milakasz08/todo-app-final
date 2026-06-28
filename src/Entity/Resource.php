@@ -54,7 +54,6 @@ class Resource
 
     /**
      * Get the ID.
-     *
      * @return int|null
      */
     public function getId(): ?int
@@ -64,7 +63,6 @@ class Resource
 
     /**
      * Get the title.
-     *
      * @return string|null
      */
     public function getTitle(): ?string
@@ -73,6 +71,7 @@ class Resource
     }
 
     /**
+     *
      * @param string $title
      *
      * @return $this
@@ -86,7 +85,6 @@ class Resource
 
     /**
      * Get the author.
-     *
      * @return string|null
      */
     public function getAuthor(): ?string
@@ -95,6 +93,7 @@ class Resource
     }
 
     /**
+     *
      * @param string $author
      *
      * @return $this
@@ -108,7 +107,6 @@ class Resource
 
     /**
      * Get the type.
-     *
      * @return string|null
      */
     public function getType(): ?string
@@ -117,6 +115,7 @@ class Resource
     }
 
     /**
+     *
      * @param string $type
      *
      * @return $this
@@ -130,7 +129,6 @@ class Resource
 
     /**
      * Get the quantity.
-     *
      * @return int|null
      */
     public function getQuantity(): ?int
@@ -139,6 +137,7 @@ class Resource
     }
 
     /**
+     *
      * @param int $quantity
      *
      * @return $this
@@ -152,7 +151,6 @@ class Resource
 
     /**
      * Get the category.
-     *
      * @return Category|null
      */
     public function getCategory(): ?Category
@@ -161,6 +159,7 @@ class Resource
     }
 
     /**
+     *
      * @param Category|null $category
      *
      * @return $this
@@ -181,6 +180,7 @@ class Resource
     }
 
     /**
+     *
      * @param Tag $tag
      *
      * @return $this
@@ -195,6 +195,7 @@ class Resource
     }
 
     /**
+     *
      * @param Tag $tag
      *
      * @return $this
@@ -208,7 +209,6 @@ class Resource
 
     /**
      * Convert to string.
-     *
      * @return string
      */
     public function __toString(): string

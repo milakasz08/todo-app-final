@@ -39,7 +39,6 @@ class SecurityController extends AbstractController
 
     /**
      * Log the user out.
-     *
      * @return void
      */
     #[Route(path: '/logout', name: 'app_logout')]
