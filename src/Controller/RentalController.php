@@ -32,11 +32,9 @@ class RentalController extends AbstractController
     #[Route('/', name: 'app_rental_index', methods: ['GET'])]
     public function index(RentalRepository $rentalRepository): Response
     {
-        // Jeśli użytkownik jest adminem, widzi WSZYSTKIE rezerwacje w systemie
         if ($this->isGranted('ROLE_ADMIN')) {
             $rentals = $rentalRepository->findAll();
         } else {
-            // Zwykły użytkownik widzi tylko i wyłącznie SWOJE rezerwacje
             $rentals = $rentalRepository->findBy(['user' => $this->getUser()]);
         }
 
@@ -62,11 +60,10 @@ class RentalController extends AbstractController
         /** @var \App\Entity\User $currentUser */
         $currentUser = $this->getUser();
 
-        // Automatyczne ustawianie danych w tle
         $rental->setUser($currentUser);
         $rental->setBorrowerName($currentUser->getEmail());
         $rental->setRentedAt(new \DateTimeImmutable());
-        $rental->setStatus('PENDING'); // Domyślny stan: oczekuje na admina
+        $rental->setStatus('PENDING');
 
         $form = $this->createForm(RentalType::class, $rental);
         $form->handleRequest($request);
@@ -74,7 +71,6 @@ class RentalController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $resource = $rental->getResource();
 
-            // Walidacja: Czy w magazynie jest wystarczająca ilość?
             if ($resource->getQuantity() < $rental->getQuantity()) {
                 $this->addFlash('error', 'Niestety, brak żądanej ilości sztuk w magazynie.');
 
@@ -124,7 +120,6 @@ class RentalController extends AbstractController
             return $this->redirectToRoute('app_rental_index');
         }
 
-        // Zmiana statusu i odjęcie sztuk z magazynu
         $rental->setStatus('APPROVED');
         $resource->setQuantity($resource->getQuantity() - $rental->getQuantity());
 
@@ -157,6 +152,42 @@ class RentalController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'Wniosek o rezerwację został odrzucony.');
+
+        return $this->redirectToRoute('app_rental_index');
+    }
+
+    /**
+     * Return a rented resource.
+     *
+     * @param Rental                 $rental
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */
+    #[Route('/{id}/return', name: 'app_rental_return', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function return(Rental $rental, EntityManagerInterface $entityManager): Response
+    {
+        // Zwrócić może tylko właściciel wypożyczenia albo admin
+        if (!$this->isGranted('ROLE_ADMIN') && $rental->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException('Nie możesz zwrócić cudzego wypożyczenia.');
+        }
+
+        if ('APPROVED' !== $rental->getStatus()) {
+            $this->addFlash('error', 'Można zwrócić tylko zasób, który jest aktualnie wypożyczony (zatwierdzony).');
+
+            return $this->redirectToRoute('app_rental_index');
+        }
+
+        $resource = $rental->getResource();
+        $resource->setQuantity($resource->getQuantity() + $rental->getQuantity());
+
+        $rental->setStatus('RETURNED');
+        $rental->setReturnedAt(new \DateTime());
+
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Zasób został zwrócony. Stan magazynowy zaktualizowany.');
 
         return $this->redirectToRoute('app_rental_index');
     }

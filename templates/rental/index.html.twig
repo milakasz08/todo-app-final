@@ -3,85 +3,97 @@
 {% block title %}Lista Wypożyczeń{% endblock %}
 
 {% block body %}
-<div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-extrabold text-gray-900">
-            {% if is_granted('ROLE_ADMIN') %} Panel Zarządzania Wypożyczeniami {% else %} Twoje Rezerwacje i Wypożyczenia {% endif %}
-        </h1>
-        {% if not is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_rental_new') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow transition duration-200">
-                + Zarezerwuj zasób
-            </a>
-        {% endif %}
-    </div>
-
-    {% for message in app.flashes('success') %}
-        <div class="mb-4 p-4 bg-green-100 text-green-700 border-l-4 border-green-500 rounded shadow-sm">
-            {{ message }}
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-extrabold text-gray-900">
+                {% if is_granted('ROLE_ADMIN') %} Panel Zarządzania Wypożyczeniami {% else %} Twoje Rezerwacje i Wypożyczenia {% endif %}
+            </h1>
+            {% if not is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_rental_new') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow transition duration-200">
+                    + Zarezerwuj zasób
+                </a>
+            {% endif %}
         </div>
-    {% endfor %}
-    {% for message in app.flashes('error') %}
-        <div class="mb-4 p-4 bg-red-100 text-red-700 border-l-4 border-red-500 rounded shadow-sm">
-            {{ message }}
-        </div>
-    {% endfor %}
 
-    <div class="bg-white shadow overflow-hidden sm:rounded-lg border border-gray-200">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-            <tr>
-                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Zasób</th>
-                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Wypożyczający</th>
-                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Ilość</th>
-                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Data złożenia</th>
-                <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Status</th>
-                <th class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Akcje</th>
-            </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-            {% for rental in rentals %}
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{{ rental.resource.Title }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ rental.borrowerName }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ rental.quantity }} szt.</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ rental.rentedAt ? rental.rentedAt|date('Y-m-d H:i') : '' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    {% if rental.status == 'PENDING' %}
-                        <span class="px-2.5 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded-full">Oczekuje</span>
-                    {% elseif rental.status == 'APPROVED' %}
-                        <span class="px-2.5 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full">Zatwierdzone</span>
-                    {% else %}
-                        <span class="px-2.5 py-1 text-xs font-bold bg-red-100 text-red-800 rounded-full">Odrzucone</span>
-                    {% endif %}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    {% if is_granted('ROLE_ADMIN') and rental.status == 'PENDING' %}
-                    <div class="flex justify-center space-x-2">
-                        <form method="post" action="{{ path('app_rental_approve', {'id': rental.id}) }}">
-                            <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1 px-3 rounded text-xs transition">
-                                Zatwierdź
-                            </button>
-                        </form>
-                        <form method="post" action="{{ path('app_rental_reject', {'id': rental.id}) }}">
-                            <button class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-1 px-3 rounded text-xs transition">
-                                Odrzuć
-                            </button>
-                        </form>
-                    </div>
-                    {% else %}
-                        <span class="text-gray-400 italic text-xs">Brak akcji</span>
-                    {% endif %}
-                </td>
-            </tr>
-            {% else %}
+        {% for message in app.flashes('success') %}
+            <div class="mb-4 p-4 bg-green-100 text-green-700 border-l-4 border-green-500 rounded shadow-sm">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="mb-4 p-4 bg-red-100 text-red-700 border-l-4 border-red-500 rounded shadow-sm">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg border border-gray-200">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
                 <tr>
-                    <td colspan="6" class="px-6 py-10 text-center text-sm text-gray-500 italic">
-                        Brak zarejestrowanych wniosków rezerwacyjnych w bazie danych.
-                    </td>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Zasób</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Wypożyczający</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Ilość</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Data złożenia</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Status</th>
+                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Akcje</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                {% for rental in rentals %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{{ rental.resource.Title }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ rental.borrowerName }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ rental.quantity }} szt.</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ rental.rentedAt ? rental.rentedAt|date('Y-m-d H:i') : '' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {% if rental.status == 'PENDING' %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded-full">Oczekuje</span>
+                            {% elseif rental.status == 'APPROVED' %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full">Zatwierdzone</span>
+                            {% elseif rental.status == 'RETURNED' %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded-full">Zwrócone</span>
+                            {% else %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-red-100 text-red-800 rounded-full">Odrzucone</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                            <div class="flex justify-center space-x-2">
+                                {% if is_granted('ROLE_ADMIN') and rental.status == 'PENDING' %}
+                                    <form method="post" action="{{ path('app_rental_approve', {'id': rental.id}) }}">
+                                        <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1 px-3 rounded text-xs transition">
+                                            Zatwierdź
+                                        </button>
+                                    </form>
+                                    <form method="post" action="{{ path('app_rental_reject', {'id': rental.id}) }}">
+                                        <button class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-1 px-3 rounded text-xs transition">
+                                            Odrzuć
+                                        </button>
+                                    </form>
+                                {% endif %}
+
+                                {% if rental.status == 'APPROVED' and (is_granted('ROLE_ADMIN') or rental.user == app.user) %}
+                                    <form method="post" action="{{ path('app_rental_return', {'id': rental.id}) }}">
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs transition">
+                                            Zwróć
+                                        </button>
+                                    </form>
+                                {% endif %}
+
+                                {% if rental.status not in ['PENDING', 'APPROVED'] or (rental.status == 'PENDING' and not is_granted('ROLE_ADMIN')) %}
+                                    <span class="text-gray-400 italic text-xs">Brak akcji</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="px-6 py-10 text-center text-sm text-gray-500 italic">
+                            Brak zarejestrowanych wniosków rezerwacyjnych w bazie danych.
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 {% endblock %}

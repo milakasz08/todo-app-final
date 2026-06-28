@@ -9,6 +9,7 @@ namespace App\Controller;
 use App\Entity\Resource;
 use App\Form\ResourceType;
 use App\Repository\ResourceRepository;
+use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,34 +27,44 @@ class ResourceController extends AbstractController
      * Display the list of resources.
      *
      * @param ResourceRepository $resourceRepository
+     * @param TagRepository      $tagRepository
      * @param Request            $request
      *
      * @return Response
      */
     #[Route('/', name: 'app_resource_index', methods: ['GET'])]
-    public function index(ResourceRepository $resourceRepository, Request $request): Response
+    public function index(ResourceRepository $resourceRepository, TagRepository $tagRepository, Request $request): Response
     {
         $type = $request->query->get('type');
-        $allResources = $resourceRepository->findAll();
+        $selectedTagIds = array_map('intval', $request->query->all('tags'));
 
+        // 1. Pobranie zasobów z bazy z filtrem po tagach (jeśli wybrano)
+        $qb = $resourceRepository->createQueryBuilder('r');
+
+        if (!empty($selectedTagIds)) {
+            $qb->join('r.tags', 't')
+                ->andWhere('t.id IN (:tagIds)')
+                ->setParameter('tagIds', $selectedTagIds)
+                ->groupBy('r.id'); // żeby zasób z wieloma dopasowanymi tagami nie powtarzał się
+        }
+
+        $allResources = $qb->getQuery()->getResult();
+
+        // 2. Istniejący filtr po typie (działa na już przefiltrowanej po tagach kolekcji)
         if ($type) {
             $filteredResources = [];
             foreach ($allResources as $resource) {
                 $titleLower = mb_strtolower($resource->getTitle() ?: '');
-                $descLower = mb_strtolower($resource->getDescription() ?: '');
 
                 if ('film' === $type) {
-                    // Warunki dopasowania dla filmów
-                    if (str_contains($titleLower, 'film') || str_contains($titleLower, 'dvd') || str_contains($descLower, 'reżyser') || str_contains($descLower, 'film') || str_contains($titleLower, 'tenenbaums')) {
+                    if (str_contains($titleLower, 'film') || str_contains($titleLower, 'dvd') || str_contains($titleLower, 'tenenbaums')) {
                         $filteredResources[] = $resource;
                     }
                 } elseif ('plyta' === $type) {
-                    // Warunki dopasowania dla płyt muzycznych
                     if (str_contains($titleLower, 'audio') || str_contains($titleLower, 'music') || str_contains($titleLower, 'płyta') || str_contains($titleLower, 'cd') || str_contains($titleLower, 'roses')) {
                         $filteredResources[] = $resource;
                     }
                 } elseif ('ksiazka' === $type) {
-                    // Jeśli to książka (wszystko co nie pasuje ewidentnie do filmu lub płyty)
                     if (!str_contains($titleLower, 'film') && !str_contains($titleLower, 'dvd') && !str_contains($titleLower, 'cd') && !str_contains($titleLower, 'audio') && !str_contains($titleLower, 'roses') && !str_contains($titleLower, 'tenenbaums')) {
                         $filteredResources[] = $resource;
                     }
@@ -66,6 +77,9 @@ class ResourceController extends AbstractController
 
         return $this->render('resource/index.html.twig', [
             'resources' => $resources,
+            'allTags' => $tagRepository->findAll(),
+            'selectedTagIds' => $selectedTagIds,
+            'selectedType' => $type,
         ]);
     }
 
@@ -86,11 +100,6 @@ class ResourceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Sprawdźmy, czy kategoria jest ustawiona tuż przed flush
-            if ($resource->getCategory() === null) {
-                // Jeśli tu wejdziesz, to znaczy że formularz zawiódł
-                dump('Formularz nie przesyła kategorii!'); die();
-            }
             $entityManager->persist($resource);
             $entityManager->flush();
 

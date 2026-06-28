@@ -21,7 +21,7 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Wszystkie Zasoby</span>
-                <span class="text-2xl font-black text-gray-900">{{ totalResources|default(6) }}</span>
+                <span class="text-2xl font-black text-gray-900">{{ total_resources }}</span>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
             </div>
             <div>
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Wypożyczenia w toku</span>
-                <span class="text-2xl font-black text-gray-900">{{ activeRentals|default(1) }}</span>
+                <span class="text-2xl font-black text-gray-900">{{ active_rentals }}</span>
             </div>
         </div>
 
@@ -41,8 +41,10 @@
             </div>
             <div class="overflow-hidden">
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Top Zasób (Najczęstszy)</span>
-                <span class="text-sm font-bold text-gray-950 block truncate">{{ popularResourceTitle|default('Franklin mały chwalipięta') }}</span>
-                <span class="text-xs text-emerald-600 font-semibold">Wypożyczony: {{ popularResourceCount|default(2) }} razy</span>
+                <span class="text-sm font-bold text-gray-950 block truncate">{{ most_popular_title }}</span>
+                {% if most_popular_count > 0 %}
+                    <span class="text-xs text-emerald-600 font-semibold">Wypożyczony: {{ most_popular_count }} razy</span>
+                {% endif %}
             </div>
         </div>
 
@@ -57,9 +59,12 @@
             <a href="{{ path('app_resource_index') }}" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm hover:bg-gray-50 transition">
                 <i class="fa-solid fa-list mr-1.5"></i> Zobacz pełną listę zasobów
             </a>
-            <a href="{{ path('app_admin_user_index') }}" class="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
-                <i class="fa-solid fa-users-gear mr-1.5"></i> Zarządzaj użytkownikami (Admin)
-            </a>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin_user_index') }}" class="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
+                    <i class="fa-solid fa-users-gear mr-1.5"></i> Zarządzaj użytkownikami (Admin)
+                </a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

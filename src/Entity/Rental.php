@@ -30,13 +30,13 @@ class Rental
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTime $returnedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rentals')]
+    #[ORM\ManyToOne(targetEntity: Resource::class)]
     private ?Resource $resource = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rentals')]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $user = null;
 
     #[ORM\Column(length: 20, options: ['default' => 'PENDING'])]

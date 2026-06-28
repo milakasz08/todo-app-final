@@ -34,20 +34,14 @@ class Resource
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'resources')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
-
-    /**
-     * @var Collection<int, Rental>
-     */
-    #[ORM\OneToMany(targetEntity: Rental::class, mappedBy: 'resource')]
-    private Collection $rentals;
 
     /**
      * @var Collection<int, Tag>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'resources')]
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
     private Collection $tags;
 
     /**
@@ -55,7 +49,6 @@ class Resource
      */
     public function __construct()
     {
-        $this->rentals = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
 
@@ -175,45 +168,6 @@ class Resource
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Rental>
-     */
-    public function getRentals(): Collection
-    {
-        return $this->rentals;
-    }
-
-    /**
-     * @param Rental $rental
-     *
-     * @return $this
-     */
-    public function addRental(Rental $rental): static
-    {
-        if (!$this->rentals->contains($rental)) {
-            $this->rentals->add($rental);
-            $rental->setResource($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Rental $rental
-     *
-     * @return $this
-     */
-    public function removeRental(Rental $rental): static
-    {
-        if ($this->rentals->removeElement($rental)) {
-            if ($rental->getResource() === $this) {
-                $rental->setResource(null);
-            }
-        }
 
         return $this;
     }

@@ -8,7 +8,6 @@ namespace App\Form;
 
 use App\Entity\Rental;
 use App\Entity\Resource;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -31,12 +30,6 @@ class RentalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'email',
-                'label' => 'Użytkownik',
-                'attr' => ['class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900'],
-            ])
             ->add('resource', EntityType::class, [
                 'class' => Resource::class,
                 'choice_label' => 'Title',
