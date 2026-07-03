@@ -1,35 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}{{ 'category.index.title'|trans }} - MediaStream{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-black text-gray-900">{{ 'category.index.title'|trans }}</h1>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_category_new') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
+                <i class="fa-solid fa-plus mr-1.5"></i> {{ 'category.action.add'|trans }}
+            </a>
+        {% endif %}
+    </div>
 
-    <table class="table">
+    <table class="w-full text-left border-collapse">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
+            <tr class="bg-slate-50 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+                <th class="p-4">Id</th>
+                <th class="p-4">{{ knp_pagination_sortable(pagination, 'category.table.name'|trans, 'c.name') }}</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th class="p-4 text-right">{{ 'category.table.actions'|trans }}</th>
+                {% endif %}
             </tr>
         </thead>
-        <tbody>
-        {% for category in categories %}
+        <tbody class="divide-y divide-gray-100 text-sm">
+        {% for category in pagination %}
             <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.Name }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
+                <td class="p-4 font-semibold text-gray-500">#{{ category.id }}</td>
+                <td class="p-4 font-bold text-gray-900">{{ category.Name }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td class="p-4 text-right space-x-3">
+                        <a href="{{ path('app_category_show', {'id': category.id}) }}" class="font-semibold text-gray-600 hover:text-gray-900">{{ 'category.action.view'|trans }}</a>
+                        <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="font-semibold text-indigo-600 hover:text-indigo-700">{{ 'category.action.edit'|trans }}</a>
+                    </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3" class="p-4 text-center text-gray-400 italic">{{ 'category.empty_list'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_category_new') }}">Create new</a>
+    <div class="mt-6">
+        {% include 'paginator/pagination.html.twig' with {'pagination': pagination} %}
+    </div>
 {% endblock %}

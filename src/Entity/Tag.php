@@ -8,6 +8,7 @@ namespace App\Entity;
 
 use App\Repository\TagRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 /**
@@ -21,6 +22,8 @@ class Tag
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'tag.name.not_blank')]
+    #[Assert\Length(max: 255, maxMessage: 'tag.name.too_long')]
     private ?string $name = null;
 
     /**

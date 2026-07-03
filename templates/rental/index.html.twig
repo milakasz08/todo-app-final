@@ -1,86 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lista Wypożyczeń{% endblock %}
+{% block title %}{{ 'rental.index.title.user'|trans }}{% endblock %}
 
 {% block body %}
     <div class="max-w-6xl mx-auto px-4 py-8">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-extrabold text-gray-900">
-                {% if is_granted('ROLE_ADMIN') %} Panel Zarządzania Wypożyczeniami {% else %} Twoje Rezerwacje i Wypożyczenia {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}{{ 'rental.index.title.admin'|trans }}{% else %}{{ 'rental.index.title.user'|trans }}{% endif %}
             </h1>
             {% if not is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_rental_new') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow transition duration-200">
-                    + Zarezerwuj zasób
+                    + {{ 'rental.action.reserve'|trans }}
                 </a>
             {% endif %}
         </div>
-
-        {% for message in app.flashes('success') %}
-            <div class="mb-4 p-4 bg-green-100 text-green-700 border-l-4 border-green-500 rounded shadow-sm">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.flashes('error') %}
-            <div class="mb-4 p-4 bg-red-100 text-red-700 border-l-4 border-red-500 rounded shadow-sm">
-                {{ message }}
-            </div>
-        {% endfor %}
 
         <div class="bg-white shadow overflow-hidden sm:rounded-lg border border-gray-200">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Zasób</th>
-                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Wypożyczający</th>
-                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Ilość</th>
-                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Data złożenia</th>
-                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Status</th>
-                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Akcje</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{{ knp_pagination_sortable(pagination, 'rental.table.resource'|trans, 'res.title') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{{ 'rental.table.borrower'|trans }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{{ knp_pagination_sortable(pagination, 'rental.table.quantity'|trans, 'r.quantity') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{{ knp_pagination_sortable(pagination, 'rental.table.rented_at'|trans, 'r.rentedAt') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase">{{ knp_pagination_sortable(pagination, 'rental.table.status'|trans, 'r.status') }}</th>
+                    <th class="px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase">{{ 'rental.table.actions'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                {% for rental in rentals %}
+                {% for rental in pagination %}
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">{{ rental.resource.Title }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{{ rental.borrowerName }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ rental.quantity }} szt.</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ rental.quantity }} {{ 'common.unit_pieces'|trans }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ rental.rentedAt ? rental.rentedAt|date('Y-m-d H:i') : '' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {% if rental.status == 'PENDING' %}
-                                <span class="px-2.5 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded-full">Oczekuje</span>
-                            {% elseif rental.status == 'APPROVED' %}
-                                <span class="px-2.5 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full">Zatwierdzone</span>
-                            {% elseif rental.status == 'RETURNED' %}
-                                <span class="px-2.5 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded-full">Zwrócone</span>
+                            {% if rental.status.value == 'PENDING' %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded-full">{{ rental.status.label|trans }}</span>
+                            {% elseif rental.status.value == 'APPROVED' %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full">{{ rental.status.label|trans }}</span>
+                            {% elseif rental.status.value == 'RETURNED' %}
+                                <span class="px-2.5 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded-full">{{ rental.status.label|trans }}</span>
                             {% else %}
-                                <span class="px-2.5 py-1 text-xs font-bold bg-red-100 text-red-800 rounded-full">Odrzucone</span>
+                                <span class="px-2.5 py-1 text-xs font-bold bg-red-100 text-red-800 rounded-full">{{ rental.status.label|trans }}</span>
                             {% endif %}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                             <div class="flex justify-center space-x-2">
-                                {% if is_granted('ROLE_ADMIN') and rental.status == 'PENDING' %}
+                                {% if is_granted('ROLE_ADMIN') and rental.status.value == 'PENDING' %}
                                     <form method="post" action="{{ path('app_rental_approve', {'id': rental.id}) }}">
                                         <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1 px-3 rounded text-xs transition">
-                                            Zatwierdź
+                                            {{ 'rental.action.approve'|trans }}
                                         </button>
                                     </form>
                                     <form method="post" action="{{ path('app_rental_reject', {'id': rental.id}) }}">
                                         <button class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-1 px-3 rounded text-xs transition">
-                                            Odrzuć
+                                            {{ 'rental.action.reject'|trans }}
                                         </button>
                                     </form>
                                 {% endif %}
 
-                                {% if rental.status == 'APPROVED' and (is_granted('ROLE_ADMIN') or rental.user == app.user) %}
+                                {% if rental.status.value == 'APPROVED' and (is_granted('ROLE_ADMIN') or rental.user == app.user) %}
                                     <form method="post" action="{{ path('app_rental_return', {'id': rental.id}) }}">
                                         <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs transition">
-                                            Zwróć
+                                            {{ 'rental.action.return'|trans }}
                                         </button>
                                     </form>
                                 {% endif %}
 
-                                {% if rental.status not in ['PENDING', 'APPROVED'] or (rental.status == 'PENDING' and not is_granted('ROLE_ADMIN')) %}
-                                    <span class="text-gray-400 italic text-xs">Brak akcji</span>
+                                {% if rental.status.value not in ['PENDING', 'APPROVED'] or (rental.status.value == 'PENDING' and not is_granted('ROLE_ADMIN')) %}
+                                    <span class="text-gray-400 italic text-xs">{{ 'rental.no_action'|trans }}</span>
                                 {% endif %}
                             </div>
                         </td>
@@ -88,12 +77,16 @@
                 {% else %}
                     <tr>
                         <td colspan="6" class="px-6 py-10 text-center text-sm text-gray-500 italic">
-                            Brak zarejestrowanych wniosków rezerwacyjnych w bazie danych.
+                            {{ 'rental.empty_list'|trans }}
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+        </div>
+
+        <div class="mt-6">
+            {% include 'paginator/pagination.html.twig' with {'pagination': pagination} %}
         </div>
     </div>
 {% endblock %}

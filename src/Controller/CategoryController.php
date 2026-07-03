@@ -8,12 +8,13 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
-use App\Repository\CategoryRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\CategoryServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/category')]
 /**
@@ -22,38 +23,41 @@ use Symfony\Component\Routing\Attribute\Route;
 final class CategoryController extends AbstractController
 {
     /**
-     * Display the list of categories.
+     * Display the paginated list of categories.
      *
-     * @param CategoryRepository $categoryRepository repozytorium kategorii
+     * @param CategoryServiceInterface $categoryService serwis zarzadzania kategoriami
+     * @param int                      $page            numer strony (paginacja)
      *
      * @return Response wyrenderowana lista kategorii
      */
     #[Route(name: 'app_category_index', methods: ['GET'])]
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(CategoryServiceInterface $categoryService, #[MapQueryParameter] int $page = 1): Response
     {
         return $this->render('category/index.html.twig', [
-            'categories' => $categoryRepository->findAll(),
+            'pagination' => $categoryService->getPaginatedCategories($page),
         ]);
     }
 
     /**
      * Create a new category.
      *
-     * @param Request                $request       biezace zadanie HTTP
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param Request                  $request         biezace zadanie HTTP
+     * @param CategoryServiceInterface $categoryService serwis zarzadzania kategoriami
      *
      * @return Response formularz dodawania albo przekierowanie po zapisie
      */
     #[Route('/new', name: 'app_category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[IsGranted('ROLE_ADMIN')]
+    public function new(Request $request, CategoryServiceInterface $categoryService): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($category);
-            $entityManager->flush();
+            $categoryService->createCategory($category);
+
+            $this->addFlash('success', 'flash.category.created');
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -82,20 +86,23 @@ final class CategoryController extends AbstractController
     /**
      * Edit a category.
      *
-     * @param Request                $request       biezace zadanie HTTP
-     * @param Category               $category      kategoria do edycji
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param Request                  $request         biezace zadanie HTTP
+     * @param Category                 $category        kategoria do edycji
+     * @param CategoryServiceInterface $categoryService serwis zarzadzania kategoriami
      *
      * @return Response formularz edycji albo przekierowanie po zapisie
      */
     #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
+    #[IsGranted('ROLE_ADMIN')]
+    public function edit(Request $request, Category $category, CategoryServiceInterface $categoryService): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $categoryService->updateCategory();
+
+            $this->addFlash('success', 'flash.category.updated');
 
             return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -109,18 +116,19 @@ final class CategoryController extends AbstractController
     /**
      * Delete a category.
      *
-     * @param Request                $request       biezace zadanie HTTP
-     * @param Category               $category      kategoria do usuniecia
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param Request                  $request         biezace zadanie HTTP
+     * @param Category                 $category        kategoria do usuniecia
+     * @param CategoryServiceInterface $categoryService serwis zarzadzania kategoriami
      *
      * @return Response przekierowanie do listy kategorii
      */
     #[Route('/{id}', name: 'app_category_delete', methods: ['POST'])]
-    public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
+    #[IsGranted('ROLE_ADMIN')]
+    public function delete(Request $request, Category $category, CategoryServiceInterface $categoryService): Response
     {
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($category);
-            $entityManager->flush();
+            $categoryService->deleteCategory($category);
+            $this->addFlash('success', 'flash.category.deleted');
         }
 
         return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);

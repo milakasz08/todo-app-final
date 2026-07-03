@@ -1,23 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ 'register.title'|trans }} - MediaStream{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <div class="min-h-[60vh] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-white border border-gray-100 p-8 rounded-3xl shadow-sm">
 
-    <h1>Register</h1>
+            <div class="text-center">
+                <div class="mx-auto h-12 w-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                    <i class="fa-solid fa-user-plus text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-black text-gray-900 tracking-tight">{{ 'register.heading'|trans }}</h2>
+                <p class="mt-1.5 text-sm text-gray-400">MediaStream Management Platform</p>
+            </div>
 
-    {{ form_errors(registrationForm) }}
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="p-4 rounded-xl bg-rose-50 border border-rose-100 text-sm font-semibold text-rose-700">
+                    {{ flash_error|trans }}
+                </div>
+            {% endfor %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            {{ form_start(registrationForm, {'attr': {'class': 'mt-8 space-y-5'}}) }}
+                {{ form_errors(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                <div>
+                    {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2'}}) }}
+                    {{ form_widget(registrationForm.email) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.plainPassword, null, {'label_attr': {'class': 'block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2'}}) }}
+                    {{ form_widget(registrationForm.plainPassword) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
+                </div>
+
+                <div class="flex items-start pt-1">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'ml-2 block text-sm text-gray-500 font-medium select-none'}}) }}
+                </div>
+                {{ form_errors(registrationForm.agreeTerms) }}
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-xl text-sm font-bold shadow-md shadow-indigo-100 hover:shadow-lg transition flex items-center justify-center">
+                        <i class="fa-solid fa-user-plus mr-2"></i> {{ 'register.submit'|trans }}
+                    </button>
+                </div>
+            {{ form_end(registrationForm) }}
+
+            <p class="text-center text-sm text-gray-500">
+                {{ 'register.have_account'|trans }}
+                <a href="{{ path('app_login') }}" class="font-bold text-indigo-600 hover:text-indigo-700">{{ 'register.login_link'|trans }}</a>
+            </p>
+        </div>
+    </div>
 {% endblock %}

@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Category{% endblock %}
+{% block title %}{{ 'category.edit.title'|trans }} - MediaStream{% endblock %}
 
 {% block body %}
-    <h1>Edit Category</h1>
+    <h1 class="text-2xl font-black text-gray-900 mb-6">{{ 'category.edit.title'|trans }}</h1>
 
-    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('category/_form.html.twig', {'button_label': 'common.save_changes'|trans}) }}
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
-
-    {{ include('category/_delete_form.html.twig') }}
+    <div class="flex items-center gap-4 mt-4">
+        <a href="{{ path('app_category_index') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition">
+            <i class="fa-solid fa-arrow-left mr-1.5"></i> {{ 'category.action.back_to_list'|trans }}
+        </a>
+        {{ include('category/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

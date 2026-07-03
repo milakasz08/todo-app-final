@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Katalog Zasobów - MediaStream{% endblock %}
+{% block title %}{{ 'resource.index.title'|trans }} - MediaStream{% endblock %}
 
 {% block body %}
     <div class="mb-8 bg-gradient-to-r from-slate-900 to-indigo-950 rounded-2xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden">
         <div class="relative z-10">
-            <h1 class="text-3xl font-extrabold tracking-tight">Katalog Zasobów</h1>
-            <p class="mt-2 text-indigo-200 max-w-xl text-sm md:text-base">Przeglądaj, filtruj i zarządzaj zasobami bibliotecznymi oraz multimedialnymi.</p>
+            <h1 class="text-3xl font-extrabold tracking-tight">{{ 'resource.index.title'|trans }}</h1>
+            <p class="mt-2 text-indigo-200 max-w-xl text-sm md:text-base">{{ 'resource.index.subtitle'|trans }}</p>
         </div>
         <div class="absolute right-0 bottom-0 top-0 opacity-10 flex items-center pr-12 hidden lg:flex">
             <i class="fa-solid fa-layer-group text-[120px]"></i>
@@ -14,26 +14,28 @@
     </div>
 
     <div class="mb-6 flex justify-between items-center">
-        <h2 class="text-xl font-bold text-gray-900">Dostępne pozycje</h2>
-        <a href="{{ path('app_resource_new') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
-            <i class="fa-solid fa-plus mr-1.5"></i> Dodaj nowy zasób
-        </a>
+        <h2 class="text-xl font-bold text-gray-900">{{ 'resource.index.available_items'|trans }}</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_resource_new') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
+                <i class="fa-solid fa-plus mr-1.5"></i> {{ 'resource.action.add'|trans }}
+            </a>
+        {% endif %}
     </div>
 
     <form method="get" action="{{ path('app_resource_index') }}" class="mb-8 border border-gray-200 rounded-2xl p-5 bg-slate-50/50">
         <div class="flex flex-wrap items-end gap-5">
             <div>
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Typ</label>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">{{ 'resource.filter.type'|trans }}</label>
                 <select name="type" class="border border-gray-300 rounded-xl text-sm px-3 py-2 bg-white">
-                    <option value="" {% if not selectedType %}selected{% endif %}>Wszystkie</option>
-                    <option value="film" {% if selectedType == 'film' %}selected{% endif %}>Film</option>
-                    <option value="plyta" {% if selectedType == 'plyta' %}selected{% endif %}>Płyta</option>
-                    <option value="ksiazka" {% if selectedType == 'ksiazka' %}selected{% endif %}>Książka</option>
+                    <option value="" {% if not selectedType %}selected{% endif %}>{{ 'resource.filter.all'|trans }}</option>
+                    <option value="film" {% if selectedType == 'film' %}selected{% endif %}>{{ 'resource.type.film'|trans }}</option>
+                    <option value="plyta" {% if selectedType == 'plyta' %}selected{% endif %}>{{ 'resource.type.record'|trans }}</option>
+                    <option value="ksiazka" {% if selectedType == 'ksiazka' %}selected{% endif %}>{{ 'resource.type.book'|trans }}</option>
                 </select>
             </div>
 
             <div class="flex-1 min-w-[200px]">
-                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Tagi</label>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">{{ 'resource.filter.tags'|trans }}</label>
                 <div class="flex flex-wrap gap-2">
                     {% for tag in allTags %}
                         <label class="inline-flex items-center px-3 py-1.5 rounded-full border text-xs font-semibold cursor-pointer transition {% if tag.id in selectedTagIds %}bg-indigo-600 text-white border-indigo-600{% else %}bg-white text-gray-600 border-gray-300 hover:bg-gray-50{% endif %}">
@@ -41,35 +43,41 @@
                             <i class="fa-solid fa-tag mr-1.5 opacity-70"></i>{{ tag.name }}
                         </label>
                     {% else %}
-                        <span class="text-xs text-gray-400 italic">Brak tagów w systemie</span>
+                        <span class="text-xs text-gray-400 italic">{{ 'resource.filter.no_tags'|trans }}</span>
                     {% endfor %}
                 </div>
             </div>
 
             <div class="flex gap-3">
                 <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
-                    <i class="fa-solid fa-filter mr-1.5"></i> Filtruj
+                    <i class="fa-solid fa-filter mr-1.5"></i> {{ 'resource.filter.submit'|trans }}
                 </button>
                 {% if selectedType or selectedTagIds|length > 0 %}
                     <a href="{{ path('app_resource_index') }}" class="text-sm font-semibold text-gray-500 hover:text-gray-700 self-center transition">
-                        Wyczyść filtry
+                        {{ 'resource.filter.clear'|trans }}
                     </a>
                 {% endif %}
             </div>
         </div>
     </form>
 
+    <div class="mb-4 flex flex-wrap gap-4 text-xs font-semibold text-gray-500">
+        {{ knp_pagination_sortable(pagination, 'resource.sort.title'|trans, 'r.title') }}
+        {{ knp_pagination_sortable(pagination, 'resource.sort.author'|trans, 'r.author') }}
+        {{ knp_pagination_sortable(pagination, 'resource.sort.quantity'|trans, 'r.quantity') }}
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for resource in resources %}
+        {% for resource in pagination %}
             <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition">
                 <div>
                     <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 mb-3">
-                        {{ resource.Type }}
+                        {{ resource.type.label|trans }}
                     </span>
 
                     <h3 class="text-lg font-bold text-gray-950 truncate">{{ resource.Title }}</h3>
-                    <p class="text-sm text-gray-500 mb-2">autor: {{ resource.Author }}</p>
-                    <p class="text-xs text-gray-400">Kategoria: <span class="font-semibold text-gray-600">{{ resource.category.name|default('Brak') }}</span></p>
+                    <p class="text-sm text-gray-500 mb-2">{{ 'resource.card.author'|trans }}: {{ resource.Author }}</p>
+                    <p class="text-xs text-gray-400">{{ 'resource.card.category'|trans }}: <span class="font-semibold text-gray-600">{{ resource.category.name|default('resource.card.category_none'|trans) }}</span></p>
 
                     <div class="mt-4 flex flex-wrap gap-1.5">
                         {% for tag in resource.tags %}
@@ -77,32 +85,38 @@
                                 <i class="fa-solid fa-tag mr-1 opacity-70"></i> {{ tag.name }}
                             </span>
                         {% else %}
-                            <span class="text-xs text-gray-400 italic">Brak tagów</span>
+                            <span class="text-xs text-gray-400 italic">{{ 'resource.card.no_tags'|trans }}</span>
                         {% endfor %}
                     </div>
                 </div>
 
                 <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <span class="text-xs text-gray-500">Dostępna ilość: <strong class="text-gray-900 text-sm">{{ resource.Quantity }}</strong></span>
+                    <span class="text-xs text-gray-500">{{ 'resource.card.available_qty'|trans }}: <strong class="text-gray-900 text-sm">{{ resource.Quantity }}</strong></span>
 
-                    <div class="flex space-x-2">
-                        <a href="{{ path('app_resource_edit', {'id': resource.id}) }}" class="p-2 bg-gray-50 text-gray-600 hover:text-indigo-600 rounded-xl transition" title="Edytuj">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="flex space-x-2">
+                            <a href="{{ path('app_resource_edit', {'id': resource.id}) }}" class="p-2 bg-gray-50 text-gray-600 hover:text-indigo-600 rounded-xl transition" title="{{ 'resource.action.edit'|trans }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         {% else %}
             <div class="col-span-full bg-white border border-gray-200 rounded-2xl p-12 text-center">
                 <i class="fa-solid fa-inbox text-4xl text-gray-300 mb-3 block"></i>
-                <p class="text-gray-500">Brak zasobów spełniających wybrane filtry.</p>
+                <p class="text-gray-500">{{ 'resource.empty_list'|trans }}</p>
             </div>
         {% endfor %}
     </div>
 
+    <div class="mt-6">
+        {% include 'paginator/pagination.html.twig' with {'pagination': pagination} %}
+    </div>
+
     <div class="mt-8">
         <a href="{{ path('app_dashboard') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition">
-            <i class="fa-solid fa-arrow-left mr-1.5"></i> Wróć do ekranu głównego
+            <i class="fa-solid fa-arrow-left mr-1.5"></i> {{ 'common.back_to_dashboard'|trans }}
         </a>
     </div>
 {% endblock %}

@@ -6,10 +6,12 @@
 
 namespace App\Entity;
 
+use App\Enum\MediaType;
 use App\Repository\ResourceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ResourceRepository::class)]
 /**
@@ -23,15 +25,20 @@ class Resource
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'resource.title.not_blank')]
+    #[Assert\Length(max: 255, maxMessage: 'resource.title.too_long')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'resource.author.not_blank')]
+    #[Assert\Length(max: 255, maxMessage: 'resource.author.too_long')]
     private ?string $author = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $type = null;
+    #[ORM\Column(length: 50, enumType: MediaType::class)]
+    private ?MediaType $type = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero(message: 'resource.quantity.positive_or_zero')]
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
@@ -110,8 +117,8 @@ class Resource
     /**
      * Get the type.
      *
-     * @return string|null typ zasobu     */
-    public function getType(): ?string
+     * @return MediaType|null typ zasobu     */
+    public function getType(): ?MediaType
     {
         return $this->type;
     }
@@ -119,11 +126,11 @@ class Resource
     /**
      * Set the type.
      *
-     * @param string $type typ zasobu     *
+     * @param MediaType $type typ zasobu     *
      *
      * @return $this
      */
-    public function setType(string $type): static
+    public function setType(MediaType $type): static
     {
         $this->type = $type;
 

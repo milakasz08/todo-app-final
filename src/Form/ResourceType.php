@@ -9,9 +9,10 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Entity\Resource;
 use App\Entity\Tag;
+use App\Enum\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,37 +31,42 @@ class ResourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $inputClass = 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900';
+
         $builder
             ->add('Title', TextType::class, [
-                'label' => 'Tytuł',
+                'label' => 'resource.form.title',
+                'attr' => ['class' => $inputClass],
             ])
             ->add('Author', TextType::class, [
-                'label' => 'Autor',
+                'label' => 'resource.form.author',
+                'attr' => ['class' => $inputClass],
             ])
-            ->add('Type', ChoiceType::class, [
-                'label' => 'Typ',
-                'choices' => [
-                    'Książka' => 'Książka',
-                    'Płyta' => 'Płyta',
-                    'Film' => 'Film',
-                ],
+            ->add('Type', EnumType::class, [
+                'label' => 'resource.form.type',
+                'class' => MediaType::class,
+                'choice_label' => static fn (MediaType $type): string => $type->label(),
+                'placeholder' => 'resource.form.choose_type',
+                'attr' => ['class' => $inputClass],
             ])
             ->add('Quantity', IntegerType::class, [
-                'label' => 'Ilość',
+                'label' => 'resource.form.quantity',
+                'attr' => ['class' => $inputClass, 'min' => 0],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Kategoria',
-                'placeholder' => 'Wybierz kategorię',
+                'label' => 'resource.form.category',
+                'placeholder' => 'resource.form.choose_category',
                 'required' => true,
+                'attr' => ['class' => $inputClass],
             ])
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Tagi',
+                'label' => 'resource.form.tags',
                 'required' => false,
             ])
         ;

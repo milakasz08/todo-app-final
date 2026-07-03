@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard - System Zarządzania Multimediami{% endblock %}
+{% block title %}{{ 'dashboard.title'|trans }} - MediaStream{% endblock %}
 
 {% block body %}
     <div class="mb-8 bg-gradient-to-r from-slate-900 to-indigo-950 rounded-2xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden">
         <div class="relative z-10">
-            <h1 class="text-3xl font-extrabold tracking-tight">Witaj w MediaStream Dashboard!</h1>
-            <p class="mt-2 text-indigo-200 max-w-xl text-sm md:text-base">Przegląd kluczowych wskaźników analitycznych systemu, rezerwacji oraz zasobów bibliotecznych w czasie rzeczywistym.</p>
+            <h1 class="text-3xl font-extrabold tracking-tight">{{ 'dashboard.welcome'|trans }}</h1>
+            <p class="mt-2 text-indigo-200 max-w-xl text-sm md:text-base">{{ 'dashboard.subtitle'|trans }}</p>
         </div>
         <div class="absolute right-0 bottom-0 top-0 opacity-10 flex items-center pr-12 hidden lg:flex">
             <i class="fa-solid fa-chart-line text-[120px]"></i>
@@ -20,7 +20,7 @@
                 <i class="fa-solid fa-boxes-stacked text-2xl w-6 h-6 flex items-center justify-center"></i>
             </div>
             <div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Wszystkie Zasoby</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">{{ 'dashboard.stat.total_resources'|trans }}</span>
                 <span class="text-2xl font-black text-gray-900">{{ total_resources }}</span>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <i class="fa-solid fa-clock-history text-2xl w-6 h-6 flex items-center justify-center"></i>
             </div>
             <div>
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Wypożyczenia w toku</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">{{ 'dashboard.stat.active_rentals'|trans }}</span>
                 <span class="text-2xl font-black text-gray-900">{{ active_rentals }}</span>
             </div>
         </div>
@@ -40,10 +40,10 @@
                 <i class="fa-solid fa-fire text-2xl w-6 h-6 flex items-center justify-center"></i>
             </div>
             <div class="overflow-hidden">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Top Zasób (Najczęstszy)</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">{{ 'dashboard.stat.most_popular'|trans }}</span>
                 <span class="text-sm font-bold text-gray-950 block truncate">{{ most_popular_title }}</span>
                 {% if most_popular_count > 0 %}
-                    <span class="text-xs text-emerald-600 font-semibold">Wypożyczony: {{ most_popular_count }} razy</span>
+                    <span class="text-xs text-emerald-600 font-semibold">{{ 'dashboard.stat.rented_times'|trans({'%count%': most_popular_count}) }}</span>
                 {% endif %}
             </div>
         </div>
@@ -51,18 +51,18 @@
     </div>
 
     <div class="border border-gray-200 rounded-2xl p-6 bg-slate-50/50">
-        <h3 class="text-lg font-bold text-gray-900 mb-4"><i class="fa-solid fa-bolt mr-2 text-indigo-500"></i>Panel szybkich operacji</h3>
+        <h3 class="text-lg font-bold text-gray-900 mb-4"><i class="fa-solid fa-bolt mr-2 text-indigo-500"></i>{{ 'dashboard.quick_actions'|trans }}</h3>
         <div class="flex flex-wrap gap-3">
             <a href="{{ path('app_rental_new') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
-                <i class="fa-solid fa-cart-plus mr-1.5"></i> Wypożycz coś nowego
+                <i class="fa-solid fa-cart-plus mr-1.5"></i> {{ 'dashboard.action.new_rental'|trans }}
             </a>
             <a href="{{ path('app_resource_index') }}" class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm hover:bg-gray-50 transition">
-                <i class="fa-solid fa-list mr-1.5"></i> Zobacz pełną listę zasobów
+                <i class="fa-solid fa-list mr-1.5"></i> {{ 'dashboard.action.browse_resources'|trans }}
             </a>
 
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('app_admin_user_index') }}" class="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition">
-                    <i class="fa-solid fa-users-gear mr-1.5"></i> Zarządzaj użytkownikami (Admin)
+                    <i class="fa-solid fa-users-gear mr-1.5"></i> {{ 'dashboard.action.manage_users'|trans }}
                 </a>
             {% endif %}
         </div>

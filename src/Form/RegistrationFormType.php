@@ -29,29 +29,45 @@ class RegistrationFormType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $inputClass = 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900 placeholder-gray-400';
+
         $builder
-            ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue(
-                        message: 'You should agree to our terms.',
-                    ),
+            ->add('email', null, [
+                'label' => 'register.form.email',
+                'attr' => [
+                    'class' => $inputClass,
+                    'placeholder' => 'np. student@uczelnia.pl',
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-
+                'label' => 'register.form.password',
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'class' => $inputClass,
+                    'placeholder' => '••••••••',
+                ],
                 'constraints' => [
                     new NotBlank(
-                        message: 'Please enter a password',
+                        message: 'register.password.not_blank',
                     ),
                     new Length(
                         min: 6,
-                        minMessage: 'Your password should be at least {{ limit }} characters',
+                        minMessage: 'register.password.too_short',
                         // Maksymalna długość dopuszczona przez Symfony
                         max: 4096,
+                    ),
+                ],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'register.form.agree_terms',
+                'mapped' => false,
+                'attr' => [
+                    'class' => 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded-md transition',
+                ],
+                'constraints' => [
+                    new IsTrue(
+                        message: 'register.terms.required',
                     ),
                 ],
             ])

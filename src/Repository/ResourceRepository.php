@@ -7,7 +7,9 @@
 namespace App\Repository;
 
 use App\Entity\Resource;
+use App\Enum\MediaType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,35 +20,40 @@ class ResourceRepository extends ServiceEntityRepository
     /**
      * Constructor.
      *
-     * @param ManagerRegistry $registry opis parametru.     *
+     * @param ManagerRegistry $registry rejestr menedzerow Doctrine
      */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Resource::class);
     }
 
-    //    /**
-    //     * @return Resource[] Returns an array of Resource objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Build a query for resources filtered by media type and/or tags,
+     * ordered from the newest. Returns a QueryBuilder (not the results)
+     * so it can be paginated by KnpPaginator.
+     *
+     * @param MediaType|null $type   typ zasobu (stala, a nie tekst z bazy)
+     * @param int[]          $tagIds identyfikatory tagow do filtrowania
+     *
+     * @return QueryBuilder zapytanie z zasobami spelniajacymi kryteria
+     */
+    public function queryFiltered(?MediaType $type, array $tagIds): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->orderBy('r.id', 'DESC');
 
-    //    public function findOneBySomeField($value): ?Resource
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if ([] !== $tagIds) {
+            $qb->join('r.tags', 't')
+                ->andWhere('t.id IN (:tagIds)')
+                ->setParameter('tagIds', $tagIds)
+                ->groupBy('r.id'); // żeby zasób z wieloma dopasowanymi tagami nie powtarzał się
+        }
+
+        if (null !== $type) {
+            $qb->andWhere('r.type = :type')
+                ->setParameter('type', $type);
+        }
+
+        return $qb;
+    }
 }

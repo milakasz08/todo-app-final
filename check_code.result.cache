@@ -1,17 +1,66 @@
+   1) src/Service/ResourceService.php (phpdoc_types, phpdoc_align)
+   2) src/Service/ResourceServiceInterface.php (phpdoc_types)
+   3) src/Service/DashboardService.php (phpdoc_align)
+   4) src/Service/CategoryService.php (phpdoc_align)
+   5) src/Service/RentalService.php (phpdoc_align)
+   6) src/Controller/ResourceController.php (phpdoc_types)
 
-Found 0 of 25 files that can be fixed in 1.243 seconds, 74.00 MB memory used
- ------- -------- ---- ---------------------- 
-  State   Domain   Id   Message Preview (en)  
- ------- -------- ---- ---------------------- 
+Found 6 of 47 files that can be fixed in 0.820 seconds, 110.00 MB memory used
+
+FILE: /home/wwwroot/app/src/Service/DashboardService.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 21 | ERROR | [x] Expected 3 spaces after parameter name; 4 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 1 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/CategoryService.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 26 | ERROR | [x] Expected 6 spaces after parameter name; 7 found
+ 27 | ERROR | [x] Expected 10 spaces after parameter name; 11 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/RentalService.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 29 | ERROR | [x] Expected 4 spaces after parameter name; 5 found
+ 30 | ERROR | [x] Expected 8 spaces after parameter name; 9 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/ResourceService.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 27 | ERROR | [x] Expected 6 spaces after parameter name; 7 found
+ 28 | ERROR | [x] Expected 10 spaces after parameter name; 11 found
+----------------------------------------------------------------------
+PHPCBF CAN FIX THE 2 MARKED SNIFF VIOLATIONS AUTOMATICALLY
+----------------------------------------------------------------------
 
  ------- -------- ---- ---------------------- ------------------------------- 
-  State   Domain   Id   Message Preview (pl)   Fallback Message Preview (en)  
+  State   Domain   Id   Message Preview (en)   Fallback Message Preview (pl)  
  ------- -------- ---- ---------------------- ------------------------------- 
 
-[notice] Migrating up to DoctrineMigrations\Version20260621123916
-[notice] finished in 628.9ms, used 24M memory, 2 migrations executed, 13 sql queries
+ ------- -------- ---- ---------------------- 
+  State   Domain   Id   Message Preview (pl)  
+ ------- -------- ---- ---------------------- 
 
- [OK] Successfully migrated to version: DoctrineMigrations\Version20260621123916                                        
+[notice] Migrating up to DoctrineMigrations\Version20260703104204
+[notice] finished in 211.4ms, used 24M memory, 3 migrations executed, 17 sql queries
+
+ [OK] Successfully migrated to version: DoctrineMigrations\Version20260703104204                                        
 
 
    > purging database

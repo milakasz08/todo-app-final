@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+        <trans-unit id="category.name.not_blank">
+            <source>category.name.not_blank</source>
+            <target>The category name is required.</target>
+        </trans-unit>
+        <trans-unit id="category.name.too_long">
+            <source>category.name.too_long</source>
+            <target>The name cannot be longer than {{ limit }} characters.</target>
+        </trans-unit>
+        <trans-unit id="register.email.already_used">
+            <source>register.email.already_used</source>
+            <target>There is already an account with this email</target>
+        </trans-unit>
+        <trans-unit id="register.password.not_blank">
+            <source>register.password.not_blank</source>
+            <target>Please enter a password</target>
+        </trans-unit>
+        <trans-unit id="register.password.too_short">
+            <source>register.password.too_short</source>
+            <target>Your password should be at least {{ limit }} characters</target>
+        </trans-unit>
+        <trans-unit id="register.terms.required">
+            <source>register.terms.required</source>
+            <target>You should agree to our terms.</target>
+        </trans-unit>
+        <trans-unit id="rental.quantity.not_null">
+            <source>rental.quantity.not_null</source>
+            <target>Please provide the quantity to rent.</target>
+        </trans-unit>
+        <trans-unit id="rental.quantity.positive">
+            <source>rental.quantity.positive</source>
+            <target>The quantity must be a positive number.</target>
+        </trans-unit>
+        <trans-unit id="rental.resource.not_null">
+            <source>rental.resource.not_null</source>
+            <target>Please select a resource to rent.</target>
+        </trans-unit>
+        <trans-unit id="resource.author.not_blank">
+            <source>resource.author.not_blank</source>
+            <target>The author is required.</target>
+        </trans-unit>
+        <trans-unit id="resource.author.too_long">
+            <source>resource.author.too_long</source>
+            <target>The author name cannot be longer than {{ limit }} characters.</target>
+        </trans-unit>
+        <trans-unit id="resource.quantity.positive_or_zero">
+            <source>resource.quantity.positive_or_zero</source>
+            <target>The quantity cannot be negative.</target>
+        </trans-unit>
+        <trans-unit id="resource.title.not_blank">
+            <source>resource.title.not_blank</source>
+            <target>The resource title is required.</target>
+        </trans-unit>
+        <trans-unit id="resource.title.too_long">
+            <source>resource.title.too_long</source>
+            <target>The title cannot be longer than {{ limit }} characters.</target>
+        </trans-unit>
+        <trans-unit id="tag.name.not_blank">
+            <source>tag.name.not_blank</source>
+            <target>The tag name is required.</target>
+        </trans-unit>
+        <trans-unit id="tag.name.too_long">
+            <source>tag.name.too_long</source>
+            <target>The name cannot be longer than {{ limit }} characters.</target>
+        </trans-unit>
+        </body>
+    </file>
+</xliff>

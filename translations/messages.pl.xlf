@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+        <trans-unit id="admin.users.action.demote">
+            <source>admin.users.action.demote</source>
+            <target>Zdegraduj do Czytelnika</target>
+        </trans-unit>
+        <trans-unit id="admin.users.action.promote">
+            <source>admin.users.action.promote</source>
+            <target>Awansuj na Admina</target>
+        </trans-unit>
+        <trans-unit id="admin.users.actions">
+            <source>admin.users.actions</source>
+            <target>Akcje</target>
+        </trans-unit>
+        <trans-unit id="admin.users.email">
+            <source>admin.users.email</source>
+            <target>Adres E-mail</target>
+        </trans-unit>
+        <trans-unit id="admin.users.own_account">
+            <source>admin.users.own_account</source>
+            <target>Twoje konto (Aktywne)</target>
+        </trans-unit>
+        <trans-unit id="admin.users.registered">
+            <source>admin.users.registered</source>
+            <target>Zarejestrowani użytkownicy</target>
+        </trans-unit>
+        <trans-unit id="admin.users.role">
+            <source>admin.users.role</source>
+            <target>Rola w systemie</target>
+        </trans-unit>
+        <trans-unit id="admin.users.role.admin">
+            <source>admin.users.role.admin</source>
+            <target>Administrator</target>
+        </trans-unit>
+        <trans-unit id="admin.users.role.reader">
+            <source>admin.users.role.reader</source>
+            <target>Czytelnik</target>
+        </trans-unit>
+        <trans-unit id="admin.users.subtitle">
+            <source>admin.users.subtitle</source>
+            <target>Zarządzanie kontami użytkowników, przegląd uprawnień oraz nadawanie ról systemowych.</target>
+        </trans-unit>
+        <trans-unit id="admin.users.title">
+            <source>admin.users.title</source>
+            <target>Panel Administratora</target>
+        </trans-unit>
+        <trans-unit id="app.footer">
+            <source>app.footer</source>
+            <target>Projekt Zaliczeniowy - System Zarządzania Multimediami.</target>
+        </trans-unit>
+        <trans-unit id="app.title">
+            <source>app.title</source>
+            <target>System Wypożyczeń Multimediów</target>
+        </trans-unit>
+        <trans-unit id="category.action.add">
+            <source>category.action.add</source>
+            <target>Dodaj kategorię</target>
+        </trans-unit>
+        <trans-unit id="category.action.back_to_list">
+            <source>category.action.back_to_list</source>
+            <target>Wróć do listy</target>
+        </trans-unit>
+        <trans-unit id="category.action.delete">
+            <source>category.action.delete</source>
+            <target>Usuń</target>
+        </trans-unit>
+        <trans-unit id="category.action.edit">
+            <source>category.action.edit</source>
+            <target>Edytuj</target>
+        </trans-unit>
+        <trans-unit id="category.action.view">
+            <source>category.action.view</source>
+            <target>Podgląd</target>
+        </trans-unit>
+        <trans-unit id="category.confirm_delete">
+            <source>category.confirm_delete</source>
+            <target>Czy na pewno chcesz usunąć tę kategorię?</target>
+        </trans-unit>
+        <trans-unit id="category.edit.title">
+            <source>category.edit.title</source>
+            <target>Edycja kategorii</target>
+        </trans-unit>
+        <trans-unit id="category.empty_list">
+            <source>category.empty_list</source>
+            <target>Brak kategorii</target>
+        </trans-unit>
+        <trans-unit id="category.form.name">
+            <source>category.form.name</source>
+            <target>Nazwa</target>
+        </trans-unit>
+        <trans-unit id="category.index.title">
+            <source>category.index.title</source>
+            <target>Kategorie</target>
+        </trans-unit>
+        <trans-unit id="category.new.title">
+            <source>category.new.title</source>
+            <target>Nowa kategoria</target>
+        </trans-unit>
+        <trans-unit id="category.table.actions">
+            <source>category.table.actions</source>
+            <target>Akcje</target>
+        </trans-unit>
+        <trans-unit id="category.table.name">
+            <source>category.table.name</source>
+            <target>Nazwa</target>
+        </trans-unit>
+        <trans-unit id="common.back_to_dashboard">
+            <source>common.back_to_dashboard</source>
+            <target>Wróć do ekranu głównego</target>
+        </trans-unit>
+        <trans-unit id="common.save">
+            <source>common.save</source>
+            <target>Zapisz</target>
+        </trans-unit>
+        <trans-unit id="common.save_changes">
+            <source>common.save_changes</source>
+            <target>Zapisz zmiany</target>
+        </trans-unit>
+        <trans-unit id="common.unit_pieces">
+            <source>common.unit_pieces</source>
+            <target>szt.</target>
+        </trans-unit>
+        <trans-unit id="dashboard.action.browse_resources">
+            <source>dashboard.action.browse_resources</source>
+            <target>Zobacz pełną listę zasobów</target>
+        </trans-unit>
+        <trans-unit id="dashboard.action.manage_users">
+            <source>dashboard.action.manage_users</source>
+            <target>Zarządzaj użytkownikami (Admin)</target>
+        </trans-unit>
+        <trans-unit id="dashboard.action.new_rental">
+            <source>dashboard.action.new_rental</source>
+            <target>Wypożycz coś nowego</target>
+        </trans-unit>
+        <trans-unit id="dashboard.quick_actions">
+            <source>dashboard.quick_actions</source>
+            <target>Panel szybkich operacji</target>
+        </trans-unit>
+        <trans-unit id="dashboard.stat.active_rentals">
+            <source>dashboard.stat.active_rentals</source>
+            <target>Wypożyczenia w toku</target>
+        </trans-unit>
+        <trans-unit id="dashboard.stat.most_popular">
+            <source>dashboard.stat.most_popular</source>
+            <target>Top Zasób (Najczęstszy)</target>
+        </trans-unit>
+        <trans-unit id="dashboard.stat.rented_times">
+            <source>dashboard.stat.rented_times</source>
+            <target>Wypożyczony: %count% razy</target>
+        </trans-unit>
+        <trans-unit id="dashboard.stat.total_resources">
+            <source>dashboard.stat.total_resources</source>
+            <target>Wszystkie Zasoby</target>
+        </trans-unit>
+        <trans-unit id="dashboard.subtitle">
+            <source>dashboard.subtitle</source>
+            <target>Przegląd kluczowych wskaźników analitycznych systemu, rezerwacji oraz zasobów bibliotecznych w czasie rzeczywistym.</target>
+        </trans-unit>
+        <trans-unit id="dashboard.title">
+            <source>dashboard.title</source>
+            <target>Dashboard</target>
+        </trans-unit>
+        <trans-unit id="dashboard.welcome">
+            <source>dashboard.welcome</source>
+            <target>Witaj w MediaStream Dashboard!</target>
+        </trans-unit>
+        <trans-unit id="flash.admin.cannot_demote_self">
+            <source>flash.admin.cannot_demote_self</source>
+            <target>Nie możesz odebrać uprawnień samemu sobie!</target>
+        </trans-unit>
+        <trans-unit id="flash.admin.demoted">
+            <source>flash.admin.demoted</source>
+            <target>Odebrano uprawnienia administratora użytkownikowi %email%</target>
+        </trans-unit>
+        <trans-unit id="flash.admin.promoted">
+            <source>flash.admin.promoted</source>
+            <target>Nadano uprawnienia administratora użytkownikowi %email%</target>
+        </trans-unit>
+        <trans-unit id="flash.category.created">
+            <source>flash.category.created</source>
+            <target>Kategoria została dodana.</target>
+        </trans-unit>
+        <trans-unit id="flash.category.deleted">
+            <source>flash.category.deleted</source>
+            <target>Kategoria została usunięta.</target>
+        </trans-unit>
+        <trans-unit id="flash.category.updated">
+            <source>flash.category.updated</source>
+            <target>Zmiany w kategorii zostały zapisane.</target>
+        </trans-unit>
+        <trans-unit id="flash.profile.updated">
+            <source>flash.profile.updated</source>
+            <target>Twoje dane zostały zaktualizowane.</target>
+        </trans-unit>
+        <trans-unit id="flash.registration.success">
+            <source>flash.registration.success</source>
+            <target>Konto zostało utworzone. Możesz się teraz zalogować.</target>
+        </trans-unit>
+        <trans-unit id="flash.rental.approved">
+            <source>flash.rental.approved</source>
+            <target>Wypożyczenie zostało pomyślnie zatwierdzone. Stan magazynowy zaktualizowany.</target>
+        </trans-unit>
+        <trans-unit id="flash.rental.created">
+            <source>flash.rental.created</source>
+            <target>Wniosek o rezerwację został złożony i oczekuje na weryfikację przez administratora.</target>
+        </trans-unit>
+        <trans-unit id="flash.rental.rejected">
+            <source>flash.rental.rejected</source>
+            <target>Wniosek o rezerwację został odrzucony.</target>
+        </trans-unit>
+        <trans-unit id="flash.rental.returned">
+            <source>flash.rental.returned</source>
+            <target>Zasób został zwrócony. Stan magazynowy zaktualizowany.</target>
+        </trans-unit>
+        <trans-unit id="flash.resource.created">
+            <source>flash.resource.created</source>
+            <target>Pomyślnie dodano nowy zasób do bazy danych.</target>
+        </trans-unit>
+        <trans-unit id="flash.resource.deleted">
+            <source>flash.resource.deleted</source>
+            <target>Zasób został trwale usunięty z magazynu.</target>
+        </trans-unit>
+        <trans-unit id="flash.resource.updated">
+            <source>flash.resource.updated</source>
+            <target>Zmiany w zasobie zostały pomyślnie zapisane.</target>
+        </trans-unit>
+        <trans-unit id="login.already_logged_in">
+            <source>login.already_logged_in</source>
+            <target>Jesteś już zalogowany jako</target>
+        </trans-unit>
+        <trans-unit id="login.email">
+            <source>login.email</source>
+            <target>Adres E-mail</target>
+        </trans-unit>
+        <trans-unit id="login.heading">
+            <source>login.heading</source>
+            <target>Zaloguj się do systemu</target>
+        </trans-unit>
+        <trans-unit id="login.logout">
+            <source>login.logout</source>
+            <target>Wyloguj się</target>
+        </trans-unit>
+        <trans-unit id="login.password">
+            <source>login.password</source>
+            <target>Hasło dostępowe</target>
+        </trans-unit>
+        <trans-unit id="login.remember_me">
+            <source>login.remember_me</source>
+            <target>Zapamiętaj mnie na tym urządzeniu</target>
+        </trans-unit>
+        <trans-unit id="login.submit">
+            <source>login.submit</source>
+            <target>Zaloguj się bezpiecznie</target>
+        </trans-unit>
+        <trans-unit id="login.title">
+            <source>login.title</source>
+            <target>Logowanie</target>
+        </trans-unit>
+        <trans-unit id="nav.catalog">
+            <source>nav.catalog</source>
+            <target>Katalog Zasobów</target>
+        </trans-unit>
+        <trans-unit id="nav.catalog.all">
+            <source>nav.catalog.all</source>
+            <target>Wszystkie multimedia</target>
+        </trans-unit>
+        <trans-unit id="nav.dashboard">
+            <source>nav.dashboard</source>
+            <target>Dashboard</target>
+        </trans-unit>
+        <trans-unit id="nav.logged_in_as">
+            <source>nav.logged_in_as</source>
+            <target>Zalogowany jako</target>
+        </trans-unit>
+        <trans-unit id="nav.login">
+            <source>nav.login</source>
+            <target>Logowanie</target>
+        </trans-unit>
+        <trans-unit id="nav.logout">
+            <source>nav.logout</source>
+            <target>Wyloguj</target>
+        </trans-unit>
+        <trans-unit id="nav.my_profile">
+            <source>nav.my_profile</source>
+            <target>Moje dane</target>
+        </trans-unit>
+        <trans-unit id="nav.my_rentals">
+            <source>nav.my_rentals</source>
+            <target>Moje Wypożyczenia</target>
+        </trans-unit>
+        <trans-unit id="nav.register">
+            <source>nav.register</source>
+            <target>Rejestracja</target>
+        </trans-unit>
+        <trans-unit id="profile.form.email">
+            <source>profile.form.email</source>
+            <target>Adres e-mail</target>
+        </trans-unit>
+        <trans-unit id="profile.form.password">
+            <source>profile.form.password</source>
+            <target>Nowe hasło</target>
+        </trans-unit>
+        <trans-unit id="profile.form.password_help">
+            <source>profile.form.password_help</source>
+            <target>Uzupełnij tylko jeśli chcesz zmienić dotychczasowe hasło.</target>
+        </trans-unit>
+        <trans-unit id="profile.subtitle">
+            <source>profile.subtitle</source>
+            <target>Zaktualizuj swój adres e-mail lub hasło</target>
+        </trans-unit>
+        <trans-unit id="profile.title">
+            <source>profile.title</source>
+            <target>Moje dane</target>
+        </trans-unit>
+        <trans-unit id="register.form.agree_terms">
+            <source>register.form.agree_terms</source>
+            <target>Akceptuję regulamin serwisu</target>
+        </trans-unit>
+        <trans-unit id="register.form.email">
+            <source>register.form.email</source>
+            <target>Adres e-mail</target>
+        </trans-unit>
+        <trans-unit id="register.form.password">
+            <source>register.form.password</source>
+            <target>Hasło</target>
+        </trans-unit>
+        <trans-unit id="register.have_account">
+            <source>register.have_account</source>
+            <target>Masz już konto?</target>
+        </trans-unit>
+        <trans-unit id="register.heading">
+            <source>register.heading</source>
+            <target>Załóż konto</target>
+        </trans-unit>
+        <trans-unit id="register.login_link">
+            <source>register.login_link</source>
+            <target>Zaloguj się</target>
+        </trans-unit>
+        <trans-unit id="register.submit">
+            <source>register.submit</source>
+            <target>Zarejestruj się</target>
+        </trans-unit>
+        <trans-unit id="register.title">
+            <source>register.title</source>
+            <target>Rejestracja</target>
+        </trans-unit>
+        <trans-unit id="rental.action.approve">
+            <source>rental.action.approve</source>
+            <target>Zatwierdź</target>
+        </trans-unit>
+        <trans-unit id="rental.action.reject">
+            <source>rental.action.reject</source>
+            <target>Odrzuć</target>
+        </trans-unit>
+        <trans-unit id="rental.action.reserve">
+            <source>rental.action.reserve</source>
+            <target>Zarezerwuj zasób</target>
+        </trans-unit>
+        <trans-unit id="rental.action.return">
+            <source>rental.action.return</source>
+            <target>Zwróć</target>
+        </trans-unit>
+        <trans-unit id="rental.empty_list">
+            <source>rental.empty_list</source>
+            <target>Brak zarejestrowanych wniosków rezerwacyjnych w bazie danych.</target>
+        </trans-unit>
+        <trans-unit id="rental.error.approve_not_enough_stock">
+            <source>rental.error.approve_not_enough_stock</source>
+            <target>Brak wystarczającej ilości sztuk w magazynie, by zatwierdzić to wypożyczenie!</target>
+        </trans-unit>
+        <trans-unit id="rental.error.approve_not_pending">
+            <source>rental.error.approve_not_pending</source>
+            <target>Można zatwierdzić tylko wnioski oczekujące.</target>
+        </trans-unit>
+        <trans-unit id="rental.error.no_resource">
+            <source>rental.error.no_resource</source>
+            <target>Nie wybrano zasobu do wypożyczenia.</target>
+        </trans-unit>
+        <trans-unit id="rental.error.not_enough_stock">
+            <source>rental.error.not_enough_stock</source>
+            <target>Niestety, brak żądanej ilości sztuk w magazynie.</target>
+        </trans-unit>
+        <trans-unit id="rental.error.reject_not_pending">
+            <source>rental.error.reject_not_pending</source>
+            <target>Można odrzucić tylko wnioski oczekujące.</target>
+        </trans-unit>
+        <trans-unit id="rental.error.return_not_approved">
+            <source>rental.error.return_not_approved</source>
+            <target>Można zwrócić tylko zasób, który jest aktualnie wypożyczony (zatwierdzony).</target>
+        </trans-unit>
+        <trans-unit id="rental.form.choose_resource">
+            <source>rental.form.choose_resource</source>
+            <target>Wybierz zasób...</target>
+        </trans-unit>
+        <trans-unit id="rental.form.quantity">
+            <source>rental.form.quantity</source>
+            <target>Ilość sztuk</target>
+        </trans-unit>
+        <trans-unit id="rental.form.resource">
+            <source>rental.form.resource</source>
+            <target>Zasób do wypożyczenia</target>
+        </trans-unit>
+        <trans-unit id="rental.index.title.admin">
+            <source>rental.index.title.admin</source>
+            <target>Panel Zarządzania Wypożyczeniami</target>
+        </trans-unit>
+        <trans-unit id="rental.index.title.user">
+            <source>rental.index.title.user</source>
+            <target>Twoje Rezerwacje i Wypożyczenia</target>
+        </trans-unit>
+        <trans-unit id="rental.new.cancel">
+            <source>rental.new.cancel</source>
+            <target>Anuluj i wróć</target>
+        </trans-unit>
+        <trans-unit id="rental.new.field.quantity">
+            <source>rental.new.field.quantity</source>
+            <target>Ilość egzemplarzy</target>
+        </trans-unit>
+        <trans-unit id="rental.new.field.resource">
+            <source>rental.new.field.resource</source>
+            <target>Wybierz zasób</target>
+        </trans-unit>
+        <trans-unit id="rental.new.form_subtitle">
+            <source>rental.new.form_subtitle</source>
+            <target>Wypełnij poniższe pola, aby zapisać transakcję</target>
+        </trans-unit>
+        <trans-unit id="rental.new.form_title">
+            <source>rental.new.form_title</source>
+            <target>Dane nowego wypożyczenia</target>
+        </trans-unit>
+        <trans-unit id="rental.new.heading">
+            <source>rental.new.heading</source>
+            <target>Kreator Wypożyczeń</target>
+        </trans-unit>
+        <trans-unit id="rental.new.submit">
+            <source>rental.new.submit</source>
+            <target>Zatwierdź wypożyczenie</target>
+        </trans-unit>
+        <trans-unit id="rental.new.subtitle">
+            <source>rental.new.subtitle</source>
+            <target>Zarejestruj nowe wypożyczenie multimediów lub książek w systemie w czasie rzeczywistym.</target>
+        </trans-unit>
+        <trans-unit id="rental.new.title">
+            <source>rental.new.title</source>
+            <target>Nowe Wypożyczenie</target>
+        </trans-unit>
+        <trans-unit id="rental.no_action">
+            <source>rental.no_action</source>
+            <target>Brak akcji</target>
+        </trans-unit>
+        <trans-unit id="rental.status.approved">
+            <source>rental.status.approved</source>
+            <target>Zatwierdzone</target>
+        </trans-unit>
+        <trans-unit id="rental.status.pending">
+            <source>rental.status.pending</source>
+            <target>Oczekuje</target>
+        </trans-unit>
+        <trans-unit id="rental.status.rejected">
+            <source>rental.status.rejected</source>
+            <target>Odrzucone</target>
+        </trans-unit>
+        <trans-unit id="rental.status.returned">
+            <source>rental.status.returned</source>
+            <target>Zwrócone</target>
+        </trans-unit>
+        <trans-unit id="rental.table.actions">
+            <source>rental.table.actions</source>
+            <target>Akcje</target>
+        </trans-unit>
+        <trans-unit id="rental.table.borrower">
+            <source>rental.table.borrower</source>
+            <target>Wypożyczający</target>
+        </trans-unit>
+        <trans-unit id="rental.table.quantity">
+            <source>rental.table.quantity</source>
+            <target>Ilość</target>
+        </trans-unit>
+        <trans-unit id="rental.table.rented_at">
+            <source>rental.table.rented_at</source>
+            <target>Data złożenia</target>
+        </trans-unit>
+        <trans-unit id="rental.table.resource">
+            <source>rental.table.resource</source>
+            <target>Zasób</target>
+        </trans-unit>
+        <trans-unit id="rental.table.status">
+            <source>rental.table.status</source>
+            <target>Status</target>
+        </trans-unit>
+        <trans-unit id="resource.action.add">
+            <source>resource.action.add</source>
+            <target>Dodaj nowy zasób</target>
+        </trans-unit>
+        <trans-unit id="resource.action.back_to_list">
+            <source>resource.action.back_to_list</source>
+            <target>Wróć do listy</target>
+        </trans-unit>
+        <trans-unit id="resource.action.back_to_stock">
+            <source>resource.action.back_to_stock</source>
+            <target>Powrót do magazynu</target>
+        </trans-unit>
+        <trans-unit id="resource.action.delete">
+            <source>resource.action.delete</source>
+            <target>Usuń</target>
+        </trans-unit>
+        <trans-unit id="resource.action.edit">
+            <source>resource.action.edit</source>
+            <target>Edytuj</target>
+        </trans-unit>
+        <trans-unit id="resource.action.save">
+            <source>resource.action.save</source>
+            <target>Zapisz zasób</target>
+        </trans-unit>
+        <trans-unit id="resource.card.author">
+            <source>resource.card.author</source>
+            <target>autor</target>
+        </trans-unit>
+        <trans-unit id="resource.card.available_qty">
+            <source>resource.card.available_qty</source>
+            <target>Dostępna ilość</target>
+        </trans-unit>
+        <trans-unit id="resource.card.category">
+            <source>resource.card.category</source>
+            <target>Kategoria</target>
+        </trans-unit>
+        <trans-unit id="resource.card.category_none">
+            <source>resource.card.category_none</source>
+            <target>Brak</target>
+        </trans-unit>
+        <trans-unit id="resource.card.no_tags">
+            <source>resource.card.no_tags</source>
+            <target>Brak tagów</target>
+        </trans-unit>
+        <trans-unit id="resource.confirm_delete">
+            <source>resource.confirm_delete</source>
+            <target>Czy na pewno chcesz usunąć ten zasób?</target>
+        </trans-unit>
+        <trans-unit id="resource.edit.title">
+            <source>resource.edit.title</source>
+            <target>Edytuj Zasób</target>
+        </trans-unit>
+        <trans-unit id="resource.empty_list">
+            <source>resource.empty_list</source>
+            <target>Brak zasobów spełniających wybrane filtry.</target>
+        </trans-unit>
+        <trans-unit id="resource.filter.all">
+            <source>resource.filter.all</source>
+            <target>Wszystkie</target>
+        </trans-unit>
+        <trans-unit id="resource.filter.clear">
+            <source>resource.filter.clear</source>
+            <target>Wyczyść filtry</target>
+        </trans-unit>
+        <trans-unit id="resource.filter.no_tags">
+            <source>resource.filter.no_tags</source>
+            <target>Brak tagów w systemie</target>
+        </trans-unit>
+        <trans-unit id="resource.filter.submit">
+            <source>resource.filter.submit</source>
+            <target>Filtruj</target>
+        </trans-unit>
+        <trans-unit id="resource.filter.tags">
+            <source>resource.filter.tags</source>
+            <target>Tagi</target>
+        </trans-unit>
+        <trans-unit id="resource.filter.type">
+            <source>resource.filter.type</source>
+            <target>Typ</target>
+        </trans-unit>
+        <trans-unit id="resource.form.author">
+            <source>resource.form.author</source>
+            <target>Autor</target>
+        </trans-unit>
+        <trans-unit id="resource.form.category">
+            <source>resource.form.category</source>
+            <target>Kategoria</target>
+        </trans-unit>
+        <trans-unit id="resource.form.choose_category">
+            <source>resource.form.choose_category</source>
+            <target>Wybierz kategorię</target>
+        </trans-unit>
+        <trans-unit id="resource.form.choose_type">
+            <source>resource.form.choose_type</source>
+            <target>Wybierz typ zasobu</target>
+        </trans-unit>
+        <trans-unit id="resource.form.quantity">
+            <source>resource.form.quantity</source>
+            <target>Ilość</target>
+        </trans-unit>
+        <trans-unit id="resource.form.tags">
+            <source>resource.form.tags</source>
+            <target>Tagi</target>
+        </trans-unit>
+        <trans-unit id="resource.form.title">
+            <source>resource.form.title</source>
+            <target>Tytuł</target>
+        </trans-unit>
+        <trans-unit id="resource.form.type">
+            <source>resource.form.type</source>
+            <target>Typ</target>
+        </trans-unit>
+        <trans-unit id="resource.index.available_items">
+            <source>resource.index.available_items</source>
+            <target>Dostępne pozycje</target>
+        </trans-unit>
+        <trans-unit id="resource.index.subtitle">
+            <source>resource.index.subtitle</source>
+            <target>Przeglądaj, filtruj i zarządzaj zasobami bibliotecznymi oraz multimedialnymi.</target>
+        </trans-unit>
+        <trans-unit id="resource.index.title">
+            <source>resource.index.title</source>
+            <target>Katalog Zasobów</target>
+        </trans-unit>
+        <trans-unit id="resource.new.title">
+            <source>resource.new.title</source>
+            <target>Dodaj Nowy Zasób</target>
+        </trans-unit>
+        <trans-unit id="resource.sort.author">
+            <source>resource.sort.author</source>
+            <target>Autor</target>
+        </trans-unit>
+        <trans-unit id="resource.sort.quantity">
+            <source>resource.sort.quantity</source>
+            <target>Ilość</target>
+        </trans-unit>
+        <trans-unit id="resource.sort.title">
+            <source>resource.sort.title</source>
+            <target>Tytuł</target>
+        </trans-unit>
+        <trans-unit id="resource.type.book">
+            <source>resource.type.book</source>
+            <target>Książka</target>
+        </trans-unit>
+        <trans-unit id="resource.type.film">
+            <source>resource.type.film</source>
+            <target>Film</target>
+        </trans-unit>
+        <trans-unit id="resource.type.record">
+            <source>resource.type.record</source>
+            <target>Płyta</target>
+        </trans-unit>
+        </body>
+    </file>
+</xliff>

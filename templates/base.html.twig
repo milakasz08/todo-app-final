@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="{{ app.request.locale }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}System Wypożyczeń multimediów{% endblock %}</title>
+    <title>{% block title %}{{ 'app.title'|trans }}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -37,27 +37,27 @@
 
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="{{ path('app_dashboard') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-800 hover:text-indigo-300 transition">
-                        <i class="fa-solid fa-chart-pie mr-1"></i> Dashboard
+                        <i class="fa-solid fa-chart-pie mr-1"></i> {{ 'nav.dashboard'|trans }}
                     </a>
 
                     <div class="relative inline-block text-left">
                         <button onclick="toggleDropdown('categoryDropdown')" class="dropdown-btn flex items-center px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-800 hover:text-indigo-300 transition focus:outline-none">
-                            <i class="fa-solid fa-photo-film mr-1"></i> Katalog Zasobów <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                            <i class="fa-solid fa-photo-film mr-1"></i> {{ 'nav.catalog'|trans }} <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
                         </button>
                         <div id="categoryDropdown" class="dropdown-content hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 z-50">
                             <div class="py-1">
-                                <a href="{{ path('app_resource_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-semibold"><i class="fa-solid fa-layer-group mr-2 text-gray-400"></i> Wszystkie multimedia</a>
+                                <a href="{{ path('app_resource_index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-semibold"><i class="fa-solid fa-layer-group mr-2 text-gray-400"></i> {{ 'nav.catalog.all'|trans }}</a>
                             </div>
                             <div class="py-1">
-                                <a href="{{ path('app_resource_index') }}?type=ksiazka" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"><i class="fa-solid fa-book mr-2 text-gray-400"></i> 📚 Książki</a>
-                                <a href="{{ path('app_resource_index') }}?type=film" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"><i class="fa-solid fa-film mr-2 text-gray-400"></i> 🎬 Filmy i Seriali</a>
-                                <a href="{{ path('app_resource_index') }}?type=plyta" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"><i class="fa-solid fa-music mr-2 text-gray-400"></i> 💿 Płyty Muzyczne</a>
+                                <a href="{{ path('app_resource_index') }}?type=ksiazka" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"><i class="fa-solid fa-book mr-2 text-gray-400"></i> {{ 'resource.type.book'|trans }}</a>
+                                <a href="{{ path('app_resource_index') }}?type=film" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"><i class="fa-solid fa-film mr-2 text-gray-400"></i> {{ 'resource.type.film'|trans }}</a>
+                                <a href="{{ path('app_resource_index') }}?type=plyta" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600"><i class="fa-solid fa-music mr-2 text-gray-400"></i> {{ 'resource.type.record'|trans }}</a>
                             </div>
                         </div>
                     </div>
 
                     <a href="{{ path('app_rental_index') }}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-800 hover:text-indigo-300 transition">
-                        <i class="fa-solid fa-folder-open mr-1"></i> Moje Wypożyczenia
+                        <i class="fa-solid fa-folder-open mr-1"></i> {{ 'nav.my_rentals'|trans }}
                     </a>
                 </div>
             </div>
@@ -65,18 +65,21 @@
             <div class="flex items-center space-x-4">
                 {% if app.user %}
                     <div class="hidden lg:flex flex-col text-right">
-                        <span class="text-xs text-slate-400">Zalogowany jako</span>
+                        <span class="text-xs text-slate-400">{{ 'nav.logged_in_as'|trans }}</span>
                         <span class="text-sm font-semibold text-emerald-400"><i class="fa-solid fa-circle-user mr-1"></i>{{ app.user.email }}</span>
                     </div>
+                    <a href="{{ path('app_profile_edit') }}" class="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition" title="{{ 'nav.my_profile'|trans }}">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </a>
                     <a href="{{ path('app_logout') }}" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold shadow transition flex items-center space-x-1">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Wyloguj</span>
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>{{ 'nav.logout'|trans }}</span>
                     </a>
                 {% else %}
                     <a href="{{ path('app_login') }}" class="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition">
-                        🔑 Logowanie
+                        🔑 {{ 'nav.login'|trans }}
                     </a>
                     <a href="{{ path('app_register') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-bold shadow transition">
-                        Rejestracja
+                        {{ 'nav.register'|trans }}
                     </a>
                 {% endif %}
             </div>
@@ -88,9 +91,9 @@
 <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="mb-6 p-4 rounded-xl shadow-md text-white flex items-center space-x-3 {% if label == 'danger' %}bg-red-500{% else %}bg-emerald-500{% endif %}">
-                <i class="fa-solid {% if label == 'danger' %}fa-circle-exclamation{% else %}fa-circle-check{% endif %} text-xl"></i>
-                <span class="font-medium">{{ message }}</span>
+            <div class="mb-6 p-4 rounded-xl shadow-md text-white flex items-center space-x-3 {% if label == 'error' %}bg-red-500{% else %}bg-emerald-500{% endif %}">
+                <i class="fa-solid {% if label == 'error' %}fa-circle-exclamation{% else %}fa-circle-check{% endif %} text-xl"></i>
+                <span class="font-medium">{{ message|trans }}</span>
             </div>
         {% endfor %}
     {% endfor %}
@@ -101,7 +104,7 @@
 </main>
 
 <footer class="bg-slate-900 text-slate-400 text-center py-4 border-t border-slate-800 text-xs mt-auto">
-    &copy; 2026 MediaStream. Projekt Zaliczeniowy - System Zarządzania Multimediami.
+    &copy; 2026 MediaStream. {{ 'app.footer'|trans }}
 </footer>
 
 {% block javascripts %}{% endblock %}

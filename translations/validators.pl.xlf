@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+        <trans-unit id="category.name.not_blank">
+            <source>category.name.not_blank</source>
+            <target>Nazwa kategorii jest wymagana.</target>
+        </trans-unit>
+        <trans-unit id="category.name.too_long">
+            <source>category.name.too_long</source>
+            <target>Nazwa nie może być dłuższa niż {{ limit }} znaków.</target>
+        </trans-unit>
+        <trans-unit id="register.email.already_used">
+            <source>register.email.already_used</source>
+            <target>Istnieje już konto z tym adresem e-mail</target>
+        </trans-unit>
+        <trans-unit id="register.password.not_blank">
+            <source>register.password.not_blank</source>
+            <target>Wprowadź hasło</target>
+        </trans-unit>
+        <trans-unit id="register.password.too_short">
+            <source>register.password.too_short</source>
+            <target>Twoje hasło musi mieć co najmniej {{ limit }} znaków</target>
+        </trans-unit>
+        <trans-unit id="register.terms.required">
+            <source>register.terms.required</source>
+            <target>Musisz zaakceptować nasze warunki.</target>
+        </trans-unit>
+        <trans-unit id="rental.quantity.not_null">
+            <source>rental.quantity.not_null</source>
+            <target>Podaj ilość egzemplarzy do wypożyczenia.</target>
+        </trans-unit>
+        <trans-unit id="rental.quantity.positive">
+            <source>rental.quantity.positive</source>
+            <target>Ilość egzemplarzy musi być liczbą dodatnią.</target>
+        </trans-unit>
+        <trans-unit id="rental.resource.not_null">
+            <source>rental.resource.not_null</source>
+            <target>Wybierz zasób, który chcesz wypożyczyć.</target>
+        </trans-unit>
+        <trans-unit id="resource.author.not_blank">
+            <source>resource.author.not_blank</source>
+            <target>Autor jest wymagany.</target>
+        </trans-unit>
+        <trans-unit id="resource.author.too_long">
+            <source>resource.author.too_long</source>
+            <target>Nazwa autora nie może być dłuższa niż {{ limit }} znaków.</target>
+        </trans-unit>
+        <trans-unit id="resource.quantity.positive_or_zero">
+            <source>resource.quantity.positive_or_zero</source>
+            <target>Ilość nie może być liczbą ujemną.</target>
+        </trans-unit>
+        <trans-unit id="resource.title.not_blank">
+            <source>resource.title.not_blank</source>
+            <target>Tytuł zasobu jest wymagany.</target>
+        </trans-unit>
+        <trans-unit id="resource.title.too_long">
+            <source>resource.title.too_long</source>
+            <target>Tytuł nie może być dłuższy niż {{ limit }} znaków.</target>
+        </trans-unit>
+        <trans-unit id="tag.name.not_blank">
+            <source>tag.name.not_blank</source>
+            <target>Nazwa tagu jest wymagana.</target>
+        </trans-unit>
+        <trans-unit id="tag.name.too_long">
+            <source>tag.name.too_long</source>
+            <target>Nazwa nie może być dłuższa niż {{ limit }} znaków.</target>
+        </trans-unit>
+        </body>
+    </file>
+</xliff>

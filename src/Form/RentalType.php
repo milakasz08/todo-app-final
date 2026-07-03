@@ -31,11 +31,12 @@ class RentalType extends AbstractType
             ->add('resource', EntityType::class, [
                 'class' => Resource::class,
                 'choice_label' => 'Title',
-                'label' => 'Zasób do wypożyczenia',
+                'label' => 'rental.form.resource',
+                'placeholder' => 'rental.form.choose_resource',
                 'attr' => ['class' => 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900'],
             ])
             ->add('quantity', IntegerType::class, [
-                'label' => 'Ilość sztuk',
+                'label' => 'rental.form.quantity',
                 'data' => 1, // Domyślnie 1 sztuka
                 'attr' => [
                     'min' => 1,

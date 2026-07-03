@@ -8,11 +8,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\RegistrationServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 /**
@@ -23,14 +22,13 @@ class RegistrationController extends AbstractController
     /**
      * Register a new user.
      *
-     * @param Request                     $request            biezace zadanie HTTP
-     * @param UserPasswordHasherInterface $userPasswordHasher hasher hasel uzytkownikow
-     * @param EntityManagerInterface      $entityManager      menedzer encji Doctrine
+     * @param Request                      $request             biezace zadanie HTTP
+     * @param RegistrationServiceInterface $registrationService serwis rejestracji uzytkownikow
      *
      * @return Response formularz rejestracji albo przekierowanie po zapisie
      */
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, RegistrationServiceInterface $registrationService): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -40,16 +38,10 @@ class RegistrationController extends AbstractController
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
 
-            // Szyfrowanie hasła
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+            $registrationService->register($user, $plainPassword);
 
-            // Nadanie domyślnej roli użytkownika
-            $user->setRoles(['ROLE_USER']);
+            $this->addFlash('success', 'flash.registration.success');
 
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // Przekierowanie na dashboard po udanej rejestracji
             return $this->redirectToRoute('app_dashboard');
         }
 

@@ -7,13 +7,16 @@
 namespace App\Controller;
 
 use App\Entity\Rental;
+use App\Entity\User;
+use App\Exception\RentalException;
 use App\Form\RentalType;
-use App\Repository\RentalRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Security\Voter\RentalVoter;
+use App\Service\RentalServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/rental')]
@@ -23,23 +26,23 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class RentalController extends AbstractController
 {
     /**
-     * Display the list of rentals.
+     * Display the paginated list of rentals (own ones for a regular user,
+     * all of them for an admin).
      *
-     * @param RentalRepository $rentalRepository repozytorium wypozyczen
+     * @param RentalServiceInterface $rentalService serwis obslugujacy wypozyczenia
+     * @param int                    $page          numer strony (paginacja)
      *
      * @return Response wyrenderowana lista wypozyczen
      */
     #[Route('/', name: 'app_rental_index', methods: ['GET'])]
-    public function index(RentalRepository $rentalRepository): Response
+    #[IsGranted('ROLE_USER')]
+    public function index(RentalServiceInterface $rentalService, #[MapQueryParameter] int $page = 1): Response
     {
-        if ($this->isGranted('ROLE_ADMIN')) {
-            $rentals = $rentalRepository->findAll();
-        } else {
-            $rentals = $rentalRepository->findBy(['user' => $this->getUser()]);
-        }
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
 
         return $this->render('rental/index.html.twig', [
-            'rentals' => $rentals,
+            'pagination' => $rentalService->getVisibleRentals($currentUser, $this->isGranted('ROLE_ADMIN'), $page),
         ]);
     }
 
@@ -47,32 +50,27 @@ class RentalController extends AbstractController
      * Create a new rental.
      *
      * @param Request                $request       biezace zadanie HTTP
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param RentalServiceInterface $rentalService serwis obslugujacy wypozyczenia
      *
      * @return Response formularz rezerwacji albo przekierowanie po zapisie
      */
     #[Route('/new', name: 'app_rental_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, RentalServiceInterface $rentalService): Response
     {
-        $rental = new Rental();
-
-        /** @var \App\Entity\User $currentUser */
+        /** @var User $currentUser */
         $currentUser = $this->getUser();
 
-        $rental->setUser($currentUser);
-        $rental->setBorrowerName($currentUser->getEmail());
-        $rental->setRentedAt(new \DateTimeImmutable());
-        $rental->setStatus('PENDING');
+        $rental = $rentalService->createNewRentalFor($currentUser);
 
         $form = $this->createForm(RentalType::class, $rental);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $resource = $rental->getResource();
-
-            if ($resource->getQuantity() < $rental->getQuantity()) {
-                $this->addFlash('error', 'Niestety, brak żądanej ilości sztuk w magazynie.');
+            try {
+                $rentalService->requestRental($rental);
+            } catch (RentalException $exception) {
+                $this->addFlash('error', $exception->getMessage());
 
                 return $this->render('rental/new.html.twig', [
                     'rental' => $rental,
@@ -80,10 +78,7 @@ class RentalController extends AbstractController
                 ]);
             }
 
-            $entityManager->persist($rental);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Wniosek o rezerwację został złożony i oczekuje na weryfikację przez administratora.');
+            $this->addFlash('success', 'flash.rental.created');
 
             return $this->redirectToRoute('app_rental_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -98,34 +93,20 @@ class RentalController extends AbstractController
      * Approve a rental.
      *
      * @param Rental                 $rental        wypozyczenie do zatwierdzenia
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param RentalServiceInterface $rentalService serwis obslugujacy wypozyczenia
      *
      * @return Response przekierowanie do listy wypozyczen
      */
     #[Route('/{id}/approve', name: 'app_rental_approve', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function approve(Rental $rental, EntityManagerInterface $entityManager): Response
+    public function approve(Rental $rental, RentalServiceInterface $rentalService): Response
     {
-        if ('PENDING' !== $rental->getStatus()) {
-            $this->addFlash('error', 'Można zatwierdzić tylko wnioski oczekujące.');
-
-            return $this->redirectToRoute('app_rental_index');
+        try {
+            $rentalService->approve($rental);
+            $this->addFlash('success', 'flash.rental.approved');
+        } catch (RentalException $exception) {
+            $this->addFlash('error', $exception->getMessage());
         }
-
-        $resource = $rental->getResource();
-
-        if ($resource->getQuantity() < $rental->getQuantity()) {
-            $this->addFlash('error', 'Brak wystarczającej ilości sztuk w magazynie, by zatwierdzić to wypożyczenie!');
-
-            return $this->redirectToRoute('app_rental_index');
-        }
-
-        $rental->setStatus('APPROVED');
-        $resource->setQuantity($resource->getQuantity() - $rental->getQuantity());
-
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Wypożyczenie zostało pomyślnie zatwierdzone. Stan magazynowy zaktualizowany.');
 
         return $this->redirectToRoute('app_rental_index');
     }
@@ -134,24 +115,20 @@ class RentalController extends AbstractController
      * Reject a rental.
      *
      * @param Rental                 $rental        wypozyczenie do odrzucenia
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param RentalServiceInterface $rentalService serwis obslugujacy wypozyczenia
      *
      * @return Response przekierowanie do listy wypozyczen
      */
     #[Route('/{id}/reject', name: 'app_rental_reject', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function reject(Rental $rental, EntityManagerInterface $entityManager): Response
+    public function reject(Rental $rental, RentalServiceInterface $rentalService): Response
     {
-        if ('PENDING' !== $rental->getStatus()) {
-            $this->addFlash('error', 'Można odrzucić tylko wnioski oczekujące.');
-
-            return $this->redirectToRoute('app_rental_index');
+        try {
+            $rentalService->reject($rental);
+            $this->addFlash('success', 'flash.rental.rejected');
+        } catch (RentalException $exception) {
+            $this->addFlash('error', $exception->getMessage());
         }
-
-        $rental->setStatus('REJECTED');
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Wniosek o rezerwację został odrzucony.');
 
         return $this->redirectToRoute('app_rental_index');
     }
@@ -160,34 +137,22 @@ class RentalController extends AbstractController
      * Return a rented resource.
      *
      * @param Rental                 $rental        wypozyczenie do zwrotu
-     * @param EntityManagerInterface $entityManager menedzer encji Doctrine
+     * @param RentalServiceInterface $rentalService serwis obslugujacy wypozyczenia
      *
      * @return Response przekierowanie do listy wypozyczen
      */
     #[Route('/{id}/return', name: 'app_rental_return', methods: ['POST'])]
     #[IsGranted('ROLE_USER')]
-    public function return(Rental $rental, EntityManagerInterface $entityManager): Response
+    public function return(Rental $rental, RentalServiceInterface $rentalService): Response
     {
-        // Zwrócić może tylko właściciel wypożyczenia albo admin
-        if (!$this->isGranted('ROLE_ADMIN') && $rental->getUser() !== $this->getUser()) {
-            throw $this->createAccessDeniedException('Nie możesz zwrócić cudzego wypożyczenia.');
+        $this->denyAccessUnlessGranted(RentalVoter::RETURN_RENTAL, $rental);
+
+        try {
+            $rentalService->returnRental($rental);
+            $this->addFlash('success', 'flash.rental.returned');
+        } catch (RentalException $exception) {
+            $this->addFlash('error', $exception->getMessage());
         }
-
-        if ('APPROVED' !== $rental->getStatus()) {
-            $this->addFlash('error', 'Można zwrócić tylko zasób, który jest aktualnie wypożyczony (zatwierdzony).');
-
-            return $this->redirectToRoute('app_rental_index');
-        }
-
-        $resource = $rental->getResource();
-        $resource->setQuantity($resource->getQuantity() + $rental->getQuantity());
-
-        $rental->setStatus('RETURNED');
-        $rental->setReturnedAt(new \DateTime());
-
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Zasób został zwrócony. Stan magazynowy zaktualizowany.');
 
         return $this->redirectToRoute('app_rental_index');
     }

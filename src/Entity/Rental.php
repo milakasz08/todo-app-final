@@ -6,8 +6,10 @@
 
 namespace App\Entity;
 
+use App\Enum\RentalStatus;
 use App\Repository\RentalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RentalRepository::class)]
 
@@ -31,16 +33,19 @@ class Rental
     private ?\DateTime $returnedAt = null;
 
     #[ORM\ManyToOne(targetEntity: Resource::class)]
+    #[Assert\NotNull(message: 'rental.resource.not_null')]
     private ?Resource $resource = null;
 
     #[ORM\Column]
+    #[Assert\NotNull(message: 'rental.quantity.not_null')]
+    #[Assert\Positive(message: 'rental.quantity.positive')]
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $user = null;
 
-    #[ORM\Column(length: 20, options: ['default' => 'PENDING'])]
-    private ?string $status = 'PENDING';
+    #[ORM\Column(length: 20, enumType: RentalStatus::class, options: ['default' => 'PENDING'])]
+    private ?RentalStatus $status = RentalStatus::PENDING;
 
     /**
      * Get the ID.
@@ -192,8 +197,8 @@ class Rental
     /**
      * Get the status.
      *
-     * @return string|null status wypozyczenia     */
-    public function getStatus(): ?string
+     * @return RentalStatus|null status wypozyczenia     */
+    public function getStatus(): ?RentalStatus
     {
         return $this->status;
     }
@@ -201,11 +206,11 @@ class Rental
     /**
      * Set the status.
      *
-     * @param string $status status wypozyczenia     *
+     * @param RentalStatus $status status wypozyczenia     *
      *
      * @return $this
      */
-    public function setStatus(string $status): static
+    public function setStatus(RentalStatus $status): static
     {
         $this->status = $status;
 
