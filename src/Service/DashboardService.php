@@ -18,7 +18,7 @@ class DashboardService implements DashboardServiceInterface
      * Constructor.
      *
      * @param ResourceRepository $resourceRepository repozytorium zasobow
-     * @param RentalRepository   $rentalRepository    repozytorium wypozyczen
+     * @param RentalRepository   $rentalRepository   repozytorium wypozyczen
      */
     public function __construct(private readonly ResourceRepository $resourceRepository, private readonly RentalRepository $rentalRepository)
     {

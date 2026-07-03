@@ -24,8 +24,8 @@ class ResourceService implements ResourceServiceInterface
      * Constructor.
      *
      * @param ResourceRepository     $resourceRepository repozytorium zasobow
-     * @param EntityManagerInterface $entityManager       menedzer encji Doctrine
-     * @param PaginatorInterface     $paginator           paginator list
+     * @param EntityManagerInterface $entityManager      menedzer encji Doctrine
+     * @param PaginatorInterface     $paginator          paginator list
      */
     public function __construct(private readonly ResourceRepository $resourceRepository, private readonly EntityManagerInterface $entityManager, private readonly PaginatorInterface $paginator)
     {
@@ -63,7 +63,7 @@ class ResourceService implements ResourceServiceInterface
      *
      * @param int $id identyfikator zasobu
      *
-     * @return Resource|null znaleziony zasob albo null
+     * @return resource|null znaleziony zasob albo null
      */
     public function find(int $id): ?Resource
     {
@@ -73,7 +73,7 @@ class ResourceService implements ResourceServiceInterface
     /**
      * Zapisuje nowy zasób.
      *
-     * @param Resource $resource zasob do zapisania
+     * @param resource $resource zasob do zapisania
      */
     public function createResource(Resource $resource): void
     {
@@ -85,7 +85,7 @@ class ResourceService implements ResourceServiceInterface
      * Zasob jest juz zarzadzany przez Doctrine (pochodzi z formularza edycji),
      * wiec wystarczy zatwierdzic zmiany.
      *
-     * @param Resource $resource zasob do zaktualizowania
+     * @param resource $resource zasob do zaktualizowania
      */
     public function updateResource(Resource $resource): void
     {
@@ -95,7 +95,7 @@ class ResourceService implements ResourceServiceInterface
     /**
      * Usuwa zasób.
      *
-     * @param Resource $resource zasob do usuniecia
+     * @param resource $resource zasob do usuniecia
      */
     public function deleteResource(Resource $resource): void
     {

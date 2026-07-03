@@ -26,8 +26,8 @@ class RentalService implements RentalServiceInterface
      * Constructor.
      *
      * @param RentalRepository       $rentalRepository repozytorium wypozyczen
-     * @param EntityManagerInterface $entityManager     menedzer encji Doctrine
-     * @param PaginatorInterface     $paginator         paginator list
+     * @param EntityManagerInterface $entityManager    menedzer encji Doctrine
+     * @param PaginatorInterface     $paginator        paginator list
      */
     public function __construct(private readonly RentalRepository $rentalRepository, private readonly EntityManagerInterface $entityManager, private readonly PaginatorInterface $paginator)
     {

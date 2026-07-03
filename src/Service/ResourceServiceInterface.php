@@ -28,28 +28,28 @@ interface ResourceServiceInterface
      *
      * @param int $id identyfikator zasobu
      *
-     * @return Resource|null znaleziony zasob albo null
+     * @return resource|null znaleziony zasob albo null
      */
     public function find(int $id): ?Resource;
 
     /**
      * Zapisuje nowy zasób.
      *
-     * @param Resource $resource zasob do zapisania
+     * @param resource $resource zasob do zapisania
      */
     public function createResource(Resource $resource): void;
 
     /**
      * Zatwierdza zmiany w istniejącym zasobie.
      *
-     * @param Resource $resource zasob do zaktualizowania
+     * @param resource $resource zasob do zaktualizowania
      */
     public function updateResource(Resource $resource): void;
 
     /**
      * Usuwa zasób.
      *
-     * @param Resource $resource zasob do usuniecia
+     * @param resource $resource zasob do usuniecia
      */
     public function deleteResource(Resource $resource): void;
 }

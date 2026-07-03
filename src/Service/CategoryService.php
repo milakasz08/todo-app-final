@@ -23,8 +23,8 @@ class CategoryService implements CategoryServiceInterface
      * Constructor.
      *
      * @param CategoryRepository     $categoryRepository repozytorium kategorii
-     * @param EntityManagerInterface $entityManager       menedzer encji Doctrine
-     * @param PaginatorInterface     $paginator           paginator list
+     * @param EntityManagerInterface $entityManager      menedzer encji Doctrine
+     * @param PaginatorInterface     $paginator          paginator list
      */
     public function __construct(private readonly CategoryRepository $categoryRepository, private readonly EntityManagerInterface $entityManager, private readonly PaginatorInterface $paginator)
     {
