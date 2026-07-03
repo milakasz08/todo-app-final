@@ -55,7 +55,8 @@ Localhost:8000
 Przykładowe konta
 
 Administrator | admin1@gmail.com  |haslo123    
-Użytkownik    | user1@gmail.com     | haslo1234   
+Użytkownik    | user1@gmail.com   |haslo1234   
+Użytkownik    | user2@gmail.com   |haslo12345
 
 Funkcjonalności
 
@@ -68,6 +69,7 @@ Funkcjonalności
   - zatwierdzanie/odrzucanie wniosków o wypożyczenie
   - zarządzanie uprawnieniami użytkowników (nadawanie/odbieranie roli administratora)
 - Dashboard z podsumowaniem statystyk (liczba zasobów, aktywne wypożyczenia, najpopularniejszy zasób)
+- Filtrowanie przez tagi
 
 Struktura projektu
 
