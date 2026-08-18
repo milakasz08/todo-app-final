@@ -642,6 +642,10 @@
             <source>resource.type.record</source>
             <target>Płyta</target>
         </trans-unit>
+        <trans-unit id="placeholder.leave_blank_to_keep_password">
+            <source>placeholder.leave_blank_to_keep_password</source>
+            <target>Zostaw puste, aby nie zmieniać hasła</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>

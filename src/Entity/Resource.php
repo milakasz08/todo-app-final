@@ -62,7 +62,8 @@ class Resource
     /**
      * Get the ID.
      *
-     * @return int|null identyfikator zasobu     */
+     * @return int|null identyfikator zasobu
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -71,7 +72,8 @@ class Resource
     /**
      * Get the title.
      *
-     * @return string|null tytul zasobu     */
+     * @return string|null tytul zasobu
+     */
     public function getTitle(): ?string
     {
         return $this->title;
@@ -80,11 +82,11 @@ class Resource
     /**
      * Set the title.
      *
-     * @param string $title tytul zasobu     *
+     * @param string|null $title tytul zasobu
      *
      * @return $this
      */
-    public function setTitle(string $title): static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
@@ -94,7 +96,8 @@ class Resource
     /**
      * Get the author.
      *
-     * @return string|null autor zasobu     */
+     * @return string|null autor zasobu
+     */
     public function getAuthor(): ?string
     {
         return $this->author;
@@ -103,11 +106,11 @@ class Resource
     /**
      * Set the author.
      *
-     * @param string $author autor zasobu     *
+     * @param string|null $author autor zasobu
      *
      * @return $this
      */
-    public function setAuthor(string $author): static
+    public function setAuthor(?string $author): static
     {
         $this->author = $author;
 
@@ -117,7 +120,8 @@ class Resource
     /**
      * Get the type.
      *
-     * @return MediaType|null typ zasobu     */
+     * @return MediaType|null typ zasobu
+     */
     public function getType(): ?MediaType
     {
         return $this->type;
@@ -126,7 +130,7 @@ class Resource
     /**
      * Set the type.
      *
-     * @param MediaType $type typ zasobu     *
+     * @param MediaType $type typ zasobu
      *
      * @return $this
      */
@@ -140,7 +144,8 @@ class Resource
     /**
      * Get the quantity.
      *
-     * @return int|null dostepna ilosc sztuk     */
+     * @return int|null dostepna ilosc sztuk
+     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
@@ -149,7 +154,7 @@ class Resource
     /**
      * Set the quantity.
      *
-     * @param int $quantity dostepna ilosc sztuk     *
+     * @param int $quantity dostepna ilosc sztuk
      *
      * @return $this
      */
@@ -163,7 +168,8 @@ class Resource
     /**
      * Get the category.
      *
-     * @return Category|null kategoria zasobu     */
+     * @return Category|null kategoria zasobu
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -172,7 +178,7 @@ class Resource
     /**
      * Set the category.
      *
-     * @param Category|null $category kategoria zasobu     *
+     * @param Category|null $category kategoria zasobu
      *
      * @return $this
      */
@@ -194,7 +200,7 @@ class Resource
     /**
      * Add a tag.
      *
-     * @param Tag $tag tag do dodania     *
+     * @param Tag $tag tag do dodania
      *
      * @return $this
      */
@@ -210,7 +216,7 @@ class Resource
     /**
      * Remove a tag.
      *
-     * @param Tag $tag tag do usuniecia     *
+     * @param Tag $tag tag do usuniecia
      *
      * @return $this
      */
@@ -224,9 +230,13 @@ class Resource
     /**
      * Convert to string.
      *
-     * @return string tytul zasobu jako tekst     */
+     * @return string tytul zasobu jako tekst
+     */
     public function __toString(): string
     {
         return $this->title ?? '';
     }
 }
+
+
+
