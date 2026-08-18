@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ProfileType.
@@ -22,6 +23,15 @@ use Symfony\Component\Validator\Constraints\Length;
 class ProfileType extends AbstractType
 {
     private const INPUT_CLASS = 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900 placeholder-gray-400';
+
+    /**
+     * Constructor.
+     *
+     * @param TranslatorInterface $translator tlumacz komunikatow
+     */
+    public function __construct(private readonly TranslatorInterface $translator)
+    {
+    }
 
     /**
      * Build the form.
@@ -43,7 +53,7 @@ class ProfileType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'class' => self::INPUT_CLASS,
-                    'placeholder' => 'Zostaw puste, aby nie zmieniać hasła',
+                    'placeholder' => $this->translator->trans('profile.form.password_placeholder'),
                 ],
                 'help' => 'profile.form.password_help',
                 'constraints' => [

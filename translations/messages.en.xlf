@@ -642,6 +642,14 @@
             <source>resource.type.record</source>
             <target>Record</target>
         </trans-unit>
+        <trans-unit id="profile.form.password_placeholder">
+            <source>profile.form.password_placeholder</source>
+            <target>Leave empty to keep your current password</target>
+        </trans-unit>
+        <trans-unit id="dashboard.no_rentals">
+            <source>dashboard.no_rentals</source>
+            <target>No rentals yet</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>

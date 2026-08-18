@@ -237,6 +237,3 @@ class Resource
         return $this->title ?? '';
     }
 }
-
-
-

@@ -37,7 +37,7 @@ class DashboardService implements DashboardServiceInterface
 
         $mostPopularData = $this->rentalRepository->findMostPopularResourceData();
 
-        $mostPopularTitle = 'Brak wypożyczeń';
+        $mostPopularTitle = 'dashboard.no_rentals';
         $mostPopularCount = 0;
 
         if (null !== $mostPopularData) {

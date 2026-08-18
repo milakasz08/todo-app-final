@@ -41,7 +41,7 @@
             </div>
             <div class="overflow-hidden">
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">{{ 'dashboard.stat.most_popular'|trans }}</span>
-                <span class="text-sm font-bold text-gray-950 block truncate">{{ most_popular_title }}</span>
+                <span class="text-sm font-bold text-gray-950 block truncate">{{ most_popular_title|trans }}</span>
                 {% if most_popular_count > 0 %}
                     <span class="text-xs text-emerald-600 font-semibold">{{ 'dashboard.stat.rented_times'|trans({'%count%': most_popular_count}) }}</span>
                 {% endif %}
