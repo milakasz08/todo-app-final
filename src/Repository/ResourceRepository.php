@@ -13,7 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Resource>
+ * @extends ServiceEntityRepository<\App\Entity\Resource>
  */
 class ResourceRepository extends ServiceEntityRepository
 {
@@ -32,11 +32,7 @@ class ResourceRepository extends ServiceEntityRepository
      * ordered from the newest. Returns a QueryBuilder (not the results)
      * so it can be paginated by KnpPaginator.
      *
-     * Kategoria jest doleczana przez LEFT JOIN + addSelect, zeby uniknac
-     * problemu N+1 (osobnego zapytania o kategorie dla kazdego zasobu
-     * z osobna przy wyswietlaniu listy).
-     *
-     * @param MediaType|null $type   typ zasobu (stala, a nie tekst z bazy)
+     * @param MediaType|null $type   typ zasobu (stala)
      * @param int[]          $tagIds identyfikatory tagow do filtrowania
      *
      * @return QueryBuilder zapytanie z zasobami spelniajacymi kryteria
