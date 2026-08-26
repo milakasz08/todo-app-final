@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Enum\RentalStatus;
 use App\Exception\RentalException;
 use App\Repository\RentalRepository;
+use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -105,26 +106,43 @@ class RentalService implements RentalServiceInterface
     /**
      * Zatwierdza oczekujący wniosek i zdejmuje odpowiednią ilość z magazynu.
      *
+     * Cala operacja (sprawdzenie stanu magazynowego i jego zmniejszenie)
+     * wykonywana jest w jednej transakcji z blokada pesymistyczna na
+     * wierszu zasobu (SELECT ... FOR UPDATE). Bez tego dwa rownoczesne
+     * zatwierdzenia moglyby obie odczytac ta sama, jeszcze niezmieniona
+     * ilosc, obie przejsc walidacje i obie zapisac zmiany - w efekcie
+     * pozwalajac wypozyczyc wiecej sztuk, niz faktycznie jest dostepnych.
+     *
      * @param Rental $rental wypozyczenie do zatwierdzenia
      *
      * @throws RentalException gdy wniosek nie oczekuje na zatwierdzenie albo brakuje sztuk w magazynie
      */
     public function approve(Rental $rental): void
     {
-        if (RentalStatus::PENDING !== $rental->getStatus()) {
-            throw new RentalException('rental.error.approve_not_pending');
-        }
+        $this->entityManager->wrapInTransaction(function () use ($rental): void {
+            if (RentalStatus::PENDING !== $rental->getStatus()) {
+                throw new RentalException('rental.error.approve_not_pending');
+            }
 
-        $resource = $rental->getResource();
+            $resource = $rental->getResource();
 
-        if (null === $resource || $resource->getQuantity() < $rental->getQuantity()) {
-            throw new RentalException('rental.error.approve_not_enough_stock');
-        }
+            if (null === $resource) {
+                throw new RentalException('rental.error.approve_not_enough_stock');
+            }
 
-        $rental->setStatus(RentalStatus::APPROVED);
-        $resource->setQuantity($resource->getQuantity() - $rental->getQuantity());
+            // Blokujemy wiersz zasobu na czas transakcji i odswiezamy jego
+            // dane, zeby miec pewnosc, ze widzimy aktualny, a nie "spamietany"
+            // wczesniej stan magazynowy.
+            $this->entityManager->lock($resource, LockMode::PESSIMISTIC_WRITE);
+            $this->entityManager->refresh($resource);
 
-        $this->entityManager->flush();
+            if ($resource->getQuantity() < $rental->getQuantity()) {
+                throw new RentalException('rental.error.approve_not_enough_stock');
+            }
+
+            $rental->setStatus(RentalStatus::APPROVED);
+            $resource->setQuantity($resource->getQuantity() - $rental->getQuantity());
+        });
     }
 
     /**
@@ -145,25 +163,31 @@ class RentalService implements RentalServiceInterface
     /**
      * Przyjmuje zwrot zasobu i oddaje zajęte egzemplarze do magazynu.
      *
+     * Analogicznie jak w approve() - operacja jest zablokowana na czas
+     * transakcji, zeby rownoczesne zwroty tego samego zasobu nie nadpisaly
+     * sobie nawzajem zmian w ilosci.
+     *
      * @param Rental $rental wypozyczenie do zwrotu
      *
      * @throws RentalException gdy wypozyczenie nie jest aktualnie zatwierdzone
      */
     public function returnRental(Rental $rental): void
     {
-        if (RentalStatus::APPROVED !== $rental->getStatus()) {
-            throw new RentalException('rental.error.return_not_approved');
-        }
+        $this->entityManager->wrapInTransaction(function () use ($rental): void {
+            if (RentalStatus::APPROVED !== $rental->getStatus()) {
+                throw new RentalException('rental.error.return_not_approved');
+            }
 
-        $resource = $rental->getResource();
+            $resource = $rental->getResource();
 
-        if (null !== $resource) {
-            $resource->setQuantity($resource->getQuantity() + $rental->getQuantity());
-        }
+            if (null !== $resource) {
+                $this->entityManager->lock($resource, LockMode::PESSIMISTIC_WRITE);
+                $this->entityManager->refresh($resource);
+                $resource->setQuantity($resource->getQuantity() + $rental->getQuantity());
+            }
 
-        $rental->setStatus(RentalStatus::RETURNED);
-        $rental->setReturnedAt(new \DateTime());
-
-        $this->entityManager->flush();
+            $rental->setStatus(RentalStatus::RETURNED);
+            $rental->setReturnedAt(new \DateTime());
+        });
     }
 }

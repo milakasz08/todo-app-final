@@ -35,14 +35,17 @@ class Resource
     private ?string $author = null;
 
     #[ORM\Column(length: 50, enumType: MediaType::class)]
+    #[Assert\NotNull(message: 'resource.type.not_null')]
     private ?MediaType $type = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'resource.quantity.not_blank')]
     #[Assert\PositiveOrZero(message: 'resource.quantity.positive_or_zero')]
     private ?int $quantity = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull(message: 'resource.category.not_null')]
     private ?Category $category = null;
 
     /**

@@ -66,6 +66,18 @@
             <source>tag.name.too_long</source>
             <target>The name cannot be longer than {{ limit }} characters.</target>
         </trans-unit>
+        <trans-unit id="resource.type.not_null">
+            <source>resource.type.not_null</source>
+            <target>Please choose the resource type.</target>
+        </trans-unit>
+        <trans-unit id="resource.quantity.not_blank">
+            <source>resource.quantity.not_blank</source>
+            <target>Please provide the available quantity.</target>
+        </trans-unit>
+        <trans-unit id="resource.category.not_null">
+            <source>resource.category.not_null</source>
+            <target>Please choose a category.</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>

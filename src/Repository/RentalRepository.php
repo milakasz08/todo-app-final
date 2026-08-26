@@ -31,11 +31,19 @@ class RentalRepository extends ServiceEntityRepository
     /**
      * Build a query for all rentals, newest first, ready to be paginated/sorted.
      *
+     * Zasob i uzytkownik sa doleczani przez LEFT JOIN + addSelect, zeby
+     * uniknac problemu N+1 (osobnego zapytania dla kazdego wiersza listy
+     * z osobna - tytul zasobu i porownanie wlasciciela sa uzywane w
+     * szablonie dla kazdego wypozyczenia).
+     *
      * @return QueryBuilder zapytanie z posortowanymi wszystkimi wypozyczeniami
      */
     public function queryAll(): QueryBuilder
     {
         return $this->createQueryBuilder('r')
+            ->addSelect('res', 'u')
+            ->leftJoin('r.resource', 'res')
+            ->leftJoin('r.user', 'u')
             ->orderBy('r.rentedAt', 'DESC');
     }
 
