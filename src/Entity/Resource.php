@@ -157,11 +157,11 @@ class Resource
     /**
      * Set the quantity.
      *
-     * @param int $quantity dostepna ilosc sztuk
+     * @param int|null $quantity dostepna ilosc sztuk
      *
      * @return $this
      */
-    public function setQuantity(int $quantity): static
+    public function setQuantity(?int $quantity): static
     {
         $this->quantity = $quantity;
 

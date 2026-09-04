@@ -39,6 +39,7 @@ class ResourceController extends AbstractController
         $type = $request->query->get('type');
         $selectedTagIds = array_map('intval', $request->query->all('tags'));
 
+
         return $this->render('resource/index.html.twig', [
             'pagination' => $resourceService->getFilteredResources($type, $selectedTagIds, $page),
             'allTags' => $tagService->getAllTags(),

@@ -52,6 +52,7 @@ class ResourceType extends AbstractType
             ->add('Quantity', IntegerType::class, [
                 'label' => 'resource.form.quantity',
                 'attr' => ['class' => $inputClass, 'min' => 0],
+                'empty_data' => null,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
