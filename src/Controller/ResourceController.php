@@ -102,11 +102,11 @@ class ResourceController extends AbstractController
      *
      * @return Response formularz edycji albo przekierowanie po zapisie
      */
-    #[Route('/{id}/edit', name: 'app_resource_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_resource_edit', methods: ['GET', 'PUT'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Resource $resource, ResourceServiceInterface $resourceService): Response
     {
-        $form = $this->createForm(ResourceType::class, $resource);
+        $form = $this->createForm(ResourceType::class, $resource, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -132,7 +132,7 @@ class ResourceController extends AbstractController
      *
      * @return Response przekierowanie do listy zasobow
      */
-    #[Route('/{id}', name: 'app_resource_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_resource_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Resource $resource, ResourceServiceInterface $resourceService): Response
     {

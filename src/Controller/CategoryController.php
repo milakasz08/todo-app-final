@@ -92,11 +92,11 @@ final class CategoryController extends AbstractController
      *
      * @return Response formularz edycji albo przekierowanie po zapisie
      */
-    #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_category_edit', methods: ['GET', 'PUT'])]
     #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Category $category, CategoryServiceInterface $categoryService): Response
     {
-        $form = $this->createForm(CategoryType::class, $category);
+        $form = $this->createForm(CategoryType::class, $category, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -122,7 +122,7 @@ final class CategoryController extends AbstractController
      *
      * @return Response przekierowanie do listy kategorii
      */
-    #[Route('/{id}', name: 'app_category_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_category_delete', methods: ['DELETE'])]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Category $category, CategoryServiceInterface $categoryService): Response
     {

@@ -34,22 +34,22 @@ class ResourceType extends AbstractType
         $inputClass = 'w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm font-medium text-gray-900';
 
         $builder
-            ->add('Title', TextType::class, [
+            ->add('title', TextType::class, [
                 'label' => 'resource.form.title',
                 'attr' => ['class' => $inputClass],
             ])
-            ->add('Author', TextType::class, [
+            ->add('author', TextType::class, [
                 'label' => 'resource.form.author',
                 'attr' => ['class' => $inputClass],
             ])
-            ->add('Type', EnumType::class, [
+            ->add('type', EnumType::class, [
                 'label' => 'resource.form.type',
                 'class' => MediaType::class,
                 'choice_label' => static fn (MediaType $type): string => $type->label(),
                 'placeholder' => 'resource.form.choose_type',
                 'attr' => ['class' => $inputClass],
             ])
-            ->add('Quantity', IntegerType::class, [
+            ->add('quantity', IntegerType::class, [
                 'label' => 'resource.form.quantity',
                 'attr' => ['class' => $inputClass, 'min' => 0],
                 'empty_data' => null,
